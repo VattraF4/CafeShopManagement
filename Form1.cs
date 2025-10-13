@@ -17,19 +17,14 @@ namespace OOADCafeShopManagement
 {
     public partial class frmLogin : Form
     {
-        SqlConnection connection = new SqlConnection
-            (@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;
-            Initial Catalog=cafe;
-            Integrated Security=True;
-            TrustServerCertificate=True");
-        
+
 
         //SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
         public frmLogin()
         {
             InitializeComponent();
 
-       
+
         }
 
 
@@ -60,12 +55,16 @@ namespace OOADCafeShopManagement
 
             isValid valid = new isValid();
             if (valid.isValidLogin(username, password))
-                valid.alertLogin(username,password);
+                valid.alertLogin(username, password);
 
 
+            SqlConnection connection = new SqlConnection
+                (@"Data Source=.\SQLEXPRESS;
+                Initial Catalog=cafe;
+                Integrated Security=True;
+                TrustServerCertificate=True");
             try
             {
-
                 // Step 2: Check if username exists
                 string queryUsername = "SELECT password FROM users WHERE username = @username";
                 using (SqlCommand cmdUser = new SqlCommand(queryUsername, connection))

@@ -17,7 +17,7 @@ namespace OOADCafeShopManagement
 {
     public partial class RegisterForm : Form
     {
-        SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
+        //SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
 
         public RegisterForm()
         {
