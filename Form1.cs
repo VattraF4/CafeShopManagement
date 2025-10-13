@@ -19,7 +19,7 @@ namespace OOADCafeShopManagement
     {
 
 
-        //SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
+        //SqlConnection connection = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
         public frmLogin()
         {
             InitializeComponent();

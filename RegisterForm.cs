@@ -51,16 +51,16 @@ namespace OOADCafeShopManagement
             string confirmPassword = txtConfirmPassword.Text.Trim();
 
             isValid valid = new isValid();
-            if(!valid.isValidInputReg(username, password, confirmPassword))
+            if (!valid.isValidInputReg(username, password, confirmPassword))
             {
                 valid.alertRegister(username, password, confirmPassword);
             }
 
 
-            try
-            {
-                using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True"))
+            using (SqlConnection connection = new SqlConnection(@"Data Source=DESKTOP-C39HSFU\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True"))
+                try
                 {
+
                     connection.Open();
 
                     // Step 1: Check if username exists
@@ -113,19 +113,20 @@ namespace OOADCafeShopManagement
                             MessageBox.Show("Failed to register user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                // Always close the connection after using it
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
 
-            }
+                    connection.Close();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    // Always close the connection after using it
+                    if (connection.State == ConnectionState.Open)
+                        connection.Close();
+
+                }
         }
     }
 }
