@@ -91,8 +91,8 @@ namespace OOADCafeShopManagement
                         MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // TODO: Redirect to dashboard
                         this.Hide();
-                        RegisterForm registerForm = new RegisterForm();
-                        registerForm.Show();
+                        frmDashboard dashboard = new frmDashboard();
+                        dashboard.Show();
                     }
                     else
                     {
