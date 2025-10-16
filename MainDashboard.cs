@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace OOADCafeShopManagement
 {
-    public partial class frmDashboard : Form
+    public partial class frmMainDashboard : Form
     {
         //Config for moving form
         [System.Runtime.InteropServices.DllImport("user32.dll")]
@@ -18,7 +18,7 @@ namespace OOADCafeShopManagement
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        public frmDashboard()
+        public frmMainDashboard()
         {
             InitializeComponent();
             MakeDraggable(pnlTitleBar);
@@ -55,6 +55,10 @@ namespace OOADCafeShopManagement
             lbX.ForeColor = Color.White; // Change to your original color
         }
 
-
+        private void btnDashboard_Click(object sender, EventArgs e)
+        {
+           
+            this.Hide();
+        }
     }
 }

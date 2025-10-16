@@ -90,7 +90,7 @@ namespace OOADCafeShopManagement
                         MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         // TODO: Redirect to dashboard
                         this.Hide();
-                        frmDashboard dashboard = new frmDashboard();
+                        frmMainDashboard dashboard = new frmMainDashboard();
                         dashboard.Show();
                     }
                     else
