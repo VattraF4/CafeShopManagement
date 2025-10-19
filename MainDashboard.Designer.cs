@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainDashboard));
             this.panel2 = new System.Windows.Forms.Panel();
             this.button4 = new System.Windows.Forms.Button();
             this.btnAddCustomer = new System.Windows.Forms.Button();
@@ -60,9 +59,10 @@
             this.panel2.Controls.Add(this.label3);
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel2.Location = new System.Drawing.Point(0, 32);
+            this.panel2.Location = new System.Drawing.Point(0, 39);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(256, 455);
+            this.panel2.Size = new System.Drawing.Size(341, 560);
             this.panel2.TabIndex = 2;
             // 
             // button4
@@ -73,9 +73,10 @@
             this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button4.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.button4.Location = new System.Drawing.Point(39, 406);
+            this.button4.Location = new System.Drawing.Point(52, 500);
+            this.button4.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(171, 37);
+            this.button4.Size = new System.Drawing.Size(228, 46);
             this.button4.TabIndex = 2;
             this.button4.Text = "LOG OUT";
             this.button4.UseVisualStyleBackColor = false;
@@ -88,9 +89,10 @@
             this.btnAddCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCustomer.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddCustomer.Location = new System.Drawing.Point(39, 282);
+            this.btnAddCustomer.Location = new System.Drawing.Point(52, 347);
+            this.btnAddCustomer.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddCustomer.Name = "btnAddCustomer";
-            this.btnAddCustomer.Size = new System.Drawing.Size(171, 37);
+            this.btnAddCustomer.Size = new System.Drawing.Size(228, 46);
             this.btnAddCustomer.TabIndex = 2;
             this.btnAddCustomer.Text = "Add Customer";
             this.btnAddCustomer.UseVisualStyleBackColor = false;
@@ -103,9 +105,10 @@
             this.btnAddProducts.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddProducts.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddProducts.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddProducts.Location = new System.Drawing.Point(39, 239);
+            this.btnAddProducts.Location = new System.Drawing.Point(52, 294);
+            this.btnAddProducts.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddProducts.Name = "btnAddProducts";
-            this.btnAddProducts.Size = new System.Drawing.Size(171, 37);
+            this.btnAddProducts.Size = new System.Drawing.Size(228, 46);
             this.btnAddProducts.TabIndex = 2;
             this.btnAddProducts.Text = "Add Products";
             this.btnAddProducts.UseVisualStyleBackColor = false;
@@ -118,9 +121,10 @@
             this.btnAddCashier.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnAddCashier.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddCashier.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnAddCashier.Location = new System.Drawing.Point(39, 196);
+            this.btnAddCashier.Location = new System.Drawing.Point(52, 241);
+            this.btnAddCashier.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAddCashier.Name = "btnAddCashier";
-            this.btnAddCashier.Size = new System.Drawing.Size(171, 37);
+            this.btnAddCashier.Size = new System.Drawing.Size(228, 46);
             this.btnAddCashier.TabIndex = 2;
             this.btnAddCashier.Text = "Add Cashiers";
             this.btnAddCashier.UseVisualStyleBackColor = false;
@@ -133,9 +137,10 @@
             this.btnDashboard.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnDashboard.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDashboard.ForeColor = System.Drawing.SystemColors.ControlLight;
-            this.btnDashboard.Location = new System.Drawing.Point(39, 153);
+            this.btnDashboard.Location = new System.Drawing.Point(52, 188);
+            this.btnDashboard.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnDashboard.Name = "btnDashboard";
-            this.btnDashboard.Size = new System.Drawing.Size(171, 37);
+            this.btnDashboard.Size = new System.Drawing.Size(228, 46);
             this.btnDashboard.TabIndex = 2;
             this.btnDashboard.Text = "Dashboard";
             this.btnDashboard.UseVisualStyleBackColor = false;
@@ -146,9 +151,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Transparent;
-            this.label5.Location = new System.Drawing.Point(127, 117);
+            this.label5.Location = new System.Drawing.Point(169, 144);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(40, 12);
+            this.label5.Size = new System.Drawing.Size(50, 16);
             this.label5.TabIndex = 1;
             this.label5.Text = "Admin";
             // 
@@ -157,9 +163,10 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Transparent;
-            this.label4.Location = new System.Drawing.Point(37, 117);
+            this.label4.Location = new System.Drawing.Point(49, 144);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(71, 12);
+            this.label4.Size = new System.Drawing.Size(88, 16);
             this.label4.TabIndex = 1;
             this.label4.Text = "Username : ";
             // 
@@ -168,18 +175,20 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Rounded MT Bold", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Transparent;
-            this.label3.Location = new System.Drawing.Point(74, 87);
+            this.label3.Location = new System.Drawing.Point(99, 107);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 17);
+            this.label3.Size = new System.Drawing.Size(128, 22);
             this.label3.TabIndex = 1;
             this.label3.Text = "User\'s Portal";
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::OOADCafeShopManagement.Properties.Resources.cafe;
-            this.pictureBox1.Location = new System.Drawing.Point(100, 25);
+            this.pictureBox1.Location = new System.Drawing.Point(133, 31);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox1.Size = new System.Drawing.Size(67, 62);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -189,9 +198,10 @@
             this.lbTitle.AutoSize = true;
             this.lbTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTitle.ForeColor = System.Drawing.Color.Transparent;
-            this.lbTitle.Location = new System.Drawing.Point(276, 9);
+            this.lbTitle.Location = new System.Drawing.Point(368, 11);
+            this.lbTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbTitle.Name = "lbTitle";
-            this.lbTitle.Size = new System.Drawing.Size(211, 15);
+            this.lbTitle.Size = new System.Drawing.Size(249, 18);
             this.lbTitle.TabIndex = 0;
             this.lbTitle.Text = "Cafe Shop Management System";
             // 
@@ -200,9 +210,10 @@
             this.lbX.AutoSize = true;
             this.lbX.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lbX.ForeColor = System.Drawing.Color.Transparent;
-            this.lbX.Location = new System.Drawing.Point(706, 9);
+            this.lbX.Location = new System.Drawing.Point(941, 11);
+            this.lbX.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbX.Name = "lbX";
-            this.lbX.Size = new System.Drawing.Size(16, 15);
+            this.lbX.Size = new System.Drawing.Size(17, 18);
             this.lbX.TabIndex = 1;
             this.lbX.Text = "X";
             this.lbX.Click += new System.EventHandler(this.lbX_Click);
@@ -215,19 +226,21 @@
             this.pnlTitleBar.Controls.Add(this.lbTitle);
             this.pnlTitleBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTitleBar.Location = new System.Drawing.Point(0, 0);
+            this.pnlTitleBar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlTitleBar.Name = "pnlTitleBar";
-            this.pnlTitleBar.Size = new System.Drawing.Size(745, 32);
+            this.pnlTitleBar.Size = new System.Drawing.Size(993, 39);
             this.pnlTitleBar.TabIndex = 1;
-           // 
+            // 
             // frmMainDashboard
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(745, 487);
+            this.ClientSize = new System.Drawing.Size(993, 599);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.pnlTitleBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmMainDashboard";
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
