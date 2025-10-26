@@ -57,8 +57,10 @@ namespace OOADCafeShopManagement
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-           
+           frmDashboard dashboard = new frmDashboard();
             this.Hide();
+            dashboard.Show();
+
         }
     }
 }

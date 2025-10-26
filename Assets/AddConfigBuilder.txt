@@ -1,0 +1,2 @@
+﻿dotnet add package Costura.Fody
+dotnet add package Fody
