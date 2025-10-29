@@ -133,6 +133,15 @@
     <Reference Include="Costura, Version=6.0.0.0, Culture=neutral, PublicKeyToken=9919ef960d84173d, processorArchitecture=MSIL">
       <HintPath>packages\Costura.Fody.6.0.0\lib\netstandard2.0\Costura.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=5.3.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignColors.5.3.0\lib\net462\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=5.3.0.0, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>packages\MaterialDesignThemes.5.3.0\lib\net462\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xaml.Behaviors, Version=1.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Xaml.Behaviors.Wpf.1.1.77\lib\net462\Microsoft.Xaml.Behaviors.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -192,6 +201,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminAddUser.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminAddUser.Designer.cs">
+      <DependentUpon>AdminAddUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AdminAddUserData.cs" />
+    <Compile Include="AdminDashboard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="AdminDashboard.Designer.cs">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -199,11 +221,11 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Db\DbConnection.cs" />
-    <Compile Include="MainDashboard.cs">
+    <Compile Include="Profile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainDashboard.Designer.cs">
-      <DependentUpon>MainDashboard.cs</DependentUpon>
+    <Compile Include="Profile.Designer.cs">
+      <DependentUpon>Profile.cs</DependentUpon>
     </Compile>
     <Compile Include="cafe.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -215,14 +237,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>cafeDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
+    <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Login.Designer.cs">
+      <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="isValid.cs" />
     <Compile Include="Models\Dashboard.cs" />
+    <Compile Include="Models\UserHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterForm.cs">
@@ -232,14 +255,20 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
     <Compile Include="SecurityHelper.cs" />
+    <EmbeddedResource Include="AdminAddUser.resx">
+      <DependentUpon>AdminAddUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdminDashboard.resx">
+      <DependentUpon>AdminDashboard.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainDashboard.resx">
-      <DependentUpon>MainDashboard.cs</DependentUpon>
+    <EmbeddedResource Include="Profile.resx">
+      <DependentUpon>Profile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -288,6 +317,28 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Resources\Noto\NotoSans-Bold.ttf" />
+    <None Include="Resources\Noto\NotoSans-BoldItalic.ttf" />
+    <None Include="Resources\Noto\NotoSans-Italic.ttf" />
+    <None Include="Resources\Noto\NotoSans-Regular.ttf" />
+    <None Include="Resources\Roboto\Roboto-Black.ttf" />
+    <None Include="Resources\Roboto\Roboto-BlackItalic.ttf" />
+    <None Include="Resources\Roboto\Roboto-Bold.ttf" />
+    <None Include="Resources\Roboto\Roboto-BoldItalic.ttf" />
+    <None Include="Resources\Roboto\Roboto-Italic.ttf" />
+    <None Include="Resources\Roboto\Roboto-Light.ttf" />
+    <None Include="Resources\Roboto\Roboto-LightItalic.ttf" />
+    <None Include="Resources\Roboto\Roboto-Medium.ttf" />
+    <None Include="Resources\Roboto\Roboto-MediumItalic.ttf" />
+    <None Include="Resources\Roboto\Roboto-Regular.ttf" />
+    <None Include="Resources\Roboto\Roboto-Thin.ttf" />
+    <None Include="Resources\Roboto\Roboto-ThinItalic.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-Bold.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-BoldItalic.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-Italic.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-Light.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
+    <None Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -300,6 +351,7 @@
     <None Include="Assets\cafe.png" />
     <Content Include="Assets\database\Cafe.sql" />
     <Content Include="Assets\icon\cafe.ico" />
+    <Content Include="Assets\icon\users.svg" />
     <Content Include="Assets\img\background.jpg" />
     <Content Include="Assets\img\cafe.png" />
   </ItemGroup>
@@ -312,7 +364,9 @@
     <Error Condition="!Exists('packages\Costura.Fody.6.0.0\build\Costura.Fody.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.6.0.0\build\Costura.Fody.props'))" />
     <Error Condition="!Exists('packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Costura.Fody.6.0.0\build\Costura.Fody.targets'))" />
     <Error Condition="!Exists('packages\Fody.6.9.3\build\Fody.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Fody.6.9.3\build\Fody.targets'))" />
+    <Error Condition="!Exists('packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets'))" />
   </Target>
   <Import Project="packages\Costura.Fody.6.0.0\build\Costura.Fody.targets" Condition="Exists('packages\Costura.Fody.6.0.0\build\Costura.Fody.targets')" />
   <Import Project="packages\Fody.6.9.3\build\Fody.targets" Condition="Exists('packages\Fody.6.9.3\build\Fody.targets')" />
+  <Import Project="packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.5.3.0\build\MaterialDesignThemes.targets')" />
 </Project>

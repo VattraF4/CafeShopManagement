@@ -106,7 +106,7 @@ namespace OOADCafeShopManagement
 
         private void btnBack_Click(object sender, EventArgs e)
         {
-            frmMainDashboard mainDashboard = new frmMainDashboard();
+            Profile mainDashboard = new Profile();
             mainDashboard.Show();
             this.Hide();
         }
@@ -161,6 +161,13 @@ namespace OOADCafeShopManagement
         private void btnOKCustomDate_Click(Object sender, EventArgs e)
         {
             LoadData();
+        }
+
+        private void btnProfile_Click(object sender, EventArgs e)
+        {
+            Profile mainDashboard = new Profile();
+            mainDashboard.Show();
+            this.Hide();
         }
     }
 }
