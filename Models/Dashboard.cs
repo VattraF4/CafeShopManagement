@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace OOADCafeShopManagement.Models
 {
@@ -13,6 +14,15 @@ namespace OOADCafeShopManagement.Models
     {
         public string Date { get; set; }
         public decimal TotalAmount { get; set; }
+    }
+    // Add this class for better DataGridView support
+    public class UnderstockProduct
+    {
+        public string ProductName { get; set; }
+        public int Stock { get; set; }
+        public decimal UnitPrice { get; set; }
+        //public string Package { get; set; }
+        public string Status => Stock <= 20 ? "Low Stock" : "In Stock";
     }
     public class Dashboard : DbConnection
     {
@@ -27,7 +37,7 @@ namespace OOADCafeShopManagement.Models
         public int NumberCustomers { get; set; }
 
         public List<KeyValuePair<string, int>> TopProductsList { get; private set; }
-        public List<KeyValuePair<string, int>> UnderstockList { get; private set; }
+        public List<UnderstockProduct> UnderstockList { get; private set; } // Changed to custom class
         public List<RevenueByDate> GrossRevenueList { get; private set; }
         public int NumberOrders { get; set; }
         public decimal TotalRevenue { get; set; }
@@ -49,14 +59,18 @@ namespace OOADCafeShopManagement.Models
                 {
                     command.Connection = connection;
                     // Example for Number of users
-                    command.CommandText = "SELECT COUNT(*) FROM users";
+                    command.CommandText = "SELECT COUNT(*) FROM Supplier";
                     NumberSuppliers = (int)command.ExecuteScalar();
 
                     // Similarly implement for Products, Employees, and Customers
 
                     //Get Total of Products
                     command.CommandText = "SELECT COUNT(*) FROM product";
+                    NumberProducts = (int)command.ExecuteScalar();
 
+                    //Get total number of Employees
+                    command.CommandText = "SELECT COUNT(*) FROM users";
+                    NumberEmployees = (int)command.ExecuteScalar();
                     //Get total number of Orders
                     command.CommandText = @"SELECT count(id) from [Order] WHERE OrderDate between @startDate AND @endDate";
                     //command.Parameters.AddWithValue("@startDate", startDate);
@@ -154,7 +168,7 @@ namespace OOADCafeShopManagement.Models
         private void GetProductAnalysis()
         {
             TopProductsList = new List<KeyValuePair<string, int>>();
-            UnderstockList = new List<KeyValuePair<string, int>>();
+            UnderstockList = new List<UnderstockProduct>();
 
             using (var connection = GetConnection())
             {
@@ -179,19 +193,25 @@ namespace OOADCafeShopManagement.Models
                     {
                         TopProductsList.Add(new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
                     }
-                        reader.Close();
+                    reader.Close();
                     //Understock Products
                     //command.Connection = connection;
-                    command.CommandText = @"SELECT ProductName, Stock FROM Product
-                                            WHERE Stock <=100
+                    command.CommandText = @"SELECT ProductName, Stock, UnitPrice FROM Product
+                                            WHERE Stock <= 100
                                             ORDER BY Stock DESC;";
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
-                        UnderstockList.Add(new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
+                        UnderstockList.Add(new UnderstockProduct
+                        {
+                            ProductName = reader["ProductName"].ToString(),
+                            Stock = Convert.ToInt32(reader["Stock"]),
+                            UnitPrice = Convert.ToDecimal(reader["UnitPrice"])
+                            //,Package = reader["Package"].ToString()
+                        });
                     }
-                        reader.Close();
+                    reader.Close();
                 }
             }
 
@@ -215,7 +235,7 @@ namespace OOADCafeShopManagement.Models
             }
             else
             {
-                Console.WriteLine("Date range not refreshed, same query: {0} -{1}",startDate.ToString(),endDate.ToString());
+                Console.WriteLine("Date range not refreshed, same query: {0} -{1}", startDate.ToString(), endDate.ToString());
                 return false;
             }
         }
