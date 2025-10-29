@@ -33,7 +33,7 @@ namespace OOADCafeShopManagement.Models
         public decimal TotalRevenue { get; set; }
         public decimal TotalProfit { get; set; }
 
-        //contructor
+        //Constructor
         public Dashboard()
         {
 
@@ -55,11 +55,10 @@ namespace OOADCafeShopManagement.Models
                     // Similarly implement for Products, Employees, and Customers
 
                     //Get Total of Products
-                    command.CommandText = "SELECT COUNT(*) FROM products";
+                    command.CommandText = "SELECT COUNT(*) FROM product";
 
                     //Get total number of Orders
-                    command.CommandText = @"SELECT count(id) from [order]" +
-                        "WHERE order_date between @startDate AND @endDate";
+                    command.CommandText = @"SELECT count(id) from [Order] WHERE OrderDate between @startDate AND @endDate";
                     //command.Parameters.AddWithValue("@startDate", startDate);
                     command.Parameters.Add("@startDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@endDate", System.Data.SqlDbType.DateTime).Value = endDate;
@@ -80,8 +79,8 @@ namespace OOADCafeShopManagement.Models
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = @"SELECT order_date, sum(TotalAmount) From orders
-                        WHERE order_date between @fromDate and @toDate group by order_date";
+                    command.CommandText = @"SELECT OrderDate, sum(TotalAmount) From [Order]
+                                            WHERE OrderDate between @fromDate and @toDate group by OrderDate";
                     command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
 
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
@@ -92,7 +91,7 @@ namespace OOADCafeShopManagement.Models
                         resultTable.Add(
                             new KeyValuePair<DateTime, decimal>((DateTime)reader[0], (decimal)reader[1])
                             );
-                        TotalRevenue += (decimal)reader[0];
+                        TotalRevenue += (decimal)reader[1];
 
                     }
                     TotalProfit = TotalRevenue * 0.2m; //20%
@@ -131,7 +130,7 @@ namespace OOADCafeShopManagement.Models
                                             into order
                                             select new RevenueByDate
                                             {
-                                                Date = isYear ? order.Key.Substring(0,order.Key.IndexOf(" ")) : order.Key,
+                                                Date = isYear ? order.Key.Substring(0, order.Key.IndexOf(" ")) : order.Key,
                                                 TotalAmount = order.Sum(amount => amount.Value)
                                             }).ToList();
                     }
@@ -149,6 +148,75 @@ namespace OOADCafeShopManagement.Models
                     }
                 }
 
+            }
+        }
+
+        private void GetProductAnalysis()
+        {
+            TopProductsList = new List<KeyValuePair<string, int>>();
+            UnderstockList = new List<KeyValuePair<string, int>>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (var command = new SqlCommand())
+                {
+                    SqlDataReader reader;
+                    command.Connection = connection;
+
+                    //Top 5 Products
+                    command.CommandText = @"SELECT  TOP 5 p.ProductName, sum(OrderItem.Quantity) as Q FROM  OrderItem
+                                            INNER JOIN  Product P  on P.Id = OrderItem.ProductId
+                                            INNER JOIN  [Order] O on O.Id = OrderItem.OrderId
+                                            WHERE  OrderDate between @fromDate and @toDate
+                                            GROUP BY p.ProductName ORDER BY  Q DESC ;";
+
+                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
+                    command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
+                    reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        TopProductsList.Add(new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
+                    }
+                        reader.Close();
+                    //Understock Products
+                    //command.Connection = connection;
+                    command.CommandText = @"SELECT ProductName, Stock FROM Product
+                                            WHERE Stock <=100
+                                            ORDER BY Stock DESC;";
+                    reader = command.ExecuteReader();
+
+                    while (reader.Read())
+                    {
+                        UnderstockList.Add(new KeyValuePair<string, int>(reader[0].ToString(), (int)reader[1]));
+                    }
+                        reader.Close();
+                }
+            }
+
+        }
+
+        //Public Methods
+        public bool LoadData(DateTime startDate, DateTime endDate)
+        {
+            endDate = new DateTime(endDate.Year, endDate.Month, endDate.Day, endDate.Hour, endDate.Minute, endDate.Second, 59);
+            if (startDate != this.startDate || endDate != this.endDate)
+            {
+                this.startDate = startDate;
+                this.endDate = endDate;
+                numberDays = (endDate - startDate).Days;  // This statement is use accessor set within the class by properties Date
+
+                GetNumberItems();
+                GetOrderAnalysis();
+                GetProductAnalysis();
+                Console.WriteLine("Refreshed dated {0} - {1}", startDate.ToString(), endDate.ToString());
+                return true;
+            }
+            else
+            {
+                Console.WriteLine("Date range not refreshed, same query: {0} -{1}",startDate.ToString(),endDate.ToString());
+                return false;
             }
         }
     };
