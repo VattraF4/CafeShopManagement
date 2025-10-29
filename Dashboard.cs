@@ -70,7 +70,16 @@ namespace OOADCafeShopManagement
                 chartTopProducts.DataBind();
 
                 dgvUnderstock.DataSource = model.UnderstockList;
+
+                // Customize DataGridView headers if needed
+
+                //dgvUnderstock.Columns[0].HeaderText = "Product Name";
+                //dgvUnderstock.Columns[1].HeaderText = "Quantity";
+                //dgvUnderstock.Columns[2].HeaderText = "Unit Price";
+                //dgvUnderstock.Columns[3].HeaderText = "Status";
+
                 Console.WriteLine("Data loaded successfully.");
+
 
             }
             else
@@ -94,6 +103,7 @@ namespace OOADCafeShopManagement
         {
             Environment.Exit(0);
         }
+
         private void btnBack_Click(object sender, EventArgs e)
         {
             frmMainDashboard mainDashboard = new frmMainDashboard();
@@ -109,6 +119,48 @@ namespace OOADCafeShopManagement
         private void chartTopProducts_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnToday_Click(object sender, EventArgs e)
+        {
+            dtpStartDate.Value = DateTime.Today;
+            dtpEndDate.Value = DateTime.Now;
+            LoadData();
+            DisableCustomData();
+        }
+
+        private void DisableCustomData()
+        {
+            dtpStartDate.Visible = false;
+            dtpEndDate.Visible = false;
+            btnOKCustomDate.Visible = false;
+        }
+
+        private void btnLast7Days_Click(object sender, EventArgs e)
+        {
+            dtpStartDate.Value = DateTime.Today.AddDays(-7);
+            dtpEndDate.Value = DateTime.Now;
+            LoadData();
+            DisableCustomData();
+        }
+
+        private void btnLast30Days_Click(object sender, EventArgs e)
+        {
+            dtpStartDate.Value = DateTime.Today.AddDays(-30);
+            dtpEndDate.Value = DateTime.Now;
+            LoadData();
+        }
+
+        private void btnCustom_Click(object sender, EventArgs e)
+        {
+            dtpStartDate.Visible = true;
+            dtpEndDate.Visible = true;
+            btnOKCustomDate.Visible = true;
+
+        }
+        private void btnOKCustomDate_Click(Object sender, EventArgs e)
+        {
+            LoadData();
         }
     }
 }

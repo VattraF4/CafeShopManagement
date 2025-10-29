@@ -86,7 +86,7 @@
             this.pnlSepBar = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnExit = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
-            this.btnOK = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
+            this.btnOKCustomDate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnLast30Days = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnLast7Days = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnToday = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
@@ -1082,20 +1082,22 @@
             this.dtpEndDate.CalendarMonthBackground = System.Drawing.Color.Black;
             this.dtpEndDate.CustomFormat = "dd-MMM-yyy";
             this.dtpEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpEndDate.Location = new System.Drawing.Point(113, 57);
+            this.dtpEndDate.Location = new System.Drawing.Point(539, 56);
             this.dtpEndDate.Name = "dtpEndDate";
             this.dtpEndDate.Size = new System.Drawing.Size(93, 20);
             this.dtpEndDate.TabIndex = 3;
+            this.dtpEndDate.Visible = false;
             // 
             // dtpStartDate
             // 
             this.dtpStartDate.CalendarMonthBackground = System.Drawing.Color.Transparent;
             this.dtpStartDate.CustomFormat = "dd-MMM-yyy";
             this.dtpStartDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpStartDate.Location = new System.Drawing.Point(4, 58);
+            this.dtpStartDate.Location = new System.Drawing.Point(417, 56);
             this.dtpStartDate.Name = "dtpStartDate";
             this.dtpStartDate.Size = new System.Drawing.Size(93, 20);
             this.dtpStartDate.TabIndex = 3;
+            this.dtpStartDate.Visible = false;
             // 
             // btnBack
             // 
@@ -1204,7 +1206,7 @@
             // panel3
             // 
             this.panel3.Controls.Add(this.btnExit);
-            this.panel3.Controls.Add(this.btnOK);
+            this.panel3.Controls.Add(this.btnOKCustomDate);
             this.panel3.Controls.Add(this.btnLast30Days);
             this.panel3.Controls.Add(this.btnLast7Days);
             this.panel3.Controls.Add(this.btnToday);
@@ -1306,96 +1308,97 @@
             this.btnExit.UseDefaultRadiusAndThickness = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
-            // btnOK
+            // btnOKCustomDate
             // 
-            this.btnOK.AllowAnimations = true;
-            this.btnOK.AllowMouseEffects = true;
-            this.btnOK.AllowToggling = false;
-            this.btnOK.AnimationSpeed = 200;
-            this.btnOK.AutoGenerateColors = false;
-            this.btnOK.AutoRoundBorders = false;
-            this.btnOK.AutoSizeLeftIcon = true;
-            this.btnOK.AutoSizeRightIcon = true;
-            this.btnOK.BackColor = System.Drawing.Color.Transparent;
-            this.btnOK.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOK.BackgroundImage")));
-            this.btnOK.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOK.ButtonText = "OK";
-            this.btnOK.ButtonTextMarginLeft = 0;
-            this.btnOK.ColorContrastOnClick = 45;
-            this.btnOK.ColorContrastOnHover = 45;
-            this.btnOK.Cursor = System.Windows.Forms.Cursors.Default;
+            this.btnOKCustomDate.AllowAnimations = true;
+            this.btnOKCustomDate.AllowMouseEffects = true;
+            this.btnOKCustomDate.AllowToggling = false;
+            this.btnOKCustomDate.AnimationSpeed = 200;
+            this.btnOKCustomDate.AutoGenerateColors = false;
+            this.btnOKCustomDate.AutoRoundBorders = false;
+            this.btnOKCustomDate.AutoSizeLeftIcon = true;
+            this.btnOKCustomDate.AutoSizeRightIcon = true;
+            this.btnOKCustomDate.BackColor = System.Drawing.Color.Transparent;
+            this.btnOKCustomDate.BackColor1 = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOKCustomDate.BackgroundImage")));
+            this.btnOKCustomDate.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnOKCustomDate.ButtonText = "OK";
+            this.btnOKCustomDate.ButtonTextMarginLeft = 0;
+            this.btnOKCustomDate.ColorContrastOnClick = 45;
+            this.btnOKCustomDate.ColorContrastOnHover = 45;
+            this.btnOKCustomDate.Cursor = System.Windows.Forms.Cursors.Default;
             borderEdges11.BottomLeft = true;
             borderEdges11.BottomRight = true;
             borderEdges11.TopLeft = true;
             borderEdges11.TopRight = true;
-            this.btnOK.CustomizableEdges = borderEdges11;
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnOK.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnOK.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnOK.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btnOK.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.btnOK.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnOK.ForeColor = System.Drawing.Color.White;
-            this.btnOK.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.btnOK.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.btnOK.IconMarginLeft = 11;
-            this.btnOK.IconPadding = 10;
-            this.btnOK.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOK.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.btnOK.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.btnOK.IconSize = 25;
-            this.btnOK.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.IdleBorderRadius = 1;
-            this.btnOK.IdleBorderThickness = 1;
-            this.btnOK.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.IdleIconLeftImage = null;
-            this.btnOK.IdleIconRightImage = null;
-            this.btnOK.IndicateFocus = false;
-            this.btnOK.Location = new System.Drawing.Point(33, 11);
-            this.btnOK.Margin = new System.Windows.Forms.Padding(2);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnOK.OnDisabledState.BorderRadius = 1;
-            this.btnOK.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOK.OnDisabledState.BorderThickness = 1;
-            this.btnOK.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnOK.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btnOK.OnDisabledState.IconLeftImage = null;
-            this.btnOK.OnDisabledState.IconRightImage = null;
-            this.btnOK.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.onHoverState.BorderRadius = 1;
-            this.btnOK.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOK.onHoverState.BorderThickness = 1;
-            this.btnOK.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(46)))), ((int)(((byte)(45)))));
-            this.btnOK.onHoverState.ForeColor = System.Drawing.Color.LightGray;
-            this.btnOK.onHoverState.IconLeftImage = null;
-            this.btnOK.onHoverState.IconRightImage = null;
-            this.btnOK.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.OnIdleState.BorderRadius = 1;
-            this.btnOK.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOK.OnIdleState.BorderThickness = 1;
-            this.btnOK.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.btnOK.OnIdleState.IconLeftImage = null;
-            this.btnOK.OnIdleState.IconRightImage = null;
-            this.btnOK.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.btnOK.OnPressedState.BorderRadius = 1;
-            this.btnOK.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOK.OnPressedState.BorderThickness = 1;
-            this.btnOK.OnPressedState.FillColor = System.Drawing.Color.Black;
-            this.btnOK.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.btnOK.OnPressedState.IconLeftImage = null;
-            this.btnOK.OnPressedState.IconRightImage = null;
-            this.btnOK.Size = new System.Drawing.Size(39, 32);
-            this.btnOK.TabIndex = 4;
-            this.btnOK.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnOK.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnOK.TextMarginLeft = 0;
-            this.btnOK.TextPadding = new System.Windows.Forms.Padding(0);
-            this.btnOK.UseDefaultRadiusAndThickness = true;
-            this.btnOK.Click += new System.EventHandler(this.btnExit_Click);
+            this.btnOKCustomDate.CustomizableEdges = borderEdges11;
+            this.btnOKCustomDate.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnOKCustomDate.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnOKCustomDate.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnOKCustomDate.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnOKCustomDate.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.btnOKCustomDate.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnOKCustomDate.ForeColor = System.Drawing.Color.White;
+            this.btnOKCustomDate.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOKCustomDate.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.btnOKCustomDate.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.btnOKCustomDate.IconMarginLeft = 11;
+            this.btnOKCustomDate.IconPadding = 10;
+            this.btnOKCustomDate.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOKCustomDate.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.btnOKCustomDate.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.btnOKCustomDate.IconSize = 25;
+            this.btnOKCustomDate.IdleBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.IdleBorderRadius = 1;
+            this.btnOKCustomDate.IdleBorderThickness = 1;
+            this.btnOKCustomDate.IdleFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.IdleIconLeftImage = null;
+            this.btnOKCustomDate.IdleIconRightImage = null;
+            this.btnOKCustomDate.IndicateFocus = false;
+            this.btnOKCustomDate.Location = new System.Drawing.Point(22, 11);
+            this.btnOKCustomDate.Margin = new System.Windows.Forms.Padding(2);
+            this.btnOKCustomDate.Name = "btnOKCustomDate";
+            this.btnOKCustomDate.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnOKCustomDate.OnDisabledState.BorderRadius = 1;
+            this.btnOKCustomDate.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnOKCustomDate.OnDisabledState.BorderThickness = 1;
+            this.btnOKCustomDate.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnOKCustomDate.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnOKCustomDate.OnDisabledState.IconLeftImage = null;
+            this.btnOKCustomDate.OnDisabledState.IconRightImage = null;
+            this.btnOKCustomDate.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.onHoverState.BorderRadius = 1;
+            this.btnOKCustomDate.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnOKCustomDate.onHoverState.BorderThickness = 1;
+            this.btnOKCustomDate.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(46)))), ((int)(((byte)(45)))));
+            this.btnOKCustomDate.onHoverState.ForeColor = System.Drawing.Color.LightGray;
+            this.btnOKCustomDate.onHoverState.IconLeftImage = null;
+            this.btnOKCustomDate.onHoverState.IconRightImage = null;
+            this.btnOKCustomDate.OnIdleState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.OnIdleState.BorderRadius = 1;
+            this.btnOKCustomDate.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnOKCustomDate.OnIdleState.BorderThickness = 1;
+            this.btnOKCustomDate.OnIdleState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.btnOKCustomDate.OnIdleState.IconLeftImage = null;
+            this.btnOKCustomDate.OnIdleState.IconRightImage = null;
+            this.btnOKCustomDate.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.btnOKCustomDate.OnPressedState.BorderRadius = 1;
+            this.btnOKCustomDate.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnOKCustomDate.OnPressedState.BorderThickness = 1;
+            this.btnOKCustomDate.OnPressedState.FillColor = System.Drawing.Color.Black;
+            this.btnOKCustomDate.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.btnOKCustomDate.OnPressedState.IconLeftImage = null;
+            this.btnOKCustomDate.OnPressedState.IconRightImage = null;
+            this.btnOKCustomDate.Size = new System.Drawing.Size(39, 32);
+            this.btnOKCustomDate.TabIndex = 4;
+            this.btnOKCustomDate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOKCustomDate.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnOKCustomDate.TextMarginLeft = 0;
+            this.btnOKCustomDate.TextPadding = new System.Windows.Forms.Padding(0);
+            this.btnOKCustomDate.UseDefaultRadiusAndThickness = true;
+            this.btnOKCustomDate.Visible = false;
+            this.btnOKCustomDate.Click += new System.EventHandler(this.btnOKCustomDate_Click);
             // 
             // btnLast30Days
             // 
@@ -1486,6 +1489,7 @@
             this.btnLast30Days.TextMarginLeft = 0;
             this.btnLast30Days.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnLast30Days.UseDefaultRadiusAndThickness = true;
+            this.btnLast30Days.Click += new System.EventHandler(this.btnLast30Days_Click);
             // 
             // btnLast7Days
             // 
@@ -1576,6 +1580,7 @@
             this.btnLast7Days.TextMarginLeft = 0;
             this.btnLast7Days.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnLast7Days.UseDefaultRadiusAndThickness = true;
+            this.btnLast7Days.Click += new System.EventHandler(this.btnLast7Days_Click);
             // 
             // btnToday
             // 
@@ -1624,7 +1629,7 @@
             this.btnToday.IdleIconLeftImage = null;
             this.btnToday.IdleIconRightImage = null;
             this.btnToday.IndicateFocus = false;
-            this.btnToday.Location = new System.Drawing.Point(145, 11);
+            this.btnToday.Location = new System.Drawing.Point(138, 11);
             this.btnToday.Margin = new System.Windows.Forms.Padding(2);
             this.btnToday.Name = "btnToday";
             this.btnToday.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
@@ -1666,6 +1671,7 @@
             this.btnToday.TextMarginLeft = 0;
             this.btnToday.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnToday.UseDefaultRadiusAndThickness = true;
+            this.btnToday.Click += new System.EventHandler(this.btnToday_Click);
             // 
             // btnCustom
             // 
@@ -1756,6 +1762,7 @@
             this.btnCustom.TextMarginLeft = 0;
             this.btnCustom.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnCustom.UseDefaultRadiusAndThickness = true;
+            this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
             // 
             // label3
             // 
@@ -1787,15 +1794,16 @@
             chartArea1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
             chartArea1.Name = "ChartArea1";
             this.chartTopProducts.ChartAreas.Add(chartArea1);
+            legend1.Alignment = System.Drawing.StringAlignment.Center;
             legend1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Top;
+            legend1.Docking = System.Windows.Forms.DataVisualization.Charting.Docking.Bottom;
             legend1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             legend1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
             legend1.IsTextAutoFit = false;
             legend1.MaximumAutoSize = 35F;
             legend1.Name = "Legend1";
             this.chartTopProducts.Legends.Add(legend1);
-            this.chartTopProducts.Location = new System.Drawing.Point(340, 0);
+            this.chartTopProducts.Location = new System.Drawing.Point(424, 0);
             this.chartTopProducts.Name = "chartTopProducts";
             series1.ChartArea = "ChartArea1";
             series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Pie;
@@ -1805,7 +1813,7 @@
             series1.Legend = "Legend1";
             series1.Name = "TopProducts";
             this.chartTopProducts.Series.Add(series1);
-            this.chartTopProducts.Size = new System.Drawing.Size(457, 197);
+            this.chartTopProducts.Size = new System.Drawing.Size(373, 394);
             this.chartTopProducts.TabIndex = 7;
             this.chartTopProducts.Text = "chart2";
             title1.Alignment = System.Drawing.ContentAlignment.TopLeft;
@@ -1859,9 +1867,9 @@
             this.panel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(36)))), ((int)(((byte)(42)))), ((int)(((byte)(64)))));
             this.panel5.Controls.Add(this.dgvUnderstock);
             this.panel5.Controls.Add(this.bunifuLabel13);
-            this.panel5.Location = new System.Drawing.Point(340, 200);
+            this.panel5.Location = new System.Drawing.Point(165, 200);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(432, 181);
+            this.panel5.Size = new System.Drawing.Size(253, 181);
             this.panel5.TabIndex = 5;
             // 
             // dgvUnderstock
@@ -1888,7 +1896,7 @@
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(37)))), ((int)(((byte)(45)))));
             dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
             this.dgvUnderstock.RowsDefaultCellStyle = dataGridViewCellStyle3;
-            this.dgvUnderstock.Size = new System.Drawing.Size(432, 150);
+            this.dgvUnderstock.Size = new System.Drawing.Size(253, 150);
             this.dgvUnderstock.TabIndex = 1;
             // 
             // bunifuLabel13
@@ -1914,7 +1922,7 @@
             this.panel4.Controls.Add(this.bunifuLabel8);
             this.panel4.Location = new System.Drawing.Point(14, 200);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(300, 181);
+            this.panel4.Size = new System.Drawing.Size(142, 181);
             this.panel4.TabIndex = 5;
             // 
             // panel6
@@ -1929,7 +1937,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel6.Location = new System.Drawing.Point(0, 31);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(300, 150);
+            this.panel6.Size = new System.Drawing.Size(142, 150);
             this.panel6.TabIndex = 1;
             // 
             // lblNumberCustomer
@@ -2116,7 +2124,7 @@
         private System.Windows.Forms.DateTimePicker dtpEndDate;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnLast7Days;
         private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnCustom;
-        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnOK;
+        private Bunifu.UI.WinForms.BunifuButton.BunifuButton btnOKCustomDate;
         private System.Windows.Forms.Panel pnlNumberOrder;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel1;
         private Bunifu.UI.WinForms.BunifuLabel lblNumberOrder;
