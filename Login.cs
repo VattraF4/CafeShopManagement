@@ -66,11 +66,13 @@ namespace OOADCafeShopManagement
             try
             {
                 // Step 2: Check if username exists
-                string queryUsername = "SELECT password FROM users WHERE username = @username";
+                string queryUsername = "SELECT password FROM users WHERE username = @username and status = @status";
                 using (SqlCommand cmdUser = new SqlCommand(queryUsername, connection))
+
                 {
                     connection.Open();
                     cmdUser.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
+                    cmdUser.Parameters.AddWithValue("@status", "Active");
 
                     object result = cmdUser.ExecuteScalar(); //use to get a single value from first column
 

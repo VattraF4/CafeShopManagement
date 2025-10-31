@@ -79,7 +79,7 @@ namespace OOADCafeShopManagement
 
                     // Step 2: Insert new user with hashed password
                     string insertQuery = "INSERT INTO users (username, password, profile_img, role, status) " +
-                                         "VALUES (@username, @password, 'profiles/default.png', 'user', 'Active')";
+                                         "VALUES (@username, @password, '@profile', '@role', '@status')";
 
                     using (SqlCommand cmdInsert = new SqlCommand(insertQuery, connection))
                     {
@@ -87,6 +87,11 @@ namespace OOADCafeShopManagement
                         {
                             string hashedPassword = SecurityHelper.HashPassword(confirmPassword);
                             cmdInsert.Parameters.AddWithValue("@password", hashedPassword);
+
+                            //Insert data
+                            cmdInsert.Parameters.AddWithValue("@role", "user");
+                            cmdInsert.Parameters.AddWithValue("@status", "Pending");
+                            cmdInsert.Parameters.AddWithValue("@profile", "profiles/default.png");
 
                         }
                         else
