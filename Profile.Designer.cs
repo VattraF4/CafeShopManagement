@@ -34,9 +34,9 @@
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges7 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges8 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.pnlMenu = new System.Windows.Forms.Panel();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblRegister = new System.Windows.Forms.Label();
+            this.lblStatus = new System.Windows.Forms.Label();
+            this.lblRole = new System.Windows.Forms.Label();
             this.lblUsername = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             this.pnlSepBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlBody = new System.Windows.Forms.Panel();
-            this.adminAddUser1 = new OOADCafeShopManagement.AdminAddUser();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.adminAddUser1 = new OOADCafeShopManagement.AdminAddUser();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrentUser)).BeginInit();
             this.pnlSepBar.SuspendLayout();
@@ -65,9 +65,9 @@
             // pnlMenu
             // 
             this.pnlMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(44)))), ((int)(((byte)(46)))), ((int)(((byte)(45)))));
-            this.pnlMenu.Controls.Add(this.label8);
-            this.pnlMenu.Controls.Add(this.label7);
-            this.pnlMenu.Controls.Add(this.label6);
+            this.pnlMenu.Controls.Add(this.lblRegister);
+            this.pnlMenu.Controls.Add(this.lblStatus);
+            this.pnlMenu.Controls.Add(this.lblRole);
             this.pnlMenu.Controls.Add(this.lblUsername);
             this.pnlMenu.Controls.Add(this.label5);
             this.pnlMenu.Controls.Add(this.label2);
@@ -81,38 +81,38 @@
             this.pnlMenu.Size = new System.Drawing.Size(189, 479);
             this.pnlMenu.TabIndex = 2;
             // 
-            // label8
+            // lblRegister
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.ForeColor = System.Drawing.Color.Transparent;
-            this.label8.Location = new System.Drawing.Point(103, 192);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(75, 12);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "12-Oct-2025";
+            this.lblRegister.AutoSize = true;
+            this.lblRegister.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRegister.ForeColor = System.Drawing.Color.Transparent;
+            this.lblRegister.Location = new System.Drawing.Point(103, 192);
+            this.lblRegister.Name = "lblRegister";
+            this.lblRegister.Size = new System.Drawing.Size(75, 12);
+            this.lblRegister.TabIndex = 1;
+            this.lblRegister.Text = "12-Oct-2025";
             // 
-            // label7
+            // lblStatus
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.ForeColor = System.Drawing.Color.Transparent;
-            this.label7.Location = new System.Drawing.Point(103, 170);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(40, 12);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Active";
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Transparent;
+            this.lblStatus.Location = new System.Drawing.Point(103, 170);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(40, 12);
+            this.lblStatus.TabIndex = 1;
+            this.lblStatus.Text = "Active";
             // 
-            // label6
+            // lblRole
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.Transparent;
-            this.label6.Location = new System.Drawing.Point(103, 142);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(39, 12);
-            this.label6.TabIndex = 1;
-            this.label6.Text = "admin";
+            this.lblRole.AutoSize = true;
+            this.lblRole.Font = new System.Drawing.Font("Arial Rounded MT Bold", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblRole.ForeColor = System.Drawing.Color.Transparent;
+            this.lblRole.Location = new System.Drawing.Point(103, 142);
+            this.lblRole.Name = "lblRole";
+            this.lblRole.Size = new System.Drawing.Size(39, 12);
+            this.lblRole.TabIndex = 1;
+            this.lblRole.Text = "admin";
             // 
             // lblUsername
             // 
@@ -613,14 +613,6 @@
             this.pnlBody.Size = new System.Drawing.Size(979, 479);
             this.pnlBody.TabIndex = 6;
             // 
-            // adminAddUser1
-            // 
-            this.adminAddUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.adminAddUser1.Location = new System.Drawing.Point(195, 3);
-            this.adminAddUser1.Name = "adminAddUser1";
-            this.adminAddUser1.Size = new System.Drawing.Size(781, 473);
-            this.adminAddUser1.TabIndex = 3;
-            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnLogout);
@@ -632,6 +624,14 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(979, 26);
             this.panel1.TabIndex = 7;
+            // 
+            // adminAddUser1
+            // 
+            this.adminAddUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.adminAddUser1.Location = new System.Drawing.Point(195, 3);
+            this.adminAddUser1.Name = "adminAddUser1";
+            this.adminAddUser1.Size = new System.Drawing.Size(781, 473);
+            this.adminAddUser1.TabIndex = 3;
             // 
             // Profile
             // 
@@ -674,9 +674,9 @@
         private System.Windows.Forms.Label lblTitle;
         private System.Windows.Forms.Panel pnlBody;
         private AdminAddUser adminAddUser1;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblRegister;
+        private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Label lblRole;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
