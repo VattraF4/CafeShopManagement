@@ -33,6 +33,7 @@ namespace OOADCafeShopManagement
         //use to move window form by properties tools or control box
         private void MakeDraggable(Control control)
         {
+            Display();
             control.MouseDown += (s, e) =>
             {
                 if (e.Button == MouseButtons.Left)
@@ -59,7 +60,7 @@ namespace OOADCafeShopManagement
 
         private void btnDashboard_Click(object sender, EventArgs e)
         {
-           frmDashboard dashboard = new frmDashboard();
+            frmDashboard dashboard = new frmDashboard();
             this.Hide();
             dashboard.Show();
 
@@ -72,10 +73,29 @@ namespace OOADCafeShopManagement
             frmDashboard.Show();
 
         }
-
-        private void adminAddUser1_Load(object sender, EventArgs e)
+        public void Display()
         {
+            if (GetUsername() != null)
+            {
+                lblUsername.Text = GetUsername();
 
+            }
+            if (GetUserRole() != "admin")
+            {
+                //hide button
+                btnCustomers.Visible = false;
+                btnProducts.Visible = false;
+                btnCashiers.Visible = false;
+                btnProducts.Visible = false;
+            }
+        }
+        public string GetUsername()
+        {
+            return "Ra Vattra";
+        }
+        public string GetUserRole()
+        {
+            return "user";
         }
     }
 }
