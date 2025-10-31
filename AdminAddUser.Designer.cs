@@ -118,6 +118,7 @@
             this.pnlForm.Name = "pnlForm";
             this.pnlForm.Size = new System.Drawing.Size(230, 473);
             this.pnlForm.TabIndex = 10;
+            this.pnlForm.Visible = false;
             // 
             // txtImagePath
             // 
@@ -763,6 +764,7 @@
             this.btnClear.TextMarginLeft = 0;
             this.btnClear.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnClear.UseDefaultRadiusAndThickness = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnDelete
             // 
@@ -1141,7 +1143,6 @@
             this.pnlListUsers.Name = "pnlListUsers";
             this.pnlListUsers.Size = new System.Drawing.Size(549, 473);
             this.pnlListUsers.TabIndex = 12;
-            this.pnlListUsers.Paint += new System.Windows.Forms.PaintEventHandler(this.dgvListUsers_SelectionChanged);
             // 
             // dgvListUsers
             // 

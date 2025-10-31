@@ -59,20 +59,20 @@ namespace OOADCafeShopManagement.Models
                 {
                     command.Connection = connection;
                     // Example for Number of users
-                    command.CommandText = "SELECT COUNT(*) FROM Supplier";
+                    command.CommandText = "SELECT COUNT(*) FROM suppliers";
                     NumberSuppliers = (int)command.ExecuteScalar();
 
                     // Similarly implement for Products, Employees, and Customers
 
                     //Get Total of Products
-                    command.CommandText = "SELECT COUNT(*) FROM product";
+                    command.CommandText = "SELECT COUNT(*) FROM products";
                     NumberProducts = (int)command.ExecuteScalar();
 
                     //Get total number of Employees
                     command.CommandText = "SELECT COUNT(*) FROM users";
                     NumberEmployees = (int)command.ExecuteScalar();
                     //Get total number of Orders
-                    command.CommandText = @"SELECT count(id) from [Order] WHERE OrderDate between @startDate AND @endDate";
+                    command.CommandText = @"SELECT count(id) from [orders] WHERE created_at between @startDate AND @endDate";
                     //command.Parameters.AddWithValue("@startDate", startDate);
                     command.Parameters.Add("@startDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@endDate", System.Data.SqlDbType.DateTime).Value = endDate;
@@ -93,8 +93,8 @@ namespace OOADCafeShopManagement.Models
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = @"SELECT OrderDate, sum(TotalAmount) From [Order]
-                                            WHERE OrderDate between @fromDate and @toDate group by OrderDate";
+                    command.CommandText = @"SELECT created_at, sum(total_amount) From [Orders]
+                                            WHERE created_at between @fromDate and @toDate group by created_at;";
                     command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
 
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
@@ -179,11 +179,14 @@ namespace OOADCafeShopManagement.Models
                     command.Connection = connection;
 
                     //Top 5 Products
-                    command.CommandText = @"SELECT  TOP 5 p.ProductName, sum(OrderItem.Quantity) as Q FROM  OrderItem
-                                            INNER JOIN  Product P  on P.Id = OrderItem.ProductId
-                                            INNER JOIN  [Order] O on O.Id = OrderItem.OrderId
-                                            WHERE  OrderDate between @fromDate and @toDate
-                                            GROUP BY p.ProductName ORDER BY  Q DESC ;";
+                    command.CommandText = @"SELECT TOP 5
+                                                p.name as ProductName,
+                                                SUM(od.quantity) as TotalQuantityOrdered
+                                            FROM order_details od
+                                            INNER JOIN products p ON p.id = od.product_id  -- Only need this join!
+                                            WHERE od.created_at BETWEEN @fromDate AND @toDate
+                                            GROUP BY p.name
+                                            ORDER BY TotalQuantityOrdered DESC;";
 
                     command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
@@ -196,9 +199,17 @@ namespace OOADCafeShopManagement.Models
                     reader.Close();
                     //Understock Products
                     //command.Connection = connection;
-                    command.CommandText = @"SELECT ProductName, Stock, UnitPrice FROM Product
-                                            WHERE Stock <= 100
-                                            ORDER BY Stock DESC;";
+                    command.CommandText = @"SELECT
+                                                p.id,
+                                                p.name as ProductName,
+                                                p.price as UnitPrice,
+                                                COALESCE(SUM(i.stock_in), 0) as TotalStockIn,
+                                                COALESCE(SUM(i.stock_out), 0) as TotalStockOut,
+                                                (COALESCE(SUM(i.stock_in), 0) - COALESCE(SUM(i.stock_out), 0)) as CurrentStock
+                                            FROM products p
+                                            LEFT JOIN inventory i ON p.id = i.product_id
+                                            GROUP BY p.id, p.name, p.price
+                                            ORDER BY p.name;";
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
@@ -206,7 +217,7 @@ namespace OOADCafeShopManagement.Models
                         UnderstockList.Add(new UnderstockProduct
                         {
                             ProductName = reader["ProductName"].ToString(),
-                            Stock = Convert.ToInt32(reader["Stock"]),
+                            Stock = Convert.ToInt32(reader["CurrentStock"]),
                             UnitPrice = Convert.ToDecimal(reader["UnitPrice"])
                             //,Package = reader["Package"].ToString()
                         });

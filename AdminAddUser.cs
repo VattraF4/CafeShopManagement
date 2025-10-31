@@ -33,7 +33,28 @@ namespace OOADCafeShopManagement
             cmbStatus.Items.AddRange(new string[] { "Active", "Inactive", "Suspended" });
             cmbStatus.DropDownStyle = ComboBoxStyle.DropDownList;
         }
+        private void ApplyRoleBasedAccess()
+        {
+            string userRole = GetUserRole();
 
+            if (userRole != "admin")
+            {
+                pnlListUsers.Size = new Size(781, 473);
+                dgvListUsers.Size = new Size(775, 339);
+                pnlForm.Visible = false;
+
+                pnlListUsers.Location = new Point(0, 0);
+                dgvListUsers.Location = new Point(3, 118);
+
+             
+            }
+            else
+            {
+                pnlForm.Visible = true;
+                pnlListUsers.Size = new Size(549, 473);
+                dgvListUsers.Size = new Size(536, 339);
+            }
+        }
         public void DisplayUsersData()
         {
             try
@@ -54,7 +75,8 @@ namespace OOADCafeShopManagement
                 dgvListUsers.Columns["Role"].Width = 120;
                 dgvListUsers.Columns["Status"].Width = 100;
 
-                ApplyRoleBasedLayout();
+                //Apply Layout base on role
+                ApplyRoleBasedAccess();
             }
             catch (Exception ex)
             {
@@ -63,21 +85,7 @@ namespace OOADCafeShopManagement
             }
         }
 
-        private void ApplyRoleBasedLayout()
-        {
-            if (GetUserRole() != "admin")
-            {
-                pnlListUsers.Size = new Size(776, 473);
-                pnlListUsers.Location = new Point(5, 0);
-                dgvListUsers.Size = pnlListUsers.Size;
-                dgvListUsers.Location = new Point(3, 32);
-                pnlForm.Visible = false;
-            }
-            else
-            {
-                pnlForm.Visible = true;
-            }
-        }
+       
 
         private void SetFormMode(bool editMode)
         {
@@ -155,7 +163,7 @@ namespace OOADCafeShopManagement
 
         public string GetUserRole()
         {
-            return "admin"; // This should come from your authentication system
+            return UserSession.Role;  // This should come from your authentication system
         }
 
         // ADD BUTTON
@@ -363,19 +371,6 @@ namespace OOADCafeShopManagement
             picUserProfile.Image = OOADCafeShopManagement.Properties.Resources.user_10x;
         }
 
-        // DATA GRID SELECTION
-        private void dgvListUsers_SelectionChanged(object sender, EventArgs e)
-        {
-            if (dgvListUsers.SelectedRows.Count > 0 && dgvListUsers.SelectedRows[0] != null)
-            {
-                DataGridViewRow selectedRow = dgvListUsers.SelectedRows[0];
-                selectedUserId = (int)selectedRow.Cells["ID"].Value;
-
-                // Load user data into form
-                LoadUserData(selectedUserId);
-                SetFormMode(true); // Switch to Edit mode
-            }
-        }
 
         private void LoadUserData(int userId)
         {
@@ -503,9 +498,38 @@ namespace OOADCafeShopManagement
             DisplayUsersData();
         }
 
+        
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            DataGridViewRow row = dgvListUsers.Rows[e.RowIndex];
+            int id = selectedUserId = (int)row.Cells["ID"].Value;
+            txtUsername.Text = row.Cells[1].Value.ToString();
+            cmbRole.Text = row.Cells[2].Value.ToString();
+            cmbStatus.Text = row.Cells[3].Value.ToString();
+
+            // Load user data into form
+            LoadUserData(selectedUserId);
+            SetFormMode(true); // Switch to Edit mode
 
         }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
+
+        // DATA GRID SELECTION
+        //private void dgvListUsers_SelectionChanged(object sender, EventArgs e)
+        //{
+        //    if (dgvListUsers.SelectedRows.Count > 0 && dgvListUsers.SelectedRows[0] != null)
+        //    {
+        //        DataGridViewRow selectedRow = dgvListUsers.SelectedRows[0];
+        //        selectedUserId = (int)selectedRow.Cells["ID"].Value;
+
+        //        // Load user data into form
+        //        LoadUserData(selectedUserId);
+        //        SetFormMode(true); // Switch to Edit mode
+        //    }
+        //}
     }
 }
