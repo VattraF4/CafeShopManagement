@@ -1,41 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-//Database Connection
 using System.Data;
 using System.Data.SqlClient;
-
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-
-
 namespace OOADCafeShopManagement
 {
     public partial class frmLogin : Form
     {
+        private string connectionString = @"Data Source=.\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True";
 
-
-        SqlConnection connection = new SqlConnection(@"Data Source=.\SQLEXPRESS;Initial Catalog=cafe;Integrated Security=True;TrustServerCertificate=True");
         public frmLogin()
         {
             InitializeComponent();
-
-
         }
-
 
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-
             RegisterForm frmRegister = new RegisterForm();
             frmRegister.Show();
-
-            this.Hide(); // hide current form
-
+            this.Hide();
         }
 
         private void chkShowPassword_CheckedChanged(object sender, EventArgs e)
@@ -57,61 +46,72 @@ namespace OOADCafeShopManagement
             if (valid.isValidLogin(username, password))
                 valid.alertLogin(username, password);
 
+            AuthenticateUser(username, password);
+        }
 
-            //SqlConnection connection = new SqlConnection
-            //    (@"Data Source=.\SQLEXPRESS;
-            //    Initial Catalog=cafe;
-            //    Integrated Security=True;
-            //    TrustServerCertificate=True");
-            try
+        private void AuthenticateUser(string username, string password)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Step 2: Check if username exists
-                string queryUsername = "SELECT password FROM users WHERE username = @username and status = @status";
-                using (SqlCommand cmdUser = new SqlCommand(queryUsername, connection))
-
+                try
                 {
                     connection.Open();
-                    cmdUser.Parameters.AddWithValue("@username", txtUsername.Text.Trim());
-                    cmdUser.Parameters.AddWithValue("@status", "Active");
 
-                    object result = cmdUser.ExecuteScalar(); //use to get a single value from first column
+                    // FIXED: Query to get ALL user details including ID and role
+                    string query = @"SELECT id, username, password, role, status , profile_img
+                                   FROM users 
+                                   WHERE username = @username AND status = @status";
 
-                    if (result == null)
+                    using (SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Username not found
-                        MessageBox.Show("Username does not exist!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                        command.Parameters.AddWithValue("@username", username);
+                        command.Parameters.AddWithValue("@status", "Active");
 
-                    // Step 3: If username exists, compare passwords
-                    string storedHashed = result.ToString();
-                    string enterHashed = SecurityHelper.HashPassword(txtPassword.Text.Trim());
+                        using (SqlDataReader reader = command.ExecuteReader())
+                        {
+                            if (reader.Read())
+                            {
+                                string storedHashed = reader["password"].ToString();
+                                string enterHashed = SecurityHelper.HashPassword(password);
 
-                    if (storedHashed == enterHashed)
-                    {
-                        //MessageBox.Show("Login successful!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // TODO: Redirect to dashboard
-                        this.Hide();
-                        frmDashboard dashboard = new frmDashboard();
-                        dashboard.Show();
+                                if (storedHashed == enterHashed)
+                                {
+                                    // SUCCESSFUL LOGIN - Get user details from reader
+                                    int userId = Convert.ToInt32(reader["id"]);
+                                    string userRole = reader["role"].ToString();
+                                    string userName = reader["username"].ToString();
+                                    string profilePath = reader["profile_img"].ToString();
+
+                                    // Initialize UserSession
+                                    UserSession.Initialize(userId, userName, userRole,profilePath);
+
+                                    MessageBox.Show($"Login successful! Welcome {userName}", "Success",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                    this.Hide();
+                                    frmDashboard dashboard = new frmDashboard();
+                                    dashboard.Show();
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Incorrect password!", "Error",
+                                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                MessageBox.Show("Username does not exist or account is inactive!", "Error",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
                     }
-                    else
-                    {
-                        MessageBox.Show("Incorrect password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    connection.Close();
                 }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-
-                // Always close the connection after using it
-                if (connection.State == ConnectionState.Open)
-                    connection.Close();
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message, "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                // Connection automatically closed by using statement
             }
         }
     }

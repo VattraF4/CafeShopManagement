@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+
 
 namespace OOADCafeShopManagement
 {
@@ -18,6 +20,7 @@ namespace OOADCafeShopManagement
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        
         public Profile()
         {
             InitializeComponent();
@@ -28,6 +31,7 @@ namespace OOADCafeShopManagement
             lbX.MouseEnter += lbX_MouseEnter;
             lbX.MouseLeave += lbX_MouseLeave;
             lbX.Click += lbX_Click;
+            Display();
         }
 
         //use to move window form by properties tools or control box
@@ -75,6 +79,8 @@ namespace OOADCafeShopManagement
         }
         public void Display()
         {
+            //picCurrentUser.Image = Image.FromFile(UserSession.ProfilePath);
+
             if (GetUsername() != null)
             {
                 lblUsername.Text = GetUsername();
@@ -91,11 +97,46 @@ namespace OOADCafeShopManagement
         }
         public string GetUsername()
         {
-            return "Ra Vattra";
+            return UserSession.Username;
         }
         public string GetUserRole()
         {
-            return "user";
+            return UserSession.Role;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            LogoutUser();
+        }
+        private void LogoutUser()
+        {
+            DialogResult result = MessageBox.Show(
+                $"Are you sure you want to logout, {UserSession.Username}?",
+                "Confirm Logout",
+                MessageBoxButtons.YesNo,
+                MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                
+
+                // Clear user session
+                UserSession.Logout();
+
+                // Show logout success message
+                MessageBox.Show("You have been logged out successfully.", "Logout",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // Redirect to login form
+                RedirectToLogin();
+            }
+        }
+        
+        private void RedirectToLogin()
+        {
+            frmLogin loginForm = new frmLogin();
+            loginForm.Show();
+            this.Close(); // Close dashboard
         }
     }
 }
