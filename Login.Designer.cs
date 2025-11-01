@@ -52,10 +52,9 @@
             // 
             // txtUsername
             // 
-            this.txtUsername.Location = new System.Drawing.Point(364, 158);
-            this.txtUsername.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtUsername.Location = new System.Drawing.Point(313, 117);
             this.txtUsername.Name = "txtUsername";
-            this.txtUsername.Size = new System.Drawing.Size(268, 22);
+            this.txtUsername.Size = new System.Drawing.Size(202, 20);
             this.txtUsername.TabIndex = 0;
             // 
             // label2
@@ -63,10 +62,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Rounded MT Bold", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(451, 76);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(378, 51);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(105, 28);
+            this.label2.Size = new System.Drawing.Size(83, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "SING IN";
             // 
@@ -77,20 +75,18 @@
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Location = new System.Drawing.Point(-5, -1);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(-4, -1);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(340, 415);
+            this.panel1.Size = new System.Drawing.Size(255, 337);
             this.panel1.TabIndex = 4;
             // 
             // btnSignUp
             // 
             this.btnSignUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSignUp.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnSignUp.Location = new System.Drawing.Point(21, 340);
-            this.btnSignUp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSignUp.Location = new System.Drawing.Point(16, 276);
             this.btnSignUp.Name = "btnSignUp";
-            this.btnSignUp.Size = new System.Drawing.Size(293, 33);
+            this.btnSignUp.Size = new System.Drawing.Size(220, 27);
             this.btnSignUp.TabIndex = 5;
             this.btnSignUp.Text = "S&ING UP";
             this.btnSignUp.UseVisualStyleBackColor = true;
@@ -100,10 +96,9 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::OOADCafeShopManagement.Properties.Resources.cafe;
-            this.pictureBox1.Location = new System.Drawing.Point(91, 78);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Location = new System.Drawing.Point(68, 63);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(133, 123);
+            this.pictureBox1.Size = new System.Drawing.Size(100, 100);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -113,10 +108,9 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(85, 300);
-            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Location = new System.Drawing.Point(64, 244);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(156, 24);
+            this.label4.Size = new System.Drawing.Size(124, 20);
             this.label4.TabIndex = 3;
             this.label4.Text = "Have no account ?";
             // 
@@ -125,10 +119,9 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.White;
-            this.label5.Location = new System.Drawing.Point(23, 224);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Location = new System.Drawing.Point(17, 182);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(278, 20);
+            this.label5.Size = new System.Drawing.Size(219, 15);
             this.label5.TabIndex = 3;
             this.label5.Text = "Cafe Shop Manangement System";
             // 
@@ -137,20 +130,18 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(360, 134);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(310, 98);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 20);
+            this.label1.Size = new System.Drawing.Size(56, 16);
             this.label1.TabIndex = 3;
             this.label1.Text = "Username:";
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(364, 234);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPassword.Location = new System.Drawing.Point(313, 179);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(268, 22);
+            this.txtPassword.Size = new System.Drawing.Size(202, 20);
             this.txtPassword.TabIndex = 1;
             // 
             // label3
@@ -158,10 +149,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(360, 210);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Location = new System.Drawing.Point(310, 160);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(72, 20);
+            this.label3.Size = new System.Drawing.Size(56, 16);
             this.label3.TabIndex = 3;
             this.label3.Text = "Password:";
             // 
@@ -169,10 +159,9 @@
             // 
             this.chkShowPassword.AutoSize = true;
             this.chkShowPassword.ForeColor = System.Drawing.Color.White;
-            this.chkShowPassword.Location = new System.Drawing.Point(364, 270);
-            this.chkShowPassword.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkShowPassword.Location = new System.Drawing.Point(313, 208);
             this.chkShowPassword.Name = "chkShowPassword";
-            this.chkShowPassword.Size = new System.Drawing.Size(125, 20);
+            this.chkShowPassword.Size = new System.Drawing.Size(102, 17);
             this.chkShowPassword.TabIndex = 2;
             this.chkShowPassword.Text = "&Show Password";
             this.chkShowPassword.UseVisualStyleBackColor = true;
@@ -181,10 +170,9 @@
             // btnLogin
             // 
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(364, 338);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Location = new System.Drawing.Point(313, 264);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(112, 33);
+            this.btnLogin.Size = new System.Drawing.Size(84, 27);
             this.btnLogin.TabIndex = 3;
             this.btnLogin.Text = "&LOGIN";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -195,10 +183,10 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.label8);
             this.panel2.Controls.Add(this.label7);
-            this.panel2.Location = new System.Drawing.Point(0, 415);
-            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 335);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(671, 36);
+            this.panel2.Size = new System.Drawing.Size(573, 30);
             this.panel2.TabIndex = 7;
             // 
             // label8
@@ -206,32 +194,32 @@
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Arial Narrow", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.White;
-            this.label8.Location = new System.Drawing.Point(11, 9);
-            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label8.Location = new System.Drawing.Point(3, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(99, 20);
+            this.label8.Size = new System.Drawing.Size(80, 16);
             this.label8.TabIndex = 13;
             this.label8.Text = "OOAD : Group 1";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+            this.label7.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.label7.Dock = System.Windows.Forms.DockStyle.Right;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.label7.ForeColor = System.Drawing.Color.White;
-            this.label7.Location = new System.Drawing.Point(384, 7);
-            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label7.Location = new System.Drawing.Point(364, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(274, 17);
+            this.label7.Size = new System.Drawing.Size(207, 13);
             this.label7.TabIndex = 14;
             this.label7.Text = "Project : Cafe Shop Managnement System";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(521, 338);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClose.Location = new System.Drawing.Point(431, 264);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(112, 33);
+            this.btnClose.Size = new System.Drawing.Size(84, 27);
             this.btnClose.TabIndex = 5;
             this.btnClose.Text = "&CLOSE";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -240,10 +228,10 @@
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.ClientSize = new System.Drawing.Size(669, 450);
+            this.ClientSize = new System.Drawing.Size(573, 365);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.chkShowPassword);
@@ -255,7 +243,6 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "frmLogin";
             this.Opacity = 0.95D;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

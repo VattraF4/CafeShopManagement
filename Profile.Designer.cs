@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Profile));
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges13 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges14 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges15 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges16 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges1 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges2 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges3 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.pnlMenu = new System.Windows.Forms.Panel();
             this.lblRegister = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             this.pnlSepBar = new System.Windows.Forms.Panel();
             this.lblTitle = new System.Windows.Forms.Label();
             this.pnlBody = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.adminAddUser1 = new OOADCafeShopManagement.AdminAddUser();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.pnlMenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picCurrentUser)).BeginInit();
             this.pnlSepBar.SuspendLayout();
@@ -185,7 +185,7 @@
             this.picCurrentUser.Image = global::OOADCafeShopManagement.Properties.Resources.cafe;
             this.picCurrentUser.Location = new System.Drawing.Point(50, 31);
             this.picCurrentUser.Name = "picCurrentUser";
-            this.picCurrentUser.Size = new System.Drawing.Size(70, 76);
+            this.picCurrentUser.Size = new System.Drawing.Size(70, 64);
             this.picCurrentUser.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picCurrentUser.TabIndex = 0;
             this.picCurrentUser.TabStop = false;
@@ -209,11 +209,11 @@
             this.btnCustomers.ColorContrastOnClick = 45;
             this.btnCustomers.ColorContrastOnHover = 45;
             this.btnCustomers.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges13.BottomLeft = true;
-            borderEdges13.BottomRight = true;
-            borderEdges13.TopLeft = true;
-            borderEdges13.TopRight = true;
-            this.btnCustomers.CustomizableEdges = borderEdges13;
+            borderEdges1.BottomLeft = true;
+            borderEdges1.BottomRight = true;
+            borderEdges1.TopLeft = true;
+            borderEdges1.TopRight = true;
+            this.btnCustomers.CustomizableEdges = borderEdges1;
             this.btnCustomers.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnCustomers.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnCustomers.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -299,11 +299,11 @@
             this.btnProducts.ColorContrastOnClick = 45;
             this.btnProducts.ColorContrastOnHover = 45;
             this.btnProducts.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges14.BottomLeft = true;
-            borderEdges14.BottomRight = true;
-            borderEdges14.TopLeft = true;
-            borderEdges14.TopRight = true;
-            this.btnProducts.CustomizableEdges = borderEdges14;
+            borderEdges2.BottomLeft = true;
+            borderEdges2.BottomRight = true;
+            borderEdges2.TopLeft = true;
+            borderEdges2.TopRight = true;
+            this.btnProducts.CustomizableEdges = borderEdges2;
             this.btnProducts.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnProducts.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnProducts.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -389,11 +389,11 @@
             this.btnCashiers.ColorContrastOnClick = 45;
             this.btnCashiers.ColorContrastOnHover = 45;
             this.btnCashiers.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges15.BottomLeft = true;
-            borderEdges15.BottomRight = true;
-            borderEdges15.TopLeft = true;
-            borderEdges15.TopRight = true;
-            this.btnCashiers.CustomizableEdges = borderEdges15;
+            borderEdges3.BottomLeft = true;
+            borderEdges3.BottomRight = true;
+            borderEdges3.TopLeft = true;
+            borderEdges3.TopRight = true;
+            this.btnCashiers.CustomizableEdges = borderEdges3;
             this.btnCashiers.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnCashiers.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnCashiers.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -479,11 +479,11 @@
             this.btnDashboard.ColorContrastOnClick = 45;
             this.btnDashboard.ColorContrastOnHover = 45;
             this.btnDashboard.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges16.BottomLeft = true;
-            borderEdges16.BottomRight = true;
-            borderEdges16.TopLeft = true;
-            borderEdges16.TopRight = true;
-            this.btnDashboard.CustomizableEdges = borderEdges16;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.btnDashboard.CustomizableEdges = borderEdges4;
             this.btnDashboard.DialogResult = System.Windows.Forms.DialogResult.None;
             this.btnDashboard.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnDashboard.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
@@ -613,6 +613,14 @@
             this.pnlBody.Size = new System.Drawing.Size(979, 479);
             this.pnlBody.TabIndex = 6;
             // 
+            // adminAddUser1
+            // 
+            this.adminAddUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
+            this.adminAddUser1.Location = new System.Drawing.Point(195, 3);
+            this.adminAddUser1.Name = "adminAddUser1";
+            this.adminAddUser1.Size = new System.Drawing.Size(781, 473);
+            this.adminAddUser1.TabIndex = 3;
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnLogout);
@@ -624,14 +632,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(979, 26);
             this.panel1.TabIndex = 7;
-            // 
-            // adminAddUser1
-            // 
-            this.adminAddUser1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.adminAddUser1.Location = new System.Drawing.Point(195, 3);
-            this.adminAddUser1.Name = "adminAddUser1";
-            this.adminAddUser1.Size = new System.Drawing.Size(781, 473);
-            this.adminAddUser1.TabIndex = 3;
             // 
             // Profile
             // 

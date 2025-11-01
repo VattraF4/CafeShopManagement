@@ -89,7 +89,7 @@ namespace OOADCafeShopManagement
             try
             {
                 // Try to get profile picture from UserSession or database
-                string profilePath = GetProfilePath();
+                string profilePath = GetProfilePath(); 
 
                 if (!string.IsNullOrEmpty(profilePath) && File.Exists(profilePath))
                 {
@@ -252,7 +252,6 @@ namespace OOADCafeShopManagement
                 if (btnProducts != null) btnProducts.Visible = false;
                 if (btnCashiers != null) btnCashiers.Visible = false;
 
-                // Remove duplicate: btnProducts.Visible = false;
             }
 
            
