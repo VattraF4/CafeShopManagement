@@ -352,6 +352,8 @@
     <None Include="Assets\cafe.png" />
     <Content Include="Assets\database\Cafe.sql" />
     <None Include="Assets\icon\10x\user%4010x.png" />
+    <Content Include="Assets\database\Insert_Data.sql" />
+    <Content Include="Assets\database\Tables_Structure.sql" />
     <Content Include="Assets\icon\cafe.ico" />
     <Content Include="Assets\icon\users.svg" />
     <Content Include="Assets\img\background.jpg" />
