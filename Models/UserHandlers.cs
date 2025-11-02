@@ -6,7 +6,7 @@ using System.IO;
 
 namespace OOADCafeShopManagement
 {
-    class UserHanlder : DbConnection
+    class UserHandlers : DbConnection
     {
         public int ID { set; get; }
         public string Username { get; set; }
@@ -17,18 +17,18 @@ namespace OOADCafeShopManagement
         public string ProfilePicturePath { get; set; }
 
         // Constructors
-        public UserHanlder() { }
+        public UserHandlers() { }
 
-        public UserHanlder(string username, string password, string role)
+        public UserHandlers(string username, string password, string role)
         {
             Username = username;
             Password = password;
             Role = role;
         }
 
-        public List<UserHanlder> UsersListData()
+        public List<UserHandlers> UsersListData()
         {
-            List<UserHanlder> UsersList = new List<UserHanlder>();
+            List<UserHandlers> UsersList = new List<UserHandlers>();
 
             using (var connection = GetConnection())
             {
@@ -45,7 +45,7 @@ namespace OOADCafeShopManagement
                         {
                             while (reader.Read())
                             {
-                                var userData = new UserHanlder
+                                var userData = new UserHandlers
                                 {
                                     ID = (int)reader["id"],
                                     Username = reader["username"].ToString(),
@@ -69,6 +69,8 @@ namespace OOADCafeShopManagement
             return UsersList;
         }
 
+
+        // This method use to record add users but return true after completion
         public bool AddUser(string username, string password, string role, string status, string profilePicturePath = null)
         {
             using (var connection = GetConnection())
@@ -227,7 +229,7 @@ namespace OOADCafeShopManagement
             }
         }
 
-        public UserHanlder GetUserById(int id)
+        public UserHandlers GetUserById(int id)
         {
             using (var connection = GetConnection())
             {
@@ -245,7 +247,7 @@ namespace OOADCafeShopManagement
                         {
                             if (reader.Read())
                             {
-                                return new UserHanlder
+                                return new UserHandlers
                                 {
                                     ID = (int)reader["id"],
                                     Username = reader["username"].ToString(),

@@ -20,8 +20,8 @@ namespace OOADCafeShopManagement
         }
         public void LoadData()
         {
-            ProductHandler products = new ProductHandler();
-            List<ProductHandler> productsList = products.ListData(); //access to ListData method (match return type)
+            ProductHandlers products = new ProductHandlers();
+            List<ProductHandlers> productsList = products.ListData(); //access to ListData method (match return type)
             dgvListProducts.DataSource = productsList;
             SetupComboBoxes();
         }
@@ -47,9 +47,9 @@ namespace OOADCafeShopManagement
             //Step to get Data from database to store on class list
 
             //1 Instance OBJ
-            SupplierHandler supplierHandler = new SupplierHandler();
+            SupplierHandlers supplierHandler = new SupplierHandlers();
             //2 Call ListData method to get list of suppliers
-            List<SupplierHandler> suppliersList = supplierHandler.ListData();
+            List<SupplierHandlers> suppliersList = supplierHandler.ListData();
 
             //3 Bind to ComboBox
             cmbSupplier.DataSource = suppliersList; // DataSource property to bind list

@@ -213,8 +213,8 @@
     <Compile Include="AdminAddUser.Designer.cs">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductHandler.cs" />
-    <Compile Include="Models\UserHanlder.cs" />
+    <Compile Include="Models\ProductHandlers.cs" />
+    <Compile Include="Models\UserHandlers.cs" />
     <Compile Include="AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -229,7 +229,7 @@
     </Compile>
     <Compile Include="Db\DbConnection.cs" />
     <Compile Include="Models\CategoriesHandler.cs" />
-    <Compile Include="Models\SupplierHandler.cs" />
+    <Compile Include="Models\SupplierHandlers.cs" />
     <Compile Include="Profile.cs">
       <SubType>Form</SubType>
     </Compile>

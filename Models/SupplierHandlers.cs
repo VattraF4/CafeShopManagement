@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOADCafeShopManagement.Models
 {
-    class SupplierHandler:DbConnection
+    class SupplierHandlers:DbConnection
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -15,9 +15,9 @@ namespace OOADCafeShopManagement.Models
         public string Address { get; set; }
         public string Email { get; set; }
         
-        public List<SupplierHandler> ListData()
+        public List<SupplierHandlers> ListData()
         {
-            List<SupplierHandler> suppliersList = new List<SupplierHandler>();
+            List<SupplierHandlers> suppliersList = new List<SupplierHandlers>();
             using (var connection = GetConnection())
             {
                 connection.Open();
@@ -28,7 +28,7 @@ namespace OOADCafeShopManagement.Models
                     {
                         while (reader.Read())
                         {
-                            SupplierHandler supplier = new SupplierHandler
+                            SupplierHandlers supplier = new SupplierHandlers
                             {
                                 ID = reader.GetInt32(0),
                                 Name = reader.GetString(1),
