@@ -169,5 +169,7 @@ namespace OOADCafeShopManagement
             mainDashboard.Show();
             this.Hide();
         }
+
+        
     }
 }
