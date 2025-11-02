@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS cafe;
+use cafe;
 -- Drop tables if they exist (in correct order to handle foreign key constraints)
 DROP TABLE IF EXISTS order_details;
 DROP TABLE IF EXISTS payments;
