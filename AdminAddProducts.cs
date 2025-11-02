@@ -20,10 +20,23 @@ namespace OOADCafeShopManagement
         }
         public void LoadData()
         {
+            ProductListDataGridView();
+            SetupComboBoxes();
+        }
+        public void ProductListDataGridView()
+        {
             ProductHandlers products = new ProductHandlers();
             List<ProductHandlers> productsList = products.ListData(); //access to ListData method (match return type)
             dgvListProducts.DataSource = productsList;
-            SetupComboBoxes();
+
+            // Hide unwanted columns
+            dgvListProducts.Columns["CategoryID"].Visible = false;
+            dgvListProducts.Columns["SupplierID"].Visible = false;
+
+            // Custom Header Name
+            dgvListProducts.Columns[6].HeaderText = "Categories";
+            dgvListProducts.Columns[7].HeaderText = "Supplier";
+
         }
         private void SetupComboBoxes()
         {
@@ -57,5 +70,29 @@ namespace OOADCafeShopManagement
             cmbSupplier.ValueMember = "ID";     // The actual value
         }
 
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductHandlers products = new ProductHandlers();
+                bool success = products.AddProduct(
+                    txtProductName.Text,
+                    (int)cmbCategory.SelectedValue,
+                    (int)cmbSupplier.SelectedValue,
+                    decimal.Parse(txtProductPrice.Text),
+                    decimal.Parse(txtDiscount.Text)
+                );
+                if (success)
+                {
+                    MessageBox.Show("User added successfully!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error adding product: " + ex.Message);
+            }
+        }
     }
 }

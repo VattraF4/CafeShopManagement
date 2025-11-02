@@ -15,14 +15,27 @@ namespace OOADCafeShopManagement.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public decimal Discount { get; set; }
-        public string Description { get; set; }
+        public string CategoryName { get; set; }
+        public string SupplierName { get; set; }
         public List<ProductHandlers> ListData()
         {
             List<ProductHandlers> productsList = new List<ProductHandlers>(); //by default access modifier is private
             using (var connection = GetConnection())
             {
                 connection.Open();
-                string query = "SELECT id, name, categories_id, supplier_id, price, discount FROM Products";
+                string query = @"SELECT
+                                    p.id,
+                                    p.name,
+                                    p.price,
+                                    p.discount,
+                                    p.categories_id,
+                                    p.supplier_id,
+                                    c.name AS categoryName,
+                                    s.name AS supplierName
+                                FROM products p
+                                JOIN categories c ON p.categories_id = c.id
+                                JOIN suppliers s ON p.supplier_id = s.id;";
+
                 using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
                 {
                     using (var reader = command.ExecuteReader())
@@ -33,10 +46,12 @@ namespace OOADCafeShopManagement.Models
                             {
                                 ID = reader.GetInt32(0),
                                 Name = reader.GetString(1),
-                                CategoryID = reader.GetInt32(2),
-                                SupplierID = reader.GetInt32(3),
-                                Price = reader.GetDecimal(4),
-                                Discount = reader.GetDecimal(5)
+                                Price = reader.GetDecimal(2),
+                                Discount = reader.GetDecimal(3),
+                                CategoryID = reader.GetInt32(4),
+                                SupplierID = reader.GetInt32(5),
+                                CategoryName = reader.GetString(6),
+                                SupplierName = reader.GetString(7)
                             };
                             productsList.Add(product);
                         }
@@ -65,7 +80,16 @@ namespace OOADCafeShopManagement.Models
                         command.Parameters.AddWithValue("@supplier_id", supplier);
                         command.Parameters.AddWithValue("@price", price);
                         command.Parameters.AddWithValue("@discount", discount);
-                        command.ExecuteNonQuery();
+                        int rowAffected = command.ExecuteNonQuery();  // this method is execute insert, update, delete and return number of rows affected
+                        if (rowAffected <= 0)
+                        {
+                            throw new Exception("No rows were inserted.");
+                        }
+                        else
+                        {
+                            return true;
+                        }
+
                     }
                 }
                 catch (Exception ex)
@@ -73,7 +97,6 @@ namespace OOADCafeShopManagement.Models
                     throw new Exception("Error adding product: " + ex.Message);
                 }
             }
-            return
         }
     }
 }
