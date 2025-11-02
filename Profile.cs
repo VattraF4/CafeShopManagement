@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,9 @@ namespace OOADCafeShopManagement
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        //private field reference
+        private AdminAddProducts ucProducts;
+        private AdminAddUser ucUsers;
         public Profile()
         {
             InitializeComponent();
@@ -33,6 +37,20 @@ namespace OOADCafeShopManagement
             lbX.Click += lbX_Click;
 
             Display();
+        }
+
+        private void setupUserControls()
+        {
+            ucProducts = new AdminAddProducts();
+            ucUsers = new AdminAddUser();
+
+            ucProducts.Dock = DockStyle.Fill;
+            ucUsers.Dock = DockStyle.Fill;
+
+            // Add UserControls to the Form (but hide them initially)
+            pnlDisplayUserControl.Controls.Add(ucProducts);
+            pnlDisplayUserControl.Controls.Add(ucUsers);
+            ucUsers.BringToFront(); // Show the first one
         }
 
         // Use to move window form by properties tools or control box
@@ -82,6 +100,7 @@ namespace OOADCafeShopManagement
             LoadProfilePicture();
             LoadUserInfo();
             ApplyRoleBasedAccess();
+            setupUserControls();
         }
 
         private void LoadProfilePicture()
@@ -89,7 +108,7 @@ namespace OOADCafeShopManagement
             try
             {
                 // Try to get profile picture from UserSession or database
-                string profilePath = GetProfilePath();
+                string profilePath = GetProfilePath(); 
 
                 if (!string.IsNullOrEmpty(profilePath) && File.Exists(profilePath))
                 {
@@ -238,7 +257,9 @@ namespace OOADCafeShopManagement
 
         public string GetUserRole()
         {
-            return UserSession.Role ?? "Unknown";
+            //return UserSession.Role ?? "Unknown";
+            return UserSession.Role ?? "admin";
+
         }
 
         private void ApplyRoleBasedAccess()
@@ -248,14 +269,17 @@ namespace OOADCafeShopManagement
             if (userRole != "admin")
             {
                 // Hide admin-only features
-                if (btnCustomers != null) btnCustomers.Visible = false;
-                if (btnProducts != null) btnProducts.Visible = false;
-                if (btnCashiers != null) btnCashiers.Visible = false;
+                //if (btnCustomers != null) btnCustomers.Visible = false;
+                //if (btnProducts != null) btnProducts.Visible = false;
+                //if (btnCashiers != null) btnCashiers.Visible = false;
+                btnUser.Visible = false;
+                btnCustomers.Visible = false;
+                btnProducts.Visible = false;
 
-                // Remove duplicate: btnProducts.Visible = false;
+
             }
 
-           
+
         }
 
         private void btnLogout_Click(object sender, EventArgs e)
@@ -388,9 +412,12 @@ namespace OOADCafeShopManagement
 
         private void btnProducts_Click(object sender, EventArgs e)
         {
-            AdminAddProducts AdminAddProducts = new AdminAddProducts();
-            this.Hide();
-            AdminAddProducts.Show();
+            ucProducts.BringToFront();
         }
-}
+
+        private void btnUser_Click(object sender, EventArgs e)
+        {
+            ucUsers.BringToFront();
+        }
+    }
 }
