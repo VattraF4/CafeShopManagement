@@ -213,6 +213,11 @@
     <Compile Include="AdminAddUser.Designer.cs">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="cafeDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>cafeDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Models\AdminAddUserData.cs" />
     <Compile Include="AdminDashboard.cs">
       <SubType>UserControl</SubType>
@@ -315,6 +320,17 @@
     </None>
     <None Include="cafeDataSet.xss">
       <DependentUpon>cafeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="cafeDataSet1.xsc">
+      <DependentUpon>cafeDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="cafeDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>cafeDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="cafeDataSet1.xss">
+      <DependentUpon>cafeDataSet1.xsd</DependentUpon>
     </None>
     <None Include="Dashboard.Designer.cds" />
     <None Include="packages.config" />

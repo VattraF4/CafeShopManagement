@@ -385,5 +385,12 @@ namespace OOADCafeShopManagement
                 }
             }
         }
-    }
+
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            AdminAddProducts AdminAddProducts = new AdminAddProducts();
+            this.Hide();
+            AdminAddProducts.Show();
+        }
+}
 }

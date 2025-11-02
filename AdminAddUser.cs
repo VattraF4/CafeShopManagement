@@ -518,6 +518,11 @@ namespace OOADCafeShopManagement
             ClearFields();
         }
 
+        private void pnlListUsers_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
         // DATA GRID SELECTION
         //private void dgvListUsers_SelectionChanged(object sender, EventArgs e)
         //{
