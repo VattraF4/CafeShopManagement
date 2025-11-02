@@ -17,6 +17,6 @@ namespace OOADCafeShopManagement
             InitializeComponent();
         }
 
-        
+       
     }
 }
