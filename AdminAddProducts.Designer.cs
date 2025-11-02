@@ -159,6 +159,7 @@
             this.dgvListProducts.Size = new System.Drawing.Size(753, 210);
             this.dgvListProducts.TabIndex = 10;
             this.dgvListProducts.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Navy;
+            this.dgvListProducts.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvProducts_CellClick);
             // 
             // pnlAction
             // 
@@ -485,6 +486,7 @@
             this.btnDelete.TextMarginLeft = 0;
             this.btnDelete.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnDelete.UseDefaultRadiusAndThickness = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // btnUpdate
             // 
@@ -574,6 +576,7 @@
             this.btnUpdate.TextMarginLeft = 0;
             this.btnUpdate.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnUpdate.UseDefaultRadiusAndThickness = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnAdd
             // 
@@ -1061,8 +1064,8 @@
             this.txtProductID.Padding = new System.Windows.Forms.Padding(3);
             this.txtProductID.PasswordChar = '\0';
             this.txtProductID.PlaceholderForeColor = System.Drawing.Color.Silver;
-            this.txtProductID.PlaceholderText = "Auto Generate";
-            this.txtProductID.ReadOnly = false;
+            this.txtProductID.PlaceholderText = "Display when select";
+            this.txtProductID.ReadOnly = true;
             this.txtProductID.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.txtProductID.SelectedText = "";
             this.txtProductID.SelectionLength = 0;
@@ -1075,9 +1078,10 @@
             this.txtProductID.TextMarginBottom = 0;
             this.txtProductID.TextMarginLeft = 3;
             this.txtProductID.TextMarginTop = 0;
-            this.txtProductID.TextPlaceholder = "Auto Generate";
+            this.txtProductID.TextPlaceholder = "Display when select";
             this.txtProductID.UseSystemPasswordChar = false;
             this.txtProductID.WordWrap = true;
+            this.txtProductID.TextChange += new System.EventHandler(this.txtSearchId_TextChanged);
             // 
             // bunifuLabel5
             // 

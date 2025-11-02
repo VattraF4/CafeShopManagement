@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 namespace OOADCafeShopManagement.Models
 {
 
-    class ProductHandlers:DbConnection
+    class ProductHandlers : DbConnection
     {
+        
+
+        //Properties
         public int ID { get; set; }
         public int CategoryID { get; set; }
         public int SupplierID { get; set; }
@@ -60,7 +63,7 @@ namespace OOADCafeShopManagement.Models
             }
             return productsList;
         }
-        public bool  AddProduct(string name, int category,int supplier,decimal price , decimal discount)
+        public bool AddProduct(string name, int category, int supplier, decimal price, decimal discount)
         {
             using (var connection = GetConnection())
             {
@@ -98,5 +101,104 @@ namespace OOADCafeShopManagement.Models
                 }
             }
         }
+        public bool UpdateProduct(int id, string name, int category, int supplier, decimal price, decimal discount)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                try
+                {
+                    string query = @"UPDATE Products SET 
+                    name = @name, 
+                    categories_id = @categories_id, 
+                    supplier_id = @supplier_id, 
+                    price = @price, 
+                    discount = @discount
+                    WHERE id = @id";
+                    using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@name", name);
+                        command.Parameters.AddWithValue("@categories_id", category);
+                        command.Parameters.AddWithValue("@supplier_id", supplier);
+                        command.Parameters.AddWithValue("@price", price);
+                        command.Parameters.AddWithValue("@discount", discount);
+                        int rowAffected = command.ExecuteNonQuery();  // this method is execute insert, update, delete and return number of rows affected
+                        if (rowAffected <= 0)
+                        {
+                            throw new Exception("No rows were updated.");
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error updating product: " + ex.Message);
+                }
+            }
+        }
+        public bool DeleteProduct(int id)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                try
+                {
+                    string query = "DELETE FROM Products WHERE id = @id";
+                    using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        int rowAffected = command.ExecuteNonQuery();
+                        if (rowAffected <= 0)
+                        {
+                            throw new Exception("No rows were deleted.");
+                        }
+                        else { return true; }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Error deleting product: " + ex.Message);
+                }
+            }
+        }
+        public ProductHandlers SearchProductById(int id)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                string query = @"SELECT p.id, p.name, p.categories_id, p.supplier_id, p.price, p.discount
+                         FROM Products p
+                         WHERE p.id = @id";
+
+                using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@id", id);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            return new ProductHandlers
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                CategoryID = reader.GetInt32(2),
+                                SupplierID = reader.GetInt32(3),
+                                Price = reader.GetDecimal(4),
+                                Discount = reader.GetDecimal(5)
+                            };
+                        }
+                        return null; // not found
+                    }
+                }
+            }
+        }
+
     }
+
 }

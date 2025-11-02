@@ -8,11 +8,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace OOADCafeShopManagement
 {
     public partial class AdminAddProducts : UserControl
     {
+        //private field
+        private int selectedUserId = 0;
+
         public AdminAddProducts()
         {
             InitializeComponent();
@@ -22,6 +26,16 @@ namespace OOADCafeShopManagement
         {
             ProductListDataGridView();
             SetupComboBoxes();
+            ClearInputs();
+        }
+        public void ClearInputs()
+        {
+            txtProductID.Clear();
+            txtProductName.Clear();
+            txtProductPrice.Clear();
+            txtDiscount.Clear();
+            cmbCategory.SelectedIndex = -1;
+            cmbSupplier.SelectedIndex = -1;
         }
         public void ProductListDataGridView()
         {
@@ -94,5 +108,92 @@ namespace OOADCafeShopManagement
                 MessageBox.Show("Error adding product: " + ex.Message);
             }
         }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductHandlers productHandlers = new ProductHandlers();
+                bool success = productHandlers.UpdateProduct(
+                    int.Parse(txtProductID.Text),
+                    txtProductName.Text,
+                    (int)cmbCategory.SelectedValue,
+                    (int)cmbSupplier.SelectedValue,
+                    decimal.Parse(txtProductPrice.Text),
+                    decimal.Parse(txtDiscount.Text)
+                );
+                if (success)
+                {
+                    MessageBox.Show("Product updated successfully!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+                else
+                {
+                    MessageBox.Show("No changes were made to the product.", "Info",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error updating product: " + ex.Message);
+            }
+        }
+        private void txtSearchId_TextChanged(object sender, EventArgs e)
+        {
+            if (int.TryParse(txtProductID.Text, out int productId))
+            {
+                ProductHandlers productHandlers = new ProductHandlers();
+                var product = productHandlers.SearchProductById(productId);
+                if (product != null)
+                {
+                    txtProductName.Text = product.Name;
+                    cmbCategory.SelectedValue = product.CategoryID;
+                    cmbSupplier.SelectedValue = product.SupplierID;
+                    txtProductPrice.Text = product.Price.ToString();
+                    txtDiscount.Text = product.Discount.ToString();
+                }
+                else
+                {
+                    // Clear inputs when no match found
+                    txtProductName.Clear();
+                    txtProductPrice.Clear();
+                    txtDiscount.Clear();
+                    cmbCategory.SelectedIndex = -1;
+                    cmbSupplier.SelectedIndex = -1;
+                }
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                ProductHandlers productHandlers = new ProductHandlers();
+                bool success = productHandlers.DeleteProduct(int.Parse(txtProductID.Text));
+                if (success)
+                {
+                    MessageBox.Show("Product deleted successfully!", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadData();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error deleting product.");
+            }
+        }
+
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // avoid error when clicking header
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvListProducts.Rows[e.RowIndex];
+                txtProductID.Text = row.Cells["id"].Value.ToString();
+                // or row.Cells[0].Value.ToString(); if ID is first column
+            }
+        }
+
     }
 }
