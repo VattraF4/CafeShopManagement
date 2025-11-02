@@ -134,6 +134,7 @@
             // cmbStatus
             // 
             this.cmbStatus.BackColor = System.Drawing.Color.DimGray;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbStatus.FormattingEnabled = true;
             this.cmbStatus.Location = new System.Drawing.Point(25, 367);
@@ -144,6 +145,7 @@
             // cmbRole
             // 
             this.cmbRole.BackColor = System.Drawing.Color.DimGray;
+            this.cmbRole.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRole.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbRole.FormattingEnabled = true;
             this.cmbRole.Location = new System.Drawing.Point(25, 319);
@@ -1138,7 +1140,6 @@
             this.pnlListUsers.Controls.Add(this.bunifuLabel5);
             this.pnlListUsers.Controls.Add(this.txtSearch);
             this.pnlListUsers.Controls.Add(this.btnSearchClear);
-            this.pnlListUsers.Dock = System.Windows.Forms.DockStyle.Right;
             this.pnlListUsers.Location = new System.Drawing.Point(232, 0);
             this.pnlListUsers.Name = "pnlListUsers";
             this.pnlListUsers.Size = new System.Drawing.Size(549, 473);

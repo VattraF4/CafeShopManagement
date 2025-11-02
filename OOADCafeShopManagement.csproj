@@ -213,7 +213,8 @@
     <Compile Include="AdminAddUser.Designer.cs">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AdminAddUserData.cs" />
+    <Compile Include="Models\ProductHandler.cs" />
+    <Compile Include="Models\UserHanlder.cs" />
     <Compile Include="AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,6 +228,8 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Db\DbConnection.cs" />
+    <Compile Include="Models\CategoriesHandler.cs" />
+    <Compile Include="Models\SupplierHandler.cs" />
     <Compile Include="Profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -251,7 +254,6 @@
     </Compile>
     <Compile Include="isValid.cs" />
     <Compile Include="Models\Dashboard.cs" />
-    <Compile Include="Models\UserHandler.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RegisterForm.cs">

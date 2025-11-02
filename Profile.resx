@@ -134,7 +134,7 @@
         ZOb5AG4dCUuk0JjZAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnCashiers.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnDashboard.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAFMAAAAUCAYAAADx7wHUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABhSURBVFhH7dBBDcAwDMDAAtqGIAl/DoVRAJsyCvHTj5P8
@@ -142,7 +142,7 @@
         ZOb5AG4dCUuk0JjZAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="btnDashboard.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="btnUser.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAFMAAAAUCAYAAADx7wHUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
         YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABhSURBVFhH7dBBDcAwDMDAAtqGIAl/DoVRAJsyCvHTj5P8
