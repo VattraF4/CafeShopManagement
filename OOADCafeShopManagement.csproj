@@ -201,16 +201,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdminAddProducts.cs">
+    <Compile Include="UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminAddProducts.Designer.cs">
+    <Compile Include="UserControl\AdminAddProducts.Designer.cs">
       <DependentUpon>AdminAddProducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="AdminAddUser.cs">
+    <Compile Include="UserControl\AdminAddUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminAddUser.Designer.cs">
+    <Compile Include="UserControl\AdminAddUser.Designer.cs">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="CashierMainForm.cs">
@@ -219,18 +219,18 @@
     <Compile Include="CashierMainForm.Designer.cs">
       <DependentUpon>CashierMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CashierOrderForm.cs">
+    <Compile Include="UserControl\CashierOrderForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="CashierOrderForm.Designer.cs">
+    <Compile Include="UserControl\CashierOrderForm.Designer.cs">
       <DependentUpon>CashierOrderForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\ProductHandlers.cs" />
     <Compile Include="Models\UserHandlers.cs" />
-    <Compile Include="AdminDashboard.cs">
+    <Compile Include="UserControl\AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="AdminDashboard.Designer.cs">
+    <Compile Include="UserControl\AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Dashboard.cs">
@@ -276,19 +276,19 @@
     </Compile>
     <Compile Include="SecurityHelper.cs" />
     <Compile Include="UserSession\UserSession.cs" />
-    <EmbeddedResource Include="AdminAddProducts.resx">
+    <EmbeddedResource Include="UserControl\AdminAddProducts.resx">
       <DependentUpon>AdminAddProducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminAddUser.resx">
+    <EmbeddedResource Include="UserControl\AdminAddUser.resx">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="AdminDashboard.resx">
+    <EmbeddedResource Include="UserControl\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="CashierMainForm.resx">
       <DependentUpon>CashierMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CashierOrderForm.resx">
+    <EmbeddedResource Include="UserControl\CashierOrderForm.resx">
       <DependentUpon>CashierOrderForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
