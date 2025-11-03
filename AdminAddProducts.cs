@@ -14,28 +14,21 @@ namespace OOADCafeShopManagement
 {
     public partial class AdminAddProducts : UserControl
     {
-        //private field
-        private int selectedUserId = 0;
+        //Private Fields
+      
 
         public AdminAddProducts()
         {
             InitializeComponent();
             LoadData();
         }
+        // Load Data Method
         public void LoadData()
         {
             ProductListDataGridView();
+            ApplyRoleBasedAccess();
             SetupComboBoxes();
             ClearInputs();
-        }
-        public void ClearInputs()
-        {
-            txtProductID.Clear();
-            txtProductName.Clear();
-            txtProductPrice.Clear();
-            txtDiscount.Clear();
-            cmbCategory.SelectedIndex = -1;
-            cmbSupplier.SelectedIndex = -1;
         }
         public void ProductListDataGridView()
         {
@@ -51,11 +44,6 @@ namespace OOADCafeShopManagement
             dgvListProducts.Columns[6].HeaderText = "Categories";
             dgvListProducts.Columns[7].HeaderText = "Supplier";
 
-        }
-        private void SetupComboBoxes()
-        {
-            LoadCategories();
-            LoadSuppliers();
         }
         public void LoadCategories()
         {
@@ -84,6 +72,46 @@ namespace OOADCafeShopManagement
             cmbSupplier.ValueMember = "ID";     // The actual value
         }
 
+
+        //Helper Method
+        private void SetupComboBoxes()
+        {
+            LoadCategories();
+            LoadSuppliers();
+        }
+        public void ClearInputs()
+        {
+            txtProductID.Clear();
+            txtProductName.Clear();
+            txtProductPrice.Clear();
+            txtDiscount.Clear();
+            cmbCategory.SelectedIndex = -1;
+            cmbSupplier.SelectedIndex = -1;
+        }
+        private void ApplyRoleBasedAccess()
+        {
+            if (UserSession.Role != "admin")
+            {
+                pnlAction.Visible = false;
+                pnlListProducts.Size = new Size(759, 402);
+                dgvListProducts.Size = new Size(759, 346);
+            }
+           
+        }
+
+
+
+        //Action Method
+        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // avoid error when clicking header
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvListProducts.Rows[e.RowIndex];
+                txtProductID.Text = row.Cells["id"].Value.ToString();
+                // or row.Cells[0].Value.ToString(); if ID is first column
+            }
+        }
         private void btnAdd_Click(object sender, EventArgs e)
         {
             try
@@ -108,7 +136,6 @@ namespace OOADCafeShopManagement
                 MessageBox.Show("Error adding product: " + ex.Message);
             }
         }
-
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             try
@@ -141,7 +168,7 @@ namespace OOADCafeShopManagement
         }
         private void txtSearchId_TextChanged(object sender, EventArgs e)
         {
-            if (int.TryParse(txtProductID.Text, out int productId))
+            if (int.TryParse(txtProductID.Text, out int productId)) // Check if input is a valid integer
             {
                 ProductHandlers productHandlers = new ProductHandlers();
                 var product = productHandlers.SearchProductById(productId);
@@ -164,7 +191,19 @@ namespace OOADCafeShopManagement
                 }
             }
         }
+        private void txtSearchProduct_TextChanged(object sender, EventArgs e)
+        {
+            ProductHandlers productHandlers = new ProductHandlers();
+            List<ProductHandlers> filteredProducts = productHandlers.SearchProductByName(txtSearchProduct.Text);
+            dgvListProducts.DataSource = filteredProducts;
+            // Hide unwanted columns
+            dgvListProducts.Columns["CategoryID"].Visible = false;
+            dgvListProducts.Columns["SupplierID"].Visible = false;
 
+            // Custom Header Name
+            dgvListProducts.Columns[6].HeaderText = "Categories";
+            dgvListProducts.Columns[7].HeaderText = "Supplier";
+        }
         private void btnDelete_Click(object sender, EventArgs e)
         {
             try
@@ -184,16 +223,6 @@ namespace OOADCafeShopManagement
             }
         }
 
-        private void dgvProducts_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            // avoid error when clicking header
-            if (e.RowIndex >= 0)
-            {
-                DataGridViewRow row = dgvListProducts.Rows[e.RowIndex];
-                txtProductID.Text = row.Cells["id"].Value.ToString();
-                // or row.Cells[0].Value.ToString(); if ID is first column
-            }
-        }
 
     }
 }

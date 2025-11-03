@@ -257,8 +257,8 @@ namespace OOADCafeShopManagement
 
         public string GetUserRole()
         {
-            //return UserSession.Role ?? "Unknown";
-            return UserSession.Role ?? "admin";
+            return UserSession.Role ?? "Unknown";
+            //return UserSession.Role ?? "admin";
 
         }
 
@@ -272,9 +272,9 @@ namespace OOADCafeShopManagement
                 //if (btnCustomers != null) btnCustomers.Visible = false;
                 //if (btnProducts != null) btnProducts.Visible = false;
                 //if (btnCashiers != null) btnCashiers.Visible = false;
-                btnUser.Visible = false;
-                btnCustomers.Visible = false;
-                btnProducts.Visible = false;
+                //btnUser.Visible = false;
+                //btnCustomers.Visible = false;
+                //btnProducts.Visible = false;
 
 
             }

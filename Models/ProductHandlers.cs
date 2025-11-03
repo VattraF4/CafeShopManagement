@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace OOADCafeShopManagement.Models
 
     class ProductHandlers : DbConnection
     {
-        
+
 
         //Properties
         public int ID { get; set; }
@@ -37,7 +38,7 @@ namespace OOADCafeShopManagement.Models
                                     s.name AS supplierName
                                 FROM products p
                                 JOIN categories c ON p.categories_id = c.id
-                                JOIN suppliers s ON p.supplier_id = s.id;";
+                                JOIN suppliers s ON p.supplier_id = s.id order by p.id;";
 
                 using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
                 {
@@ -197,6 +198,68 @@ namespace OOADCafeShopManagement.Models
                     }
                 }
             }
+        }
+
+        public List<ProductHandlers> SearchProductByName(string name)
+        {
+            List<ProductHandlers> products = new List<ProductHandlers>(); // ✅ initialize list to avoid null reference
+
+            using (var connection = GetConnection())
+            {
+                try
+                {
+                    connection.Open();
+
+                    string query = @"SELECT
+                                    p.id,
+                                    p.name,
+                                    p.price,
+                                    p.discount,
+                                    p.categories_id,
+                                    p.supplier_id,
+                                    c.name AS categoryName,
+                                    s.name AS supplierName
+                                FROM products p
+                                JOIN categories c ON p.categories_id = c.id
+                                JOIN suppliers s ON p.supplier_id = s.id
+                                WHERE 
+                                    p.name LIKE @name 
+                                    or CAST(p.id AS VARCHAR) LIKE @name
+                                    or c.name LIKE @name 
+                                    or s.name LIKE @name
+                                    or p.price LIKE @name
+                                order by p.id";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@name", "" + name + "%");
+
+                        using (var reader = command.ExecuteReader())
+                        {
+                            while (reader.Read())
+                            {
+                                products.Add(new ProductHandlers
+                                {
+                                    ID = reader.GetInt32(0),
+                                    Name = reader.GetString(1),
+                                    Price = reader.GetDecimal(2),
+                                    Discount = reader.GetDecimal(3),
+                                    CategoryID = reader.GetInt32(4),
+                                    SupplierID = reader.GetInt32(5),
+                                    CategoryName = reader.GetString(6),
+                                    SupplierName = reader.GetString(7)
+                                });
+                            }
+                        }
+                    }
+                }
+                catch
+                {
+                    throw new Exception("Error searching product by name.");
+                }
+            }
+
+            return products; // ✅ return list (even empty)
         }
 
     }
