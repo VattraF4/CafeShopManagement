@@ -1,4 +1,4 @@
-CREATE DATABASE IF NOT EXISTS cafe;
+-- CREATE DATABASE IF NOT EXISTS cafe;
 use cafe;
 -- Drop tables if they exist (in correct order to handle foreign key constraints)
 DROP TABLE IF EXISTS order_details;
@@ -58,12 +58,12 @@ CREATE TABLE products
 CREATE TABLE orders
 (
     id           INT PRIMARY KEY IDENTITY (1,1),
-    order_date   DATETIME DEFAULT GETDATE(),
     status       VARCHAR(50) NOT NULL DEFAULT 'Processing',
     total_amount DECIMAL(10, 2) NOT NULL CHECK (total_amount >= 0),
+    discount DECIMAL(10,2) NOT NULL  DEFAULT 0.00,
     note         varchar(50),
     created_at   DATETIME DEFAULT GETDATE(),
-    CONSTRAINT CHK_status CHECK (status IN ('Processing', 'Completed', 'Cancelled'))
+    CONSTRAINT CHK_status CHECK (status IN ('Processing', 'Completed', 'Cancelled','Pending'))
 );
 
 -- 3. Create GRANDCHILD tables (depend on children)

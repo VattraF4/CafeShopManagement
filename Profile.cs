@@ -24,6 +24,7 @@ namespace OOADCafeShopManagement
         //private field reference
         private AdminAddProducts ucProducts;
         private AdminAddUser ucUsers;
+        private POSForm ucPOS;
         public Profile()
         {
             InitializeComponent();
@@ -43,13 +44,16 @@ namespace OOADCafeShopManagement
         {
             ucProducts = new AdminAddProducts();
             ucUsers = new AdminAddUser();
+            ucPOS = new POSForm();
 
             ucProducts.Dock = DockStyle.Fill;
             ucUsers.Dock = DockStyle.Fill;
+            ucPOS.Dock = DockStyle.Fill;
 
             // Add UserControls to the Form (but hide them initially)
             pnlDisplayUserControl.Controls.Add(ucProducts);
             pnlDisplayUserControl.Controls.Add(ucUsers);
+            pnlDisplayUserControl.Controls.Add(ucPOS);
             ucUsers.BringToFront(); // Show the first one
         }
 
@@ -418,6 +422,11 @@ namespace OOADCafeShopManagement
         private void btnUser_Click(object sender, EventArgs e)
         {
             ucUsers.BringToFront();
+        }
+
+        private void btnPOS_Click(object sender, EventArgs e)
+        {
+            ucPOS.BringToFront();
         }
     }
 }

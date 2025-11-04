@@ -52,35 +52,35 @@ INSERT INTO inventory (product_id, stock_in, stock_out, created_at) VALUES
 (16, 350, 112, '2025-10-01'), (17, 450, 156, '2025-10-01');
 
 -- 6. Insert Orders (FIXED - Added user_id)
-INSERT INTO orders ( order_date, status, total_amount, note, created_at) VALUES
+INSERT INTO orders ( status, total_amount, note, created_at) VALUES
 -- October Orders
-('2025-10-02 08:30:00', 'Completed', 12.50, 'Extra hot please', '2025-10-02 08:30:00'),
-('2025-10-03 09:15:00', 'Completed', 8.00, 'For takeaway', '2025-10-03 09:15:00'),
-('2025-10-05 14:20:00', 'Completed', 15.75, 'Meeting order', '2025-10-05 14:20:00'),
-('2025-10-08 07:45:00', 'Completed', 6.50, 'Quick breakfast', '2025-10-08 07:45:00'),
-('2025-10-10 16:30:00', 'Completed', 9.25, NULL, '2025-10-10 16:30:00'),
-('2025-10-12 11:00:00', 'Completed', 18.50, 'Birthday order', '2025-10-12 11:00:00'),
-('2025-10-15 13:45:00', 'Completed', 11.00, 'No sugar in coffee', '2025-10-15 13:45:00'),
-( '2025-10-18 10:30:00', 'Completed', 7.50, NULL, '2025-10-18 10:30:00'),
-('2025-10-20 08:00:00', 'Completed', 14.25, 'Office order', '2025-10-20 08:00:00'),
-( '2025-10-22 15:20:00', 'Completed', 10.50, NULL, '2025-10-22 15:20:00'),
-('2025-10-25 12:30:00', 'Completed', 16.75, 'Lunch meeting', '2025-10-25 12:30:00'),
-( '2025-10-28 09:45:00', 'Completed', 13.25, NULL, '2025-10-28 09:45:00'),
+('Completed', 8.00, 'For takeaway', '2025-10-03 09:15:00'),
+('Completed', 15.75, 'Meeting order', '2025-10-05 14:20:00'),
+('Completed', 6.50, 'Quick breakfast', '2025-10-08 07:45:00'),
+('Completed', 9.25, NULL, '2025-10-10 16:30:00'),
+('Completed', 18.50, 'Birthday order', '2025-10-12 11:00:00'),
+('Completed', 11.00, 'No sugar in coffee', '2025-10-15 13:45:00'),
+( 'Completed', 7.50, NULL, '2025-10-18 10:30:00'),
+( 'Completed', 14.25, 'Office order', '2025-10-20 08:00:00'),
+( 'Completed', 10.50, NULL, '2025-10-22 15:20:00'),
+('Completed', 16.75, 'Lunch meeting', '2025-10-25 12:30:00'),
+( 'Completed', 13.25, NULL, '2025-10-28 09:45:00'),
+( 'Completed', 12.50, 'Extra hot please', '2025-10-02 08:30:00'),
 
 -- November Orders
-( '2025-11-01 09:30:00', 'Completed', 13.75, 'Morning meeting', '2025-11-01 09:30:00'),
-('2025-11-03 12:15:00', 'Completed', 8.25, 'Lunch order', '2025-11-03 12:15:00'),
-( '2025-11-05 07:45:00', 'Completed', 16.00, 'Team breakfast', '2025-11-05 07:45:00'),
-('2025-11-08 14:30:00', 'Completed', 9.50, NULL, '2025-11-08 14:30:00'),
-( '2025-11-10 11:20:00', 'Processing', 12.25, 'All drinks iced', '2025-11-10 11:20:00'),
-('2025-11-12 16:45:00', 'Completed', 7.00, 'Quick snack', '2025-11-12 16:45:00'),
-('2025-11-15 10:00:00', 'Completed', 19.75, 'Large group order', '2025-11-15 10:00:00'),
-( '2025-11-18 13:30:00', 'Completed', 11.50, NULL, '2025-11-18 13:30:00'),
-( '2025-11-20 08:15:00', 'Completed', 14.00, 'Extra napkins please', '2025-11-20 08:15:00'),
-( '2025-11-22 15:30:00', 'Completed', 17.25, 'Afternoon break', '2025-11-22 15:30:00'),
-('2025-11-25 15:00:00', 'Cancelled', 8.75, 'Changed mind', '2025-11-25 15:00:00'),
-('2025-11-28 12:45:00', 'Completed', 10.25, 'Regular customer', '2025-11-28 12:45:00'),
-('2025-11-30 09:00:00', 'Processing', 17.50, 'Weekend treat', '2025-11-30 09:00:00');
+( 'Completed', 13.75, 'Morning meeting', '2025-11-01 09:30:00'),
+('Completed', 8.25, 'Lunch order', '2025-11-03 12:15:00'),
+( 'Completed', 16.00, 'Team breakfast', '2025-11-05 07:45:00'),
+('Completed', 9.50, NULL, '2025-11-08 14:30:00'),
+( 'Processing', 12.25, 'All drinks iced', '2025-11-10 11:20:00'),
+('Completed', 7.00, 'Quick snack', '2025-11-12 16:45:00'),
+('Completed', 19.75, 'Large group order', '2025-11-15 10:00:00'),
+( 'Completed', 11.50, NULL, '2025-11-18 13:30:00'),
+( 'Completed', 14.00, 'Extra napkins please', '2025-11-20 08:15:00'),
+( 'Completed', 17.25, 'Afternoon break', '2025-11-22 15:30:00'),
+('Cancelled', 8.75, 'Changed mind', '2025-11-25 15:00:00'),
+('Completed', 10.25, 'Regular customer', '2025-11-28 12:45:00'),
+('Processing', 17.50, 'Weekend treat', '2025-11-30 09:00:00');
 
 -- 7. Insert Order Details (FIXED - sub_total = quantity * unit_price)
 INSERT INTO order_details (order_id, product_id, quantity, unit_price, sub_total, created_at) VALUES

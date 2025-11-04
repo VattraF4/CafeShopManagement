@@ -1,0 +1,280 @@
+﻿using OOADCafeShopManagement.Models;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+
+namespace OOADCafeShopManagement
+{
+    public partial class POSForm : UserControl
+    {
+        private OrderManager _orderManager;
+
+        public POSForm()
+        {
+            InitializeComponent();
+            _orderManager = new OrderManager(); // Initialize OrderManager
+            LoadForm();
+        }
+
+        // Loading Form
+        private void LoadForm()
+        {
+            ListOrder();
+            ListMenu();
+            InitializeOrderDisplay();
+            ClearSelectedItemDisplay();
+        }
+
+        // Initialize order display
+        private void InitializeOrderDisplay()
+        {
+            // Bind current order items to DataGridView
+            dgvCurrentOrder.DataSource = _orderManager.CurrentItems;
+
+            // Format the order display grid
+            if (dgvCurrentOrder.Columns.Count > 0)
+            {
+                //Hide Column
+                dgvCurrentOrder.Columns["ProductID"].Visible = false;
+                dgvCurrentOrder.Columns["OrderID"].Visible = false;
+                dgvCurrentOrder.Columns["OrderDetailID"].Visible = false;
+                dgvCurrentOrder.Columns["Discount"].Visible = false;
+                // Custom Header Name
+                //dgvCurrentOrder.Columns["ProductID"].HeaderText = "Product ID";
+                dgvCurrentOrder.Columns["ProductName"].HeaderText = "Name";
+                dgvCurrentOrder.Columns["UnitPrice"].HeaderText = "Price";
+                dgvCurrentOrder.Columns["Quantity"].HeaderText = "Qty";
+                dgvCurrentOrder.Columns["Total"].HeaderText = "Amount";
+
+
+
+            }
+
+            UpdateOrderSummary();
+        }
+
+        // Helper Method to List Orders (if needed for order history)
+        private void ListOrder()
+        {
+
+        }
+
+        private void ListMenu()
+        {
+            ProductHandlers products = new ProductHandlers();
+            List<ProductHandlers> productsList = products.ListData();
+            dgvListMenu.DataSource = productsList;
+
+            // Hide unwanted columns
+            dgvListMenu.Columns["CategoryID"].Visible = false;
+            dgvListMenu.Columns["SupplierID"].Visible = false;
+
+            // Custom Header Name
+            dgvListMenu.Columns[6].HeaderText = "Categories";
+            dgvListMenu.Columns[7].HeaderText = "Supplier";
+        }
+
+        // STEP 1: When user clicks on a product in the menu (select product)
+        private void dgvListMenu_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvListMenu.Rows[e.RowIndex];
+
+                // Get product details from the selected row
+                int productId = Convert.ToInt32(row.Cells["ID"].Value);
+                string productName = row.Cells["Name"].Value.ToString();
+                decimal unitPrice = Convert.ToDecimal(row.Cells["Price"].Value); // Adjust column name if needed
+                decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value);
+
+                // Store in selected item (single temporary item)
+                _orderManager.SetSelectedProduct(productId, productName, unitPrice,discount);
+
+                // Display the selected item in the input fields
+                UpdateSelectedItemDisplay();
+            }
+        }
+
+        // Display the selected item in input fields
+        private void UpdateSelectedItemDisplay()
+        {
+            if (_orderManager.SelectedItem != null && _orderManager.SelectedItem.ProductID > 0)
+            {
+                txtInputName.Text = _orderManager.SelectedItem.ProductName;
+                lblUnitPrice.Text = _orderManager.SelectedItem.UnitPrice.ToString("C2");
+                nudQuantity.Text = _orderManager.SelectedItem.Quantity.ToString();
+                txtItemDiscount.Text = _orderManager.SelectedItem.Discount.ToString();
+
+                CalculateSelectedItemAmount();
+            }
+        }
+
+        // Clear the selected item display
+        private void ClearSelectedItemDisplay()
+        {
+            txtInputName.Clear();
+            nudQuantity.Text = "1";
+            txtItemDiscount.Text = "0";
+            lblUnitPrice.Text = "";
+            lblItemAmount.Text = "";
+        }
+
+        // Calculate amount for selected item
+        private void CalculateSelectedItemAmount()
+        {
+            if (_orderManager.SelectedItem != null)
+            {
+                decimal amount = (_orderManager.SelectedItem.UnitPrice * _orderManager.SelectedItem.Quantity)
+                               - _orderManager.SelectedItem.Discount;
+                lblItemAmount.Text = amount.ToString("C2");
+            }
+        }
+
+        // Quantity text changed - update selected item
+        private void nudQuantity_ValueChanged(object sender, EventArgs e)
+        {
+            if (_orderManager.SelectedItem != null)
+            {
+                decimal quantity = nudQuantity.Value;
+                _orderManager.UpdateSelectedItem(quantity, _orderManager.SelectedItem.Discount);
+                CalculateSelectedItemAmount();
+            }
+        }
+
+
+        // Discount text changed - update selected item
+        private void txtDiscount_TextChanged(object sender, EventArgs e)
+        {
+            if (decimal.TryParse(txtItemDiscount.Text, out decimal discount) && _orderManager.SelectedItem != null)
+            {
+                _orderManager.UpdateSelectedItem(_orderManager.SelectedItem.Quantity, discount);
+                CalculateSelectedItemAmount();
+            }
+        }
+
+        // STEP 2: Add button click (Add to order list)
+        private void btnOrderAdd_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Add the selected item to the order list
+                _orderManager.AddSelectedItemToOrder();
+
+                // Refresh displays
+                UpdateOrderSummary();
+                ClearSelectedItemDisplay();
+
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error adding item to order: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Update order summary display
+        private void UpdateOrderSummary()
+        {
+            var summary = _orderManager.GetOrderSummary();
+            lblItemAmount.Text = summary.totalAmount.ToString("C2");
+            txtTotalDiscount.Text = summary.discount.ToString("C2");
+            lblGrandTotal.Text = summary.grandTotal.ToString("C2");
+            lblItemCount.Text = $"{_orderManager.CurrentItems.Count} items";
+            dgvCurrentOrder.Refresh();
+        }
+
+        // Remove selected item from order
+        private void btnRemoveItem_Click(object sender, EventArgs e)
+        {
+            if (dgvCurrentOrder.SelectedRows.Count > 0)
+            {
+                int productId = Convert.ToInt32(dgvCurrentOrder.SelectedRows[0].Cells["ProductID"].Value);
+                _orderManager.RemoveOrderItem(productId);
+                UpdateOrderSummary();
+            }
+        }
+
+        // Clear entire order
+
+
+        // Process payment
+        private void btnPay_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_orderManager.CurrentItems.Count == 0)
+                {
+                    MessageBox.Show("Please add items to order first!", "Warning",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                // Get customer info
+                string note = txtNote.Text;
+                string status = "Completed";
+
+                // Process payment
+                bool success = _orderManager.ProcessPayment(note,status);
+
+                if (success)
+                {
+                    MessageBox.Show("Payment processed successfully! Order saved.", "Success",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Clear form for next order
+                    _orderManager.ClearOrder();
+                    ClearForm();
+                    UpdateOrderSummary();
+
+                    dgvCurrentOrder.DataSource = null;
+                    InitializeOrderDisplay();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to process payment. Please try again.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error processing payment: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Clear form inputs
+        private void ClearForm()
+        {
+            txtNote.Clear();
+            ClearSelectedItemDisplay();
+        }
+
+        // Clear selected item only (not the entire order)
+
+        private void btnOrderClear_Click(object sender, EventArgs e)
+        {
+            _orderManager.ClearSelectedItem();
+            ClearSelectedItemDisplay();
+        }
+
+        private void btnClearOrder_Click(object sender, EventArgs e)
+        {
+            _orderManager.ClearOrder();
+
+            // Refresh DataGridView by resetting DataSource
+            dgvCurrentOrder.DataSource = null;
+            InitializeOrderDisplay();
+
+            UpdateOrderSummary();
+            ClearSelectedItemDisplay();
+            MessageBox.Show("Order cleared!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+    }
+}
