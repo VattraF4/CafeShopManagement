@@ -201,6 +201,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="UserControl\CashierCustomerForm.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl\CashierCustomerForm.Designer.cs">
+      <DependentUpon>CashierCustomerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -276,6 +282,9 @@
     </Compile>
     <Compile Include="SecurityHelper.cs" />
     <Compile Include="UserSession\UserSession.cs" />
+    <EmbeddedResource Include="UserControl\CashierCustomerForm.resx">
+      <DependentUpon>CashierCustomerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UserControl\AdminAddProducts.resx">
       <DependentUpon>AdminAddProducts.cs</DependentUpon>
     </EmbeddedResource>
