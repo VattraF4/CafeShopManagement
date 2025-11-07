@@ -42,9 +42,9 @@ namespace OOADCafeShopManagement
 
         private void setupUserControls()
         {
+            ucPOS = new POSForm();
             ucProducts = new AdminAddProducts();
             ucUsers = new AdminAddUser();
-            ucPOS = new POSForm();
 
             ucProducts.Dock = DockStyle.Fill;
             ucUsers.Dock = DockStyle.Fill;
@@ -54,7 +54,7 @@ namespace OOADCafeShopManagement
             pnlDisplayUserControl.Controls.Add(ucProducts);
             pnlDisplayUserControl.Controls.Add(ucUsers);
             pnlDisplayUserControl.Controls.Add(ucPOS);
-            ucUsers.BringToFront(); // Show the first one
+            ucPOS.BringToFront(); // Show the first one
         }
 
         // Use to move window form by properties tools or control box
@@ -272,13 +272,13 @@ namespace OOADCafeShopManagement
 
             if (userRole != "admin")
             {
-                // Hide admin-only features
-                //if (btnCustomers != null) btnCustomers.Visible = false;
-                //if (btnProducts != null) btnProducts.Visible = false;
+                //Hide admin-only features
+                if (btnUser != null) btnUser.Visible = false;
+                if (btnProducts != null) btnProducts.Visible = false;
                 //if (btnCashiers != null) btnCashiers.Visible = false;
-                //btnUser.Visible = false;
-                //btnCustomers.Visible = false;
-                //btnProducts.Visible = false;
+                btnUser.Visible = false;
+                btnUser.Visible = false;
+                btnProducts.Visible = false;
 
 
             }

@@ -201,6 +201,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\OrderDetailHandler.cs" />
+    <Compile Include="Models\OrderHandlers.cs" />
     <Compile Include="UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>

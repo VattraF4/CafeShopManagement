@@ -89,8 +89,8 @@ namespace OOADCafeShopManagement
                                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                                     this.Hide();
-                                    frmDashboard dashboard = new frmDashboard();
-                                    dashboard.Show();
+                                    Profile frmProfile = new Profile();
+                                    frmProfile.Show();
                                 }
                                 else
                                 {
