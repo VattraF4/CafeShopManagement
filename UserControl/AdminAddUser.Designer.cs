@@ -1204,7 +1204,7 @@
             this.dgvListUsers.Size = new System.Drawing.Size(536, 339);
             this.dgvListUsers.TabIndex = 9;
             this.dgvListUsers.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Navy;
-            this.dgvListUsers.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListUsers_CellContentClick);
+            this.dgvListUsers.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListUsers_CellContentClick);
             // 
             // bunifuLabel5
             // 

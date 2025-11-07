@@ -501,15 +501,6 @@ namespace OOADCafeShopManagement
         
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridViewRow row = dgvListUsers.Rows[e.RowIndex];
-            int id = selectedUserId = (int)row.Cells["ID"].Value;
-            txtUsername.Text = row.Cells[1].Value.ToString();
-            cmbRole.Text = row.Cells[2].Value.ToString();
-            cmbStatus.Text = row.Cells[3].Value.ToString();
-
-            // Load user data into form
-            LoadUserData(selectedUserId);
-            SetFormMode(true); // Switch to Edit mode
 
         }
 
