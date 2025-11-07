@@ -15,6 +15,11 @@ namespace OOADCafeShopManagement.Models
         public string Date { get; set; }
         public decimal TotalAmount { get; set; }
     }
+    public class ItemsSoldByDate
+    {
+        public string Date { get; set; }
+        public int Quantity { get; set; }
+    }
     // Add this class for better DataGridView support
     public class UnderstockProduct
     {
@@ -35,13 +40,16 @@ namespace OOADCafeShopManagement.Models
         public int NumberProducts { get; set; }
         public int NumberEmployees { get; set; }
         public int NumberCustomers { get; set; }
+        public int TotalItemsSold { get; private set; }
 
         public List<KeyValuePair<string, int>> TopProductsList { get; private set; }
         public List<UnderstockProduct> UnderstockList { get; private set; } // Changed to custom class
         public List<RevenueByDate> GrossRevenueList { get; private set; }
+        public List<ItemsSoldByDate> ItemsSoldList { get; private set; }
         public int NumberOrders { get; set; }
         public decimal TotalRevenue { get; set; }
         public decimal TotalProfit { get; set; }
+        //public int TotalItemsSold { get; set; }
 
         //Constructor
         public Dashboard()
@@ -83,37 +91,60 @@ namespace OOADCafeShopManagement.Models
         private void GetOrderAnalysis()
         {
             GrossRevenueList = new List<RevenueByDate>();
+            ItemsSoldList = new List<ItemsSoldByDate>(); // New list for items sold
             TotalProfit = 0;
             TotalRevenue = 0;
+            TotalItemsSold = 0;
 
             using (var connection = GetConnection())
             {
                 connection.Open();
-                // Implement logic to retrieve number of suppliers, products, employees, and customers
                 using (var command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = @"SELECT created_at, sum(total_amount) From [Orders]
-                                            WHERE created_at between @fromDate and @toDate group by created_at;";
-                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
 
+                    // Query for revenue from Orders table
+                    command.CommandText = @"SELECT created_at, SUM(total_amount) 
+                                    FROM [Orders]
+                                    WHERE created_at BETWEEN @fromDate AND @toDate 
+                                    GROUP BY created_at;";
+                    command.Parameters.Add("@fromDate", System.Data.SqlDbType.DateTime).Value = startDate;
                     command.Parameters.Add("@toDate", System.Data.SqlDbType.DateTime).Value = endDate;
+
                     var reader = command.ExecuteReader();
                     var resultTable = new List<KeyValuePair<DateTime, decimal>>();
                     while (reader.Read())
                     {
                         resultTable.Add(
                             new KeyValuePair<DateTime, decimal>((DateTime)reader[0], (decimal)reader[1])
-                            );
+                        );
                         TotalRevenue += (decimal)reader[1];
-
                     }
-                    TotalProfit = TotalRevenue * 0.2m; //20%
                     reader.Close();
 
-                    //Group by Days
+                    // Query for items sold from order_details table
+                    command.CommandText = @"SELECT created_at, SUM(quantity) as total_items_sold
+                                    FROM order_details
+                                    WHERE created_at BETWEEN @fromDate AND @toDate 
+                                    GROUP BY created_at;";
+
+                    reader = command.ExecuteReader();
+                    var itemsSoldTable = new List<KeyValuePair<DateTime, int>>();
+                    while (reader.Read())
+                    {
+                        itemsSoldTable.Add(
+                            new KeyValuePair<DateTime, int>((DateTime)reader[0], (int)reader[1])
+                        );
+                        TotalItemsSold += (int)reader[1];
+                    }
+                    reader.Close();
+
+                    TotalProfit = TotalRevenue * 0.2m; // 20%
+
+                    // Group by Days (for both revenue and items sold)
                     if (numberDays <= 30)
                     {
+                        // Revenue grouping
                         foreach (var item in resultTable)
                         {
                             GrossRevenueList.Add(new RevenueByDate()
@@ -122,23 +153,48 @@ namespace OOADCafeShopManagement.Models
                                 TotalAmount = item.Value
                             });
                         }
+
+                        // Items sold grouping
+                        foreach (var item in itemsSoldTable)
+                        {
+                            ItemsSoldList.Add(new ItemsSoldByDate()
+                            {
+                                Date = item.Key.ToString("ddd MMM"),
+                                Quantity = item.Value
+                            });
+                        }
                     }
-                    //Group by Week
+                    // Group by Week
                     else if (numberDays <= 92)
                     {
+                        // Revenue by week
                         GrossRevenueList = (from orderList in resultTable
                                             group orderList by CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(
                                                     orderList.Key, CalendarWeekRule.FirstDay, DayOfWeek.Monday)
                                             into order
                                             select new RevenueByDate
                                             {
-                                                Date = "Week" + order.Key.ToString(),
+                                                Date = "Week " + order.Key.ToString(),
                                                 TotalAmount = order.Sum(amount => amount.Value)
                                             }).ToList();
+
+                        // Items sold by week
+                        ItemsSoldList = (from itemList in itemsSoldTable
+                                         group itemList by CultureInfo.CurrentCulture.Calendar.GetWeekOfYear(
+                                                 itemList.Key, CalendarWeekRule.FirstDay, DayOfWeek.Monday)
+                                         into week
+                                         select new ItemsSoldByDate
+                                         {
+                                             Date = "Week " + week.Key.ToString(),
+                                             Quantity = week.Sum(item => item.Value)
+                                         }).ToList();
                     }
+                    // Group by Month
                     else if (numberDays <= (365 * 2))
                     {
-                        bool isYear = numberDays <= 365 ? true : false;
+                        bool isYear = numberDays <= 365;
+
+                        // Revenue by month
                         GrossRevenueList = (from orderList in resultTable
                                             group orderList by orderList.Key.ToString("MMM yyyy")
                                             into order
@@ -147,10 +203,21 @@ namespace OOADCafeShopManagement.Models
                                                 Date = isYear ? order.Key.Substring(0, order.Key.IndexOf(" ")) : order.Key,
                                                 TotalAmount = order.Sum(amount => amount.Value)
                                             }).ToList();
+
+                        // Items sold by month
+                        ItemsSoldList = (from itemList in itemsSoldTable
+                                         group itemList by itemList.Key.ToString("MMM yyyy")
+                                         into month
+                                         select new ItemsSoldByDate
+                                         {
+                                             Date = isYear ? month.Key.Substring(0, month.Key.IndexOf(" ")) : month.Key,
+                                             Quantity = month.Sum(item => item.Value)
+                                         }).ToList();
                     }
-                    //Group by Year
+                    // Group by Year
                     else
                     {
+                        // Revenue by year
                         GrossRevenueList = (from orderList in resultTable
                                             group orderList by orderList.Key.ToString("yyyy")
                                             into order
@@ -159,9 +226,18 @@ namespace OOADCafeShopManagement.Models
                                                 Date = order.Key,
                                                 TotalAmount = order.Sum(amount => amount.Value)
                                             }).ToList();
+
+                        // Items sold by year
+                        ItemsSoldList = (from itemList in itemsSoldTable
+                                         group itemList by itemList.Key.ToString("yyyy")
+                                         into year
+                                         select new ItemsSoldByDate
+                                         {
+                                             Date = year.Key,
+                                             Quantity = year.Sum(item => item.Value)
+                                         }).ToList();
                     }
                 }
-
             }
         }
 

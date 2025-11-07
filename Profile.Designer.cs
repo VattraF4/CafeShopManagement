@@ -633,7 +633,7 @@
             this.btnPOS.TextMarginLeft = 0;
             this.btnPOS.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnPOS.UseDefaultRadiusAndThickness = true;
-            this.btnPOS.Click += new System.EventHandler(this.btnProducts_Click);
+            this.btnPOS.Click += new System.EventHandler(this.btnPOS_Click);
             // 
             // Profile
             // 

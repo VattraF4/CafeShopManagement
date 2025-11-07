@@ -29,7 +29,8 @@ namespace OOADCafeShopManagement.Models
             _currentOrder = new OrderHandlers
             {
                 OrderDate = DateTime.Now,
-                Status = "Pending"
+                Status = "Pending",
+                UserID = UserSession.UserId
             };
             _currentItems = new BindingList<OrderDetailHandler>();
             _selectedItem = new OrderDetailHandler(); // Initialize empty selected item
@@ -179,8 +180,8 @@ namespace OOADCafeShopManagement.Models
                     try
                     {
                         // STEP 1: Insert into Orders table first
-                        string orderQuerySql = @"INSERT INTO Orders (status, total_amount, discount, note)
-                                        VALUES (@Status, @TotalAmount, @Discount, @Note)
+                        string orderQuerySql = @"INSERT INTO Orders (status, total_amount, discount,user_id, note)
+                                        VALUES (@Status, @TotalAmount, @Discount,@UserId, @Note)
                                         SELECT CAST(SCOPE_IDENTITY() AS INT);";
 
                         int newOrderId;
@@ -189,6 +190,7 @@ namespace OOADCafeShopManagement.Models
                             command.Parameters.AddWithValue("@Status", _currentOrder.Status);
                             command.Parameters.AddWithValue("@TotalAmount", _currentOrder.TotalAmount);
                             command.Parameters.AddWithValue("@Discount", _currentOrder.Discount);
+                            command.Parameters.AddWithValue("@UserId", _currentOrder.UserID);
                             command.Parameters.AddWithValue("@Note", _currentOrder.Note ?? (object)DBNull.Value);
                             //command.Parameters.AddWithValue("@OrderDate", _currentOrder.OrderDate);
 

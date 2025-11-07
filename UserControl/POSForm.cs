@@ -14,6 +14,7 @@ namespace OOADCafeShopManagement
     public partial class POSForm : UserControl
     {
         private OrderManager _orderManager;
+        private int rowIndex = 0;
 
         public POSForm()
         {
@@ -94,7 +95,7 @@ namespace OOADCafeShopManagement
                 decimal discount = Convert.ToDecimal(row.Cells["Discount"].Value);
 
                 // Store in selected item (single temporary item)
-                _orderManager.SetSelectedProduct(productId, productName, unitPrice,discount);
+                _orderManager.SetSelectedProduct(productId, productName, unitPrice, discount);
 
                 // Display the selected item in the input fields
                 UpdateSelectedItemDisplay();
@@ -220,16 +221,22 @@ namespace OOADCafeShopManagement
                 string note = txtNote.Text;
                 string status = "Completed";
 
+                //Print Receipt before update
+
                 // Process payment
-                bool success = _orderManager.ProcessPayment(note,status);
+                bool success = _orderManager.ProcessPayment(note, status);
 
                 if (success)
                 {
                     MessageBox.Show("Payment processed successfully! Order saved.", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
 
+                    //Print receipt after insert to database
+                    PrintReceipt();
+
                     // Clear form for next order
                     _orderManager.ClearOrder();
+
                     ClearForm();
                     UpdateOrderSummary();
 
@@ -263,7 +270,22 @@ namespace OOADCafeShopManagement
             _orderManager.ClearSelectedItem();
             ClearSelectedItemDisplay();
         }
-
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                btnPrint.Visible = false;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Print error: {ex.Message}", "Error",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                btnPrint.Visible = true;
+            }
+        }
         private void btnClearOrder_Click(object sender, EventArgs e)
         {
             _orderManager.ClearOrder();
@@ -276,5 +298,100 @@ namespace OOADCafeShopManagement
             ClearSelectedItemDisplay();
             MessageBox.Show("Order cleared!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            // Create receipt layout for printing
+            Graphics g = e.Graphics;
+            Font titleFont = new Font("Arial", 16, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 12, FontStyle.Bold);
+            Font normalFont = new Font("Arial", 10);
+            Font smallFont = new Font("Arial", 8);
+
+            float yPos = 20;
+            float leftMargin = 20;
+
+            // Header
+            g.DrawString("CAFE SHOP RECEIPT", titleFont, Brushes.Black, leftMargin, yPos);
+            yPos += 30;
+
+            // Order info
+            g.DrawString($"Order #: {_orderManager.CurrentOrder.OrderID}", normalFont, Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+            g.DrawString($"Date: {_orderManager.CurrentOrder.OrderDate:dd/MM/yyyy HH:mm}", normalFont, Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+            //g.DrawString($"Status: Paid", normalFont, Brushes.Black, leftMargin, yPos);
+            g.DrawString($"Status: {_orderManager.CurrentOrder.Status}", normalFont, Brushes.Black, leftMargin, yPos);
+            yPos += 30;
+            g.DrawString($"Sale Person: {UserSession.Username}", smallFont, Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+
+            // Items header
+            g.DrawString("Items:", headerFont, Brushes.Black, leftMargin, yPos);
+            yPos += 25;
+
+            // Draw line
+            g.DrawLine(Pens.Black, leftMargin, yPos, 300, yPos);
+            yPos += 10;
+
+            // Items
+            foreach (var item in _orderManager.CurrentItems)
+            {
+                string itemLine = $"{item.ProductName} x{item.Quantity}";
+                string priceLine = $"{(item.UnitPrice * item.Quantity - item.Discount):C2}";
+
+                g.DrawString(itemLine, normalFont, Brushes.Black, leftMargin, yPos);
+                g.DrawString(priceLine, normalFont, Brushes.Black, 200, yPos);
+                yPos += 20;
+
+                if (item.Discount > 0)
+                {
+                    g.DrawString($"  Discount: -{item.Discount:C2}", smallFont, Brushes.Black, leftMargin + 10, yPos);
+                    yPos += 15;
+                }
+            }
+
+            yPos += 10;
+            g.DrawLine(Pens.Black, leftMargin, yPos, 300, yPos);
+            yPos += 20;
+
+            // Totals
+            var summary = _orderManager.GetOrderSummary();
+            g.DrawString($"Subtotal: {summary.totalAmount:C2}", normalFont, Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+            g.DrawString($"Discount: -{summary.discount:C2}", normalFont, Brushes.Black, leftMargin, yPos);
+            yPos += 20;
+            g.DrawString($"Grand Total: {summary.grandTotal:C2}", headerFont, Brushes.Black, leftMargin, yPos);
+            yPos += 30;
+
+            // Note
+            if (!string.IsNullOrEmpty(_orderManager.CurrentOrder.Note))
+            {
+                g.DrawString($"Note: {_orderManager.CurrentOrder.Note}", smallFont, Brushes.Black, leftMargin, yPos);
+                yPos += 20;
+            }
+
+           
+            // Footer
+            g.DrawString("Thank you for your business!", normalFont, Brushes.Black, leftMargin, yPos);
+        }
+        private void PrintReceipt()
+        {
+            using (PrintDialog printDialog = new PrintDialog())
+            {
+                printDialog.Document = printDocument1;
+
+                if (printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    printDocument1.Print();
+                }
+            }
+        }
+
     }
 }

@@ -501,7 +501,15 @@ namespace OOADCafeShopManagement
         
         private void dgvListUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (dgvListUsers.SelectedRows.Count > 0 && dgvListUsers.SelectedRows[0] != null)
+            {
+                DataGridViewRow selectedRow = dgvListUsers.SelectedRows[0];
+                selectedUserId = (int)selectedRow.Cells["ID"].Value;
 
+                // Load user data into form
+                LoadUserData(selectedUserId);
+                SetFormMode(true); // Switch to Edit mode
+            }
         }
 
         private void btnClear_Click(object sender, EventArgs e)

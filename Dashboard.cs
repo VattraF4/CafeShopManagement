@@ -51,11 +51,13 @@ namespace OOADCafeShopManagement
             if (refreshData == true)
             {
                 //Update Labels
+                //lblNumberItemsSold.Text = model.
+
                 lblNumberOrder.Text = model.NumberOrders.ToString();
                 lblTotalRevenue.Text = "$" + model.TotalRevenue.ToString("N2");
                 lblTotalProfit.Text = "$" + model.TotalProfit.ToString("N2");
 
-                lblNumberCustomer.Text = model.NumberCustomers.ToString();
+                lblNumberItemsSold.Text = model.TotalItemsSold.ToString();
                 lblNumberSupplier.Text = model.NumberSuppliers.ToString();
                 lblNumberProduct.Text = model.NumberProducts.ToString();
 

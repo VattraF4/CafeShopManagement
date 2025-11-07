@@ -62,7 +62,9 @@ CREATE TABLE orders
     total_amount DECIMAL(10, 2) NOT NULL CHECK (total_amount >= 0),
     discount DECIMAL(10,2) NOT NULL  DEFAULT 0.00,
     note         varchar(50),
+    user_id INT NOT NULL DEFAULT  1,
     created_at   DATETIME DEFAULT GETDATE(),
+    FOREIGN KEY (user_id) REFERENCES users(id),
     CONSTRAINT CHK_status CHECK (status IN ('Processing', 'Completed', 'Cancelled','Pending'))
 );
 
@@ -78,7 +80,7 @@ CREATE TABLE order_details
     created_at DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (order_id) REFERENCES orders (id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products (id),
-    CONSTRAINT CHK_ValidSubTotal CHECK (sub_total = quantity * unit_price)
+--     CONSTRAINT CHK_ValidSubTotal CHECK (sub_total = quantity * unit_price)
 );
 
 CREATE TABLE payments

@@ -100,11 +100,11 @@
             this.bunifuLabel13 = new Bunifu.UI.WinForms.BunifuLabel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.lblNumberCustomer = new Bunifu.UI.WinForms.BunifuLabel();
-            this.lblNumberProduct = new Bunifu.UI.WinForms.BunifuLabel();
-            this.bunifuLabel7 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel11 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel9 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.bunifuLabel7 = new Bunifu.UI.WinForms.BunifuLabel();
+            this.lblNumberItemsSold = new Bunifu.UI.WinForms.BunifuLabel();
+            this.lblNumberProduct = new Bunifu.UI.WinForms.BunifuLabel();
             this.lblNumberSupplier = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel8 = new Bunifu.UI.WinForms.BunifuLabel();
             this.pnlMenu.SuspendLayout();
@@ -145,7 +145,7 @@
             this.pnlMenu.Controls.Add(this.pnlForm);
             this.pnlMenu.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlMenu.Location = new System.Drawing.Point(0, 0);
-            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlMenu.Margin = new System.Windows.Forms.Padding(2);
             this.pnlMenu.Name = "pnlMenu";
             this.pnlMenu.Size = new System.Drawing.Size(180, 545);
             this.pnlMenu.TabIndex = 0;
@@ -154,7 +154,7 @@
             // 
             this.pictureBox3.BackColor = System.Drawing.Color.Teal;
             this.pictureBox3.Location = new System.Drawing.Point(152, 416);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(8, 8);
             this.pictureBox3.TabIndex = 8;
@@ -164,7 +164,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.DarkGoldenrod;
             this.pictureBox2.Location = new System.Drawing.Point(152, 379);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(8, 8);
             this.pictureBox2.TabIndex = 8;
@@ -174,7 +174,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.pictureBox1.Location = new System.Drawing.Point(152, 340);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(8, 8);
             this.pictureBox1.TabIndex = 8;
@@ -228,7 +228,7 @@
             this.bunifuButton7.IdleIconRightImage = null;
             this.bunifuButton7.IndicateFocus = false;
             this.bunifuButton7.Location = new System.Drawing.Point(22, 402);
-            this.bunifuButton7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton7.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton7.Name = "bunifuButton7";
             this.bunifuButton7.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton7.OnDisabledState.BorderRadius = 1;
@@ -318,7 +318,7 @@
             this.bunifuButton4.IdleIconRightImage = null;
             this.bunifuButton4.IndicateFocus = false;
             this.bunifuButton4.Location = new System.Drawing.Point(22, 208);
-            this.bunifuButton4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton4.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton4.Name = "bunifuButton4";
             this.bunifuButton4.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton4.OnDisabledState.BorderRadius = 1;
@@ -408,7 +408,7 @@
             this.bunifuButton6.IdleIconRightImage = null;
             this.bunifuButton6.IndicateFocus = false;
             this.bunifuButton6.Location = new System.Drawing.Point(22, 366);
-            this.bunifuButton6.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton6.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton6.Name = "bunifuButton6";
             this.bunifuButton6.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton6.OnDisabledState.BorderRadius = 1;
@@ -498,7 +498,7 @@
             this.bunifuButton5.IdleIconRightImage = null;
             this.bunifuButton5.IndicateFocus = false;
             this.bunifuButton5.Location = new System.Drawing.Point(22, 329);
-            this.bunifuButton5.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton5.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton5.Name = "bunifuButton5";
             this.bunifuButton5.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton5.OnDisabledState.BorderRadius = 1;
@@ -588,7 +588,7 @@
             this.bunifuButton3.IdleIconRightImage = null;
             this.bunifuButton3.IndicateFocus = false;
             this.bunifuButton3.Location = new System.Drawing.Point(22, 171);
-            this.bunifuButton3.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton3.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton3.Name = "bunifuButton3";
             this.bunifuButton3.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton3.OnDisabledState.BorderRadius = 1;
@@ -678,7 +678,7 @@
             this.bunifuButton2.IdleIconRightImage = null;
             this.bunifuButton2.IndicateFocus = false;
             this.bunifuButton2.Location = new System.Drawing.Point(22, 135);
-            this.bunifuButton2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton2.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton2.Name = "bunifuButton2";
             this.bunifuButton2.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton2.OnDisabledState.BorderRadius = 1;
@@ -768,7 +768,7 @@
             this.bunifuButton1.IdleIconRightImage = null;
             this.bunifuButton1.IndicateFocus = false;
             this.bunifuButton1.Location = new System.Drawing.Point(22, 98);
-            this.bunifuButton1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.bunifuButton1.Margin = new System.Windows.Forms.Padding(2);
             this.bunifuButton1.Name = "bunifuButton1";
             this.bunifuButton1.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.bunifuButton1.OnDisabledState.BorderRadius = 1;
@@ -858,7 +858,7 @@
             this.btnProfile.IdleIconRightImage = null;
             this.btnProfile.IndicateFocus = false;
             this.btnProfile.Location = new System.Drawing.Point(22, 62);
-            this.btnProfile.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnProfile.Margin = new System.Windows.Forms.Padding(2);
             this.btnProfile.Name = "btnProfile";
             this.btnProfile.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnProfile.OnDisabledState.BorderRadius = 1;
@@ -945,7 +945,7 @@
             this.pnlDashboard.Controls.Add(this.pnlGraph);
             this.pnlDashboard.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlDashboard.Location = new System.Drawing.Point(180, 0);
-            this.pnlDashboard.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pnlDashboard.Margin = new System.Windows.Forms.Padding(2);
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.Size = new System.Drawing.Size(799, 545);
             this.pnlDashboard.TabIndex = 1;
@@ -1148,7 +1148,7 @@
             this.btnBack.IdleIconRightImage = null;
             this.btnBack.IndicateFocus = false;
             this.btnBack.Location = new System.Drawing.Point(14, 11);
-            this.btnBack.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBack.Margin = new System.Windows.Forms.Padding(2);
             this.btnBack.Name = "btnBack";
             this.btnBack.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnBack.OnDisabledState.BorderRadius = 1;
@@ -1266,7 +1266,7 @@
             this.btnExit.IdleIconRightImage = null;
             this.btnExit.IndicateFocus = false;
             this.btnExit.Location = new System.Drawing.Point(349, 11);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnExit.OnDisabledState.BorderRadius = 1;
@@ -1357,7 +1357,7 @@
             this.btnOKCustomDate.IdleIconRightImage = null;
             this.btnOKCustomDate.IndicateFocus = false;
             this.btnOKCustomDate.Location = new System.Drawing.Point(22, 11);
-            this.btnOKCustomDate.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOKCustomDate.Margin = new System.Windows.Forms.Padding(2);
             this.btnOKCustomDate.Name = "btnOKCustomDate";
             this.btnOKCustomDate.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnOKCustomDate.OnDisabledState.BorderRadius = 1;
@@ -1449,7 +1449,7 @@
             this.btnLast30Days.IdleIconRightImage = null;
             this.btnLast30Days.IndicateFocus = false;
             this.btnLast30Days.Location = new System.Drawing.Point(256, 11);
-            this.btnLast30Days.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLast30Days.Margin = new System.Windows.Forms.Padding(2);
             this.btnLast30Days.Name = "btnLast30Days";
             this.btnLast30Days.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnLast30Days.OnDisabledState.BorderRadius = 1;
@@ -1540,7 +1540,7 @@
             this.btnLast7Days.IdleIconRightImage = null;
             this.btnLast7Days.IndicateFocus = false;
             this.btnLast7Days.Location = new System.Drawing.Point(188, 11);
-            this.btnLast7Days.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLast7Days.Margin = new System.Windows.Forms.Padding(2);
             this.btnLast7Days.Name = "btnLast7Days";
             this.btnLast7Days.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnLast7Days.OnDisabledState.BorderRadius = 1;
@@ -1631,7 +1631,7 @@
             this.btnToday.IdleIconRightImage = null;
             this.btnToday.IndicateFocus = false;
             this.btnToday.Location = new System.Drawing.Point(138, 11);
-            this.btnToday.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnToday.Margin = new System.Windows.Forms.Padding(2);
             this.btnToday.Name = "btnToday";
             this.btnToday.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnToday.OnDisabledState.BorderRadius = 1;
@@ -1722,7 +1722,7 @@
             this.btnCustom.IdleIconRightImage = null;
             this.btnCustom.IndicateFocus = false;
             this.btnCustom.Location = new System.Drawing.Point(65, 11);
-            this.btnCustom.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCustom.Margin = new System.Windows.Forms.Padding(2);
             this.btnCustom.Name = "btnCustom";
             this.btnCustom.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
             this.btnCustom.OnDisabledState.BorderRadius = 1;
@@ -1971,7 +1971,7 @@
             this.panel6.Controls.Add(this.bunifuLabel11);
             this.panel6.Controls.Add(this.bunifuLabel9);
             this.panel6.Controls.Add(this.bunifuLabel7);
-            this.panel6.Controls.Add(this.lblNumberCustomer);
+            this.panel6.Controls.Add(this.lblNumberItemsSold);
             this.panel6.Controls.Add(this.lblNumberProduct);
             this.panel6.Controls.Add(this.lblNumberSupplier);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1979,55 +1979,6 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(142, 150);
             this.panel6.TabIndex = 1;
-            // 
-            // lblNumberCustomer
-            // 
-            this.lblNumberCustomer.AllowParentOverrides = false;
-            this.lblNumberCustomer.AutoEllipsis = false;
-            this.lblNumberCustomer.CursorType = null;
-            this.lblNumberCustomer.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberCustomer.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblNumberCustomer.Location = new System.Drawing.Point(13, 24);
-            this.lblNumberCustomer.Name = "lblNumberCustomer";
-            this.lblNumberCustomer.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblNumberCustomer.Size = new System.Drawing.Size(40, 21);
-            this.lblNumberCustomer.TabIndex = 0;
-            this.lblNumberCustomer.Text = "1,000";
-            this.lblNumberCustomer.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.lblNumberCustomer.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // lblNumberProduct
-            // 
-            this.lblNumberProduct.AllowParentOverrides = false;
-            this.lblNumberProduct.AutoEllipsis = false;
-            this.lblNumberProduct.CursorType = null;
-            this.lblNumberProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberProduct.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.lblNumberProduct.Location = new System.Drawing.Point(13, 114);
-            this.lblNumberProduct.Name = "lblNumberProduct";
-            this.lblNumberProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.lblNumberProduct.Size = new System.Drawing.Size(40, 21);
-            this.lblNumberProduct.TabIndex = 0;
-            this.lblNumberProduct.Text = "1,000";
-            this.lblNumberProduct.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.lblNumberProduct.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
-            // 
-            // bunifuLabel7
-            // 
-            this.bunifuLabel7.AllowParentOverrides = false;
-            this.bunifuLabel7.AutoEllipsis = false;
-            this.bunifuLabel7.Cursor = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel7.CursorType = System.Windows.Forms.Cursors.Default;
-            this.bunifuLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.bunifuLabel7.ForeColor = System.Drawing.SystemColors.ButtonFace;
-            this.bunifuLabel7.Location = new System.Drawing.Point(13, 7);
-            this.bunifuLabel7.Name = "bunifuLabel7";
-            this.bunifuLabel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel7.Size = new System.Drawing.Size(113, 15);
-            this.bunifuLabel7.TabIndex = 0;
-            this.bunifuLabel7.Text = "Number of Customer";
-            this.bunifuLabel7.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
-            this.bunifuLabel7.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
             // bunifuLabel11
             // 
@@ -2062,6 +2013,55 @@
             this.bunifuLabel9.Text = "Number of Suppliers";
             this.bunifuLabel9.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel9.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // bunifuLabel7
+            // 
+            this.bunifuLabel7.AllowParentOverrides = false;
+            this.bunifuLabel7.AutoEllipsis = false;
+            this.bunifuLabel7.Cursor = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel7.CursorType = System.Windows.Forms.Cursors.Default;
+            this.bunifuLabel7.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.bunifuLabel7.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.bunifuLabel7.Location = new System.Drawing.Point(13, 7);
+            this.bunifuLabel7.Name = "bunifuLabel7";
+            this.bunifuLabel7.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.bunifuLabel7.Size = new System.Drawing.Size(116, 15);
+            this.bunifuLabel7.TabIndex = 0;
+            this.bunifuLabel7.Text = "Number of Items Sold";
+            this.bunifuLabel7.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.bunifuLabel7.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // lblNumberItemsSold
+            // 
+            this.lblNumberItemsSold.AllowParentOverrides = false;
+            this.lblNumberItemsSold.AutoEllipsis = false;
+            this.lblNumberItemsSold.CursorType = null;
+            this.lblNumberItemsSold.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberItemsSold.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblNumberItemsSold.Location = new System.Drawing.Point(13, 24);
+            this.lblNumberItemsSold.Name = "lblNumberItemsSold";
+            this.lblNumberItemsSold.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblNumberItemsSold.Size = new System.Drawing.Size(40, 21);
+            this.lblNumberItemsSold.TabIndex = 0;
+            this.lblNumberItemsSold.Text = "1,000";
+            this.lblNumberItemsSold.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lblNumberItemsSold.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
+            // 
+            // lblNumberProduct
+            // 
+            this.lblNumberProduct.AllowParentOverrides = false;
+            this.lblNumberProduct.AutoEllipsis = false;
+            this.lblNumberProduct.CursorType = null;
+            this.lblNumberProduct.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumberProduct.ForeColor = System.Drawing.SystemColors.ButtonFace;
+            this.lblNumberProduct.Location = new System.Drawing.Point(13, 114);
+            this.lblNumberProduct.Name = "lblNumberProduct";
+            this.lblNumberProduct.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.lblNumberProduct.Size = new System.Drawing.Size(40, 21);
+            this.lblNumberProduct.TabIndex = 0;
+            this.lblNumberProduct.Text = "1,000";
+            this.lblNumberProduct.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
+            this.lblNumberProduct.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
             // lblNumberSupplier
             // 
@@ -2105,7 +2105,7 @@
             this.Controls.Add(this.pnlMenu);
             this.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmDashboard";
             this.Opacity = 0.95D;
             this.Text = "Dashboard";
@@ -2184,7 +2184,7 @@
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel8;
         private Bunifu.UI.WinForms.BunifuLabel lblNumberSupplier;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel9;
-        private Bunifu.UI.WinForms.BunifuLabel lblNumberCustomer;
+        private Bunifu.UI.WinForms.BunifuLabel lblNumberItemsSold;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel7;
         private System.Windows.Forms.Panel panel5;
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel13;
