@@ -17,6 +17,9 @@ namespace OOADCafeShopManagement.Models
         public OrderHandlers CurrentOrder => _currentOrder;
         public BindingList<OrderDetailHandler> CurrentItems => _currentItems;
         public OrderDetailHandler SelectedItem => _selectedItem;
+
+
+
         public decimal GrandTotal => _currentOrder.TotalAmount - _currentOrder.Discount;
 
         public OrderManager()

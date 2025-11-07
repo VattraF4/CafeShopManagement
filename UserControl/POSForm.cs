@@ -60,6 +60,23 @@ namespace OOADCafeShopManagement
             UpdateOrderSummary();
         }
 
+
+        private void txtSearchProduct_TextChanged(object sender, EventArgs e)
+        {
+            ProductHandlers products = new ProductHandlers();
+            List<ProductHandlers> productsList = products.SearchProductByName(txtInputName.Text.Trim());
+            dgvListMenu.DataSource = productsList;
+            int productID = dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value != null ?
+                Convert.ToInt32(dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value) : 0;
+            string productName = dgvCurrentOrder.Rows[rowIndex].Cells["ProductName"].Value != null ?
+                dgvCurrentOrder.Rows[rowIndex].Cells["ProductName"].Value.ToString() : "";
+            decimal unitPrice = dgvCurrentOrder.Rows[rowIndex].Cells["UnitPrice"].Value != null ?
+                Convert.ToDecimal(dgvCurrentOrder.Rows[rowIndex].Cells["UnitPrice"].Value) : 0;
+            decimal discount = 0;
+            _orderManager.SetSelectedProduct(productID, productName, unitPrice, discount);
+
+        }
+
         // Helper Method to List Orders (if needed for order history)
         public void PerformAddButtonClick()
         {
@@ -107,17 +124,14 @@ namespace OOADCafeShopManagement
         {
             if (_orderManager.SelectedItem != null && _orderManager.SelectedItem.ProductID > 0)
             {
-                txtInputName.Text = _orderManager.SelectedItem.ProductName;
+                //txtInputName.Text = _orderManager.SelectedItem.ProductName;
+                lblProductName.Text = _orderManager.SelectedItem.ProductName;
                 lblUnitPrice.Text = _orderManager.SelectedItem.UnitPrice.ToString("C2");
                 nudQuantity.Text = _orderManager.SelectedItem.Quantity.ToString();
                 txtItemDiscount.Text = _orderManager.SelectedItem.Discount.ToString();
 
                 CalculateSelectedItemAmount();
             }
-        }
-        private void UpdateOrderItemSummary()
-        {
-
         }
 
         // Clear the selected item display
@@ -128,6 +142,7 @@ namespace OOADCafeShopManagement
             txtItemDiscount.Text = "0";
             lblUnitPrice.Text = "";
             lblItemAmount.Text = "";
+            lblProductName.Text = "";
         }
 
         // Calculate amount for selected item
@@ -225,9 +240,17 @@ namespace OOADCafeShopManagement
             decimal totalAmount = _orderManager.CurrentOrder.TotalAmount;
             decimal grandTotal = totalAmount - customDiscount;
 
+            // Calculate total quantity (sum of all item quantities)
+            int totalQuantity = _orderManager.CurrentItems.Sum(item => (int)item.Quantity);
+
+            // Count distinct products
+            int productCount = _orderManager.CurrentItems.Count;
+
             //lblItemAmount.Text = totalAmount.ToString("C2");
             lblGrandTotal.Text = grandTotal.ToString("C2");
-            lblItemCount.Text = $"{_orderManager.CurrentItems.Count} items";
+
+            // Fixed: Show total quantity and product count
+            lblItemCount.Text = $"{totalQuantity} items / {productCount} products";
 
             // Don't update txtTotalDiscount here to avoid recursive events
             dgvCurrentOrder.Refresh();
@@ -257,10 +280,16 @@ namespace OOADCafeShopManagement
         private void UpdateOrderSummary()
         {
             var summary = _orderManager.GetOrderSummary();
+
+            // Calculate total quantity and product count
+            int totalQuantity = _orderManager.CurrentItems.Sum(item => (int)item.Quantity);
+            int productCount = _orderManager.CurrentItems.Count;
+
             lblItemAmount.Text = summary.totalAmount.ToString("C2");
             txtTotalDiscount.Text = summary.discount.ToString("C2");
             lblGrandTotal.Text = summary.grandTotal.ToString("C2");
-            lblItemCount.Text = $"{_orderManager.CurrentItems.Count} items";
+            lblItemCount.Text = $"{totalQuantity} items / {productCount} products";
+
             dgvCurrentOrder.Refresh();
         }
 
@@ -370,11 +399,6 @@ namespace OOADCafeShopManagement
             UpdateOrderSummary();
             ClearSelectedItemDisplay();
             MessageBox.Show("Order cleared!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
-
-        private void printDocument1_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-
         }
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
