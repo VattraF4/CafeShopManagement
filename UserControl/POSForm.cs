@@ -26,7 +26,7 @@ namespace OOADCafeShopManagement
         // Loading Form
         private void LoadForm()
         {
-            ListOrder();
+
             ListMenu();
             InitializeOrderDisplay();
             ClearSelectedItemDisplay();
@@ -61,9 +61,9 @@ namespace OOADCafeShopManagement
         }
 
         // Helper Method to List Orders (if needed for order history)
-        private void ListOrder()
+        public void PerformAddButtonClick()
         {
-
+            btnOrderAdd.PerformClick();
         }
 
         private void ListMenu()
@@ -115,6 +115,10 @@ namespace OOADCafeShopManagement
                 CalculateSelectedItemAmount();
             }
         }
+        private void UpdateOrderItemSummary()
+        {
+
+        }
 
         // Clear the selected item display
         private void ClearSelectedItemDisplay()
@@ -137,6 +141,7 @@ namespace OOADCafeShopManagement
             }
         }
 
+
         // Quantity text changed - update selected item
         private void nudQuantity_ValueChanged(object sender, EventArgs e)
         {
@@ -158,7 +163,75 @@ namespace OOADCafeShopManagement
                 CalculateSelectedItemAmount();
             }
         }
+        private void txtTotalDiscount_TextChanged(object sender, EventArgs e)
+        {
+            ApplyCustomTotalDiscount();
+        }
+        private void ApplyCustomTotalDiscount()
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(txtTotalDiscount.Text))
+                {
+                    // If empty, reset to calculated discount
+                    UpdateOrderSummary();
+                    return;
+                }
 
+                // Parse the custom discount value
+                string discountText = txtTotalDiscount.Text.Replace("$", "").Replace(",", "").Trim();
+
+                if (decimal.TryParse(discountText, out decimal customDiscount))
+                {
+                    // Validate discount doesn't exceed total amount
+                    decimal maxDiscount = _orderManager.CurrentOrder.TotalAmount;
+
+                    if (customDiscount > maxDiscount)
+                    {
+                        MessageBox.Show($"Discount cannot exceed total amount of {maxDiscount:C2}",
+                            "Invalid Discount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtTotalDiscount.Text = maxDiscount.ToString("F2");
+                        customDiscount = maxDiscount;
+                    }
+
+                    if (customDiscount < 0)
+                    {
+                        MessageBox.Show("Discount cannot be negative",
+                            "Invalid Discount", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txtTotalDiscount.Text = "0";
+                        customDiscount = 0;
+                    }
+
+                    // Apply the custom discount
+                    _orderManager.CurrentOrder.Discount = customDiscount;
+
+                    // Update display
+                    UpdateOrderSummaryWithCustomDiscount(customDiscount);
+                }
+                else
+                {
+                    // If invalid input, revert to calculated discount
+                    UpdateOrderSummary();
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error applying custom discount: {ex.Message}");
+                UpdateOrderSummary(); // Revert to calculated discount
+            }
+        }
+        private void UpdateOrderSummaryWithCustomDiscount(decimal customDiscount)
+        {
+            decimal totalAmount = _orderManager.CurrentOrder.TotalAmount;
+            decimal grandTotal = totalAmount - customDiscount;
+
+            //lblItemAmount.Text = totalAmount.ToString("C2");
+            lblGrandTotal.Text = grandTotal.ToString("C2");
+            lblItemCount.Text = $"{_orderManager.CurrentItems.Count} items";
+
+            // Don't update txtTotalDiscount here to avoid recursive events
+            dgvCurrentOrder.Refresh();
+        }
         // STEP 2: Add button click (Add to order list)
         private void btnOrderAdd_Click(object sender, EventArgs e)
         {
@@ -362,10 +435,14 @@ namespace OOADCafeShopManagement
 
             // Totals
             var summary = _orderManager.GetOrderSummary();
-            g.DrawString($"Subtotal: {summary.totalAmount:C2}", normalFont, Brushes.Black, leftMargin, yPos);
+            g.DrawString($"Subtotal: {summary.totalAmount:C2}", normalFont, Brushes.Black, 130, yPos);
             yPos += 20;
-            g.DrawString($"Discount: -{summary.discount:C2}", normalFont, Brushes.Black, leftMargin, yPos);
+            g.DrawString($"Discount: -{summary.discount:C2}", normalFont, Brushes.Black, 130, yPos);
             yPos += 20;
+
+            // Draw line
+            g.DrawLine(Pens.Black, leftMargin, yPos, 300, yPos);
+            yPos += 10;
             g.DrawString($"Grand Total: {summary.grandTotal:C2}", headerFont, Brushes.Black, leftMargin, yPos);
             yPos += 30;
 
@@ -376,7 +453,7 @@ namespace OOADCafeShopManagement
                 yPos += 20;
             }
 
-           
+
             // Footer
             g.DrawString("Thank you for your business!", normalFont, Brushes.Black, leftMargin, yPos);
         }

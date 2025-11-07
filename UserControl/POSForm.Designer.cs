@@ -50,13 +50,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges5 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges6 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties13 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties14 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties15 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
             Bunifu.UI.WinForms.BunifuTextBox.StateProperties stateProperties16 = new Bunifu.UI.WinForms.BunifuTextBox.StateProperties();
-            Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges borderEdges4 = new Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderEdges();
             this.bunifuLabel5 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuPanel1 = new Bunifu.UI.WinForms.BunifuPanel();
             this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
@@ -82,6 +82,7 @@
             this.bunifuSeparator1 = new Bunifu.UI.WinForms.BunifuSeparator();
             this.bunifuLabel10 = new Bunifu.UI.WinForms.BunifuLabel();
             this.dgvCurrentOrder = new Bunifu.UI.WinForms.BunifuDataGridView();
+            this.btnPrint = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnClearOrder = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnPay = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.txtTotalDiscount = new Bunifu.UI.WinForms.BunifuTextBox();
@@ -93,7 +94,6 @@
             this.bunifuLabel18 = new Bunifu.UI.WinForms.BunifuLabel();
             this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
-            this.btnPrint = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.bunifuPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListMenu)).BeginInit();
             this.bunifuPanel2.SuspendLayout();
@@ -259,7 +259,7 @@
             this.btnClearSelectMenu.BackColor1 = System.Drawing.Color.DarkSlateGray;
             this.btnClearSelectMenu.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClearSelectMenu.BackgroundImage")));
             this.btnClearSelectMenu.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnClearSelectMenu.ButtonText = "CLEAR";
+            this.btnClearSelectMenu.ButtonText = "&CLEAR";
             this.btnClearSelectMenu.ButtonTextMarginLeft = 0;
             this.btnClearSelectMenu.ColorContrastOnClick = 45;
             this.btnClearSelectMenu.ColorContrastOnHover = 45;
@@ -438,7 +438,7 @@
             this.btnOrderAdd.BackColor1 = System.Drawing.Color.DarkSlateGray;
             this.btnOrderAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOrderAdd.BackgroundImage")));
             this.btnOrderAdd.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnOrderAdd.ButtonText = "ADD";
+            this.btnOrderAdd.ButtonText = "&ADD";
             this.btnOrderAdd.ButtonTextMarginLeft = 0;
             this.btnOrderAdd.ColorContrastOnClick = 45;
             this.btnOrderAdd.ColorContrastOnHover = 45;
@@ -1014,6 +1014,96 @@
             this.dgvCurrentOrder.TabIndex = 10;
             this.dgvCurrentOrder.Theme = Bunifu.UI.WinForms.BunifuDataGridView.PresetThemes.Navy;
             // 
+            // btnPrint
+            // 
+            this.btnPrint.AllowAnimations = true;
+            this.btnPrint.AllowMouseEffects = true;
+            this.btnPrint.AllowToggling = false;
+            this.btnPrint.AnimationSpeed = 200;
+            this.btnPrint.AutoGenerateColors = false;
+            this.btnPrint.AutoRoundBorders = false;
+            this.btnPrint.AutoSizeLeftIcon = true;
+            this.btnPrint.AutoSizeRightIcon = true;
+            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrint.BackColor1 = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
+            this.btnPrint.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnPrint.ButtonText = "Print";
+            this.btnPrint.ButtonTextMarginLeft = 0;
+            this.btnPrint.ColorContrastOnClick = 45;
+            this.btnPrint.ColorContrastOnHover = 45;
+            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Default;
+            borderEdges4.BottomLeft = true;
+            borderEdges4.BottomRight = true;
+            borderEdges4.TopLeft = true;
+            borderEdges4.TopRight = true;
+            this.btnPrint.CustomizableEdges = borderEdges4;
+            this.btnPrint.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.btnPrint.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnPrint.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnPrint.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnPrint.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
+            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnPrint.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.IconLeftCursor = System.Windows.Forms.Cursors.Default;
+            this.btnPrint.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
+            this.btnPrint.IconMarginLeft = 11;
+            this.btnPrint.IconPadding = 10;
+            this.btnPrint.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnPrint.IconRightCursor = System.Windows.Forms.Cursors.Default;
+            this.btnPrint.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
+            this.btnPrint.IconSize = 25;
+            this.btnPrint.IdleBorderColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.IdleBorderRadius = 1;
+            this.btnPrint.IdleBorderThickness = 1;
+            this.btnPrint.IdleFillColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.IdleIconLeftImage = null;
+            this.btnPrint.IdleIconRightImage = null;
+            this.btnPrint.IndicateFocus = false;
+            this.btnPrint.Location = new System.Drawing.Point(119, 409);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
+            this.btnPrint.OnDisabledState.BorderRadius = 1;
+            this.btnPrint.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnPrint.OnDisabledState.BorderThickness = 1;
+            this.btnPrint.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
+            this.btnPrint.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
+            this.btnPrint.OnDisabledState.IconLeftImage = null;
+            this.btnPrint.OnDisabledState.IconRightImage = null;
+            this.btnPrint.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnPrint.onHoverState.BorderRadius = 1;
+            this.btnPrint.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnPrint.onHoverState.BorderThickness = 1;
+            this.btnPrint.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
+            this.btnPrint.onHoverState.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.onHoverState.IconLeftImage = null;
+            this.btnPrint.onHoverState.IconRightImage = null;
+            this.btnPrint.OnIdleState.BorderColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.OnIdleState.BorderRadius = 1;
+            this.btnPrint.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnPrint.OnIdleState.BorderThickness = 1;
+            this.btnPrint.OnIdleState.FillColor = System.Drawing.Color.DarkSlateGray;
+            this.btnPrint.OnIdleState.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.OnIdleState.IconLeftImage = null;
+            this.btnPrint.OnIdleState.IconRightImage = null;
+            this.btnPrint.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnPrint.OnPressedState.BorderRadius = 1;
+            this.btnPrint.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
+            this.btnPrint.OnPressedState.BorderThickness = 1;
+            this.btnPrint.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
+            this.btnPrint.OnPressedState.ForeColor = System.Drawing.Color.White;
+            this.btnPrint.OnPressedState.IconLeftImage = null;
+            this.btnPrint.OnPressedState.IconRightImage = null;
+            this.btnPrint.Size = new System.Drawing.Size(90, 25);
+            this.btnPrint.TabIndex = 21;
+            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnPrint.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
+            this.btnPrint.TextMarginLeft = 0;
+            this.btnPrint.TextPadding = new System.Windows.Forms.Padding(0);
+            this.btnPrint.UseDefaultRadiusAndThickness = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
             // btnClearOrder
             // 
             this.btnClearOrder.AllowAnimations = true;
@@ -1028,7 +1118,7 @@
             this.btnClearOrder.BackColor1 = System.Drawing.Color.DarkSlateGray;
             this.btnClearOrder.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClearOrder.BackgroundImage")));
             this.btnClearOrder.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnClearOrder.ButtonText = "Clear All";
+            this.btnClearOrder.ButtonText = "Clear &All";
             this.btnClearOrder.ButtonTextMarginLeft = 0;
             this.btnClearOrder.ColorContrastOnClick = 45;
             this.btnClearOrder.ColorContrastOnHover = 45;
@@ -1118,7 +1208,7 @@
             this.btnPay.BackColor1 = System.Drawing.Color.DarkSlateGray;
             this.btnPay.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPay.BackgroundImage")));
             this.btnPay.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPay.ButtonText = "PAY";
+            this.btnPay.ButtonText = "&PAY";
             this.btnPay.ButtonTextMarginLeft = 0;
             this.btnPay.ColorContrastOnClick = 45;
             this.btnPay.ColorContrastOnHover = 45;
@@ -1267,6 +1357,7 @@
             this.txtTotalDiscount.TextPlaceholder = "$   0.00";
             this.txtTotalDiscount.UseSystemPasswordChar = false;
             this.txtTotalDiscount.WordWrap = true;
+            this.txtTotalDiscount.TextChange += new System.EventHandler(this.txtTotalDiscount_TextChanged);
             // 
             // bunifuLabel11
             // 
@@ -1372,96 +1463,6 @@
             // printDialog1
             // 
             this.printDialog1.UseEXDialog = true;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.AllowAnimations = true;
-            this.btnPrint.AllowMouseEffects = true;
-            this.btnPrint.AllowToggling = false;
-            this.btnPrint.AnimationSpeed = 200;
-            this.btnPrint.AutoGenerateColors = false;
-            this.btnPrint.AutoRoundBorders = false;
-            this.btnPrint.AutoSizeLeftIcon = true;
-            this.btnPrint.AutoSizeRightIcon = true;
-            this.btnPrint.BackColor = System.Drawing.Color.Transparent;
-            this.btnPrint.BackColor1 = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnPrint.BackgroundImage")));
-            this.btnPrint.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPrint.ButtonText = "Print";
-            this.btnPrint.ButtonTextMarginLeft = 0;
-            this.btnPrint.ColorContrastOnClick = 45;
-            this.btnPrint.ColorContrastOnHover = 45;
-            this.btnPrint.Cursor = System.Windows.Forms.Cursors.Default;
-            borderEdges4.BottomLeft = true;
-            borderEdges4.BottomRight = true;
-            borderEdges4.TopLeft = true;
-            borderEdges4.TopRight = true;
-            this.btnPrint.CustomizableEdges = borderEdges4;
-            this.btnPrint.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.btnPrint.DisabledBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnPrint.DisabledFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnPrint.DisabledForecolor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btnPrint.FocusState = Bunifu.UI.WinForms.BunifuButton.BunifuButton.ButtonStates.Pressed;
-            this.btnPrint.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnPrint.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.IconLeftAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.IconLeftCursor = System.Windows.Forms.Cursors.Default;
-            this.btnPrint.IconLeftPadding = new System.Windows.Forms.Padding(11, 3, 3, 3);
-            this.btnPrint.IconMarginLeft = 11;
-            this.btnPrint.IconPadding = 10;
-            this.btnPrint.IconRightAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnPrint.IconRightCursor = System.Windows.Forms.Cursors.Default;
-            this.btnPrint.IconRightPadding = new System.Windows.Forms.Padding(3, 3, 7, 3);
-            this.btnPrint.IconSize = 25;
-            this.btnPrint.IdleBorderColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.IdleBorderRadius = 1;
-            this.btnPrint.IdleBorderThickness = 1;
-            this.btnPrint.IdleFillColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.IdleIconLeftImage = null;
-            this.btnPrint.IdleIconRightImage = null;
-            this.btnPrint.IndicateFocus = false;
-            this.btnPrint.Location = new System.Drawing.Point(119, 409);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.OnDisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(191)))), ((int)(((byte)(191)))), ((int)(((byte)(191)))));
-            this.btnPrint.OnDisabledState.BorderRadius = 1;
-            this.btnPrint.OnDisabledState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPrint.OnDisabledState.BorderThickness = 1;
-            this.btnPrint.OnDisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(204)))));
-            this.btnPrint.OnDisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(168)))), ((int)(((byte)(160)))), ((int)(((byte)(168)))));
-            this.btnPrint.OnDisabledState.IconLeftImage = null;
-            this.btnPrint.OnDisabledState.IconRightImage = null;
-            this.btnPrint.onHoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.btnPrint.onHoverState.BorderRadius = 1;
-            this.btnPrint.onHoverState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPrint.onHoverState.BorderThickness = 1;
-            this.btnPrint.onHoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(105)))), ((int)(((byte)(181)))), ((int)(((byte)(255)))));
-            this.btnPrint.onHoverState.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.onHoverState.IconLeftImage = null;
-            this.btnPrint.onHoverState.IconRightImage = null;
-            this.btnPrint.OnIdleState.BorderColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.OnIdleState.BorderRadius = 1;
-            this.btnPrint.OnIdleState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPrint.OnIdleState.BorderThickness = 1;
-            this.btnPrint.OnIdleState.FillColor = System.Drawing.Color.DarkSlateGray;
-            this.btnPrint.OnIdleState.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.OnIdleState.IconLeftImage = null;
-            this.btnPrint.OnIdleState.IconRightImage = null;
-            this.btnPrint.OnPressedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btnPrint.OnPressedState.BorderRadius = 1;
-            this.btnPrint.OnPressedState.BorderStyle = Bunifu.UI.WinForms.BunifuButton.BunifuButton.BorderStyles.Solid;
-            this.btnPrint.OnPressedState.BorderThickness = 1;
-            this.btnPrint.OnPressedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(96)))), ((int)(((byte)(144)))));
-            this.btnPrint.OnPressedState.ForeColor = System.Drawing.Color.White;
-            this.btnPrint.OnPressedState.IconLeftImage = null;
-            this.btnPrint.OnPressedState.IconRightImage = null;
-            this.btnPrint.Size = new System.Drawing.Size(90, 25);
-            this.btnPrint.TabIndex = 21;
-            this.btnPrint.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnPrint.TextAlignment = System.Windows.Forms.HorizontalAlignment.Center;
-            this.btnPrint.TextMarginLeft = 0;
-            this.btnPrint.TextPadding = new System.Windows.Forms.Padding(0);
-            this.btnPrint.UseDefaultRadiusAndThickness = true;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // POSForm
             // 

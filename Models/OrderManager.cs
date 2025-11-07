@@ -145,6 +145,7 @@ namespace OOADCafeShopManagement.Models
 
         public (decimal totalAmount, decimal discount, decimal grandTotal) GetOrderSummary()
         {
+            
             return (_currentOrder.TotalAmount, _currentOrder.Discount, GrandTotal);
         }
 
@@ -153,16 +154,22 @@ namespace OOADCafeShopManagement.Models
         public void ClearOrder()
         {
             _currentItems.Clear(); // Clear all items from the list
+
+            // Preserve the UserID when creating new order
+            int currentUserId = _currentOrder.UserID; // Save current user ID
+
             _currentOrder = new OrderHandlers // Create a brand new order object
             {
                 OrderDate = DateTime.Now,
                 Status = "Pending",
                 TotalAmount = 0,
                 Discount = 0,
-                OrderID = 0 // Reset OrderID
+                OrderID = 0, // Reset OrderID
+                UserID = currentUserId // Preserve the UserID
             };
             _selectedItem = new OrderDetailHandler(); // Reset selected item
 
+            System.Diagnostics.Debug.WriteLine($"Order cleared. UserID preserved: {currentUserId}");
         }
 
         public void ClearSelectedItem()

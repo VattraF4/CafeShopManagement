@@ -38,6 +38,9 @@ namespace OOADCafeShopManagement
             lbX.Click += lbX_Click;
 
             Display();
+
+            //Set up Key
+            SetupEnterKeyHandling();
         }
 
         private void setupUserControls()
@@ -320,7 +323,25 @@ namespace OOADCafeShopManagement
 
         // Add these methods if they don't exist in your UserSession class
         // Or update your UserSession class to include them
+        private void SetupEnterKeyHandling()
+        {
+            this.KeyPreview = true;
+            this.KeyDown += MainForm_KeyDown;
+        }
 
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter && !e.Control && !e.Alt && !e.Shift)
+            {
+                // Check if POS user control is visible and has focus
+                if (ucPOS.Visible && ucPOS.ContainsFocus)
+                {
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    ucPOS.PerformAddButtonClick();
+                }
+            }
+        }
         private void btnUpdateProfile_Click(object sender, EventArgs e)
         {
             // Add functionality to update profile picture
@@ -428,5 +449,7 @@ namespace OOADCafeShopManagement
         {
             ucPOS.BringToFront();
         }
+
+
     }
 }
