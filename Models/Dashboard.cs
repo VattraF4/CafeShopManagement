@@ -23,11 +23,11 @@ namespace OOADCafeShopManagement.Models
     // Add this class for better DataGridView support
     public class UnderstockProduct
     {
+        public int ID { get; set; }
         public string ProductName { get; set; }
-        public int Stock { get; set; }
         public decimal UnitPrice { get; set; }
+        public string Status { get; set; }
         //public string Package { get; set; }
-        public string Status => Stock <= 20 ? "Low Stock" : "In Stock";
     }
     public class Dashboard : DbConnection
     {
@@ -275,26 +275,23 @@ namespace OOADCafeShopManagement.Models
                     reader.Close();
                     //Understock Products
                     //command.Connection = connection;
-                    command.CommandText = @"SELECT
-                                                p.id,
-                                                p.name as ProductName,
-                                                p.price as UnitPrice,
-                                                COALESCE(SUM(i.stock_in), 0) as TotalStockIn,
-                                                COALESCE(SUM(i.stock_out), 0) as TotalStockOut,
-                                                (COALESCE(SUM(i.stock_in), 0) - COALESCE(SUM(i.stock_out), 0)) as CurrentStock
-                                            FROM products p
-                                            LEFT JOIN inventory i ON p.id = i.product_id
-                                            GROUP BY p.id, p.name, p.price
-                                            ORDER BY p.name;";
+                    command.CommandText = @"SELECT 
+                                           p.id as Id,
+                                           p.name   as ProductName,
+                                           p.price  as Price,
+                                           p.status as Status
+                                    FROM products p
+                                    ORDER BY Id;";
                     reader = command.ExecuteReader();
 
                     while (reader.Read())
                     {
                         UnderstockList.Add(new UnderstockProduct
                         {
+                            ID = Convert.ToInt32(reader["Id"]),
                             ProductName = reader["ProductName"].ToString(),
-                            Stock = Convert.ToInt32(reader["CurrentStock"]),
-                            UnitPrice = Convert.ToDecimal(reader["UnitPrice"])
+                            UnitPrice = Convert.ToDecimal(reader["Price"]),
+                            Status = reader["Status"].ToString()
                             //,Package = reader["Package"].ToString()
                         });
                     }

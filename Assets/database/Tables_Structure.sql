@@ -99,12 +99,4 @@ CREATE TABLE payments
     CONSTRAINT CHK_PaymentStatus CHECK (status IN ('Pending', 'Paid', 'Failed', 'Refunded'))
 );
 
-CREATE TABLE inventory
-(
-    id INT PRIMARY KEY IDENTITY (1,1),
-    product_id INT NOT NULL,
-    stock_in INT,
-    stock_out INT,
-    created_at DATETIME DEFAULT GETDATE(),
-    FOREIGN KEY (product_id) REFERENCES products(id)
-);
+

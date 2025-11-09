@@ -63,6 +63,7 @@
             this.btnUpdate = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.btnAdd = new Bunifu.UI.WinForms.BunifuButton.BunifuButton();
             this.cmbSupplier = new System.Windows.Forms.ComboBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.bunifuLabel7 = new Bunifu.UI.WinForms.BunifuLabel();
             this.bunifuLabel1 = new Bunifu.UI.WinForms.BunifuLabel();
@@ -77,7 +78,6 @@
             this.pnlListProducts = new Bunifu.UI.WinForms.BunifuPanel();
             this.dgvListProducts = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.txtSearchProduct = new Bunifu.UI.WinForms.BunifuTextBox();
-            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.pnlAction.SuspendLayout();
             this.pnlListProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).BeginInit();
@@ -220,6 +220,7 @@
             this.btnClear.TextMarginLeft = 0;
             this.btnClear.TextPadding = new System.Windows.Forms.Padding(0);
             this.btnClear.UseDefaultRadiusAndThickness = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnDelete
             // 
@@ -501,6 +502,20 @@
             this.cmbSupplier.Name = "cmbSupplier";
             this.cmbSupplier.Size = new System.Drawing.Size(135, 21);
             this.cmbSupplier.TabIndex = 15;
+            // 
+            // cmbStatus
+            // 
+            this.cmbStatus.BackColor = System.Drawing.Color.DimGray;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "active",
+            "inactive"});
+            this.cmbStatus.Location = new System.Drawing.Point(180, 51);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(135, 21);
+            this.cmbStatus.TabIndex = 15;
             // 
             // cmbCategory
             // 
@@ -1062,20 +1077,6 @@
             this.txtSearchProduct.UseSystemPasswordChar = false;
             this.txtSearchProduct.WordWrap = true;
             this.txtSearchProduct.TextChange += new System.EventHandler(this.txtSearchProduct_TextChanged);
-            // 
-            // cmbStatus
-            // 
-            this.cmbStatus.BackColor = System.Drawing.Color.DimGray;
-            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.cmbStatus.FormattingEnabled = true;
-            this.cmbStatus.Items.AddRange(new object[] {
-            "active",
-            "inactive"});
-            this.cmbStatus.Location = new System.Drawing.Point(180, 51);
-            this.cmbStatus.Name = "cmbStatus";
-            this.cmbStatus.Size = new System.Drawing.Size(135, 21);
-            this.cmbStatus.TabIndex = 15;
             // 
             // AdminAddProducts
             // 

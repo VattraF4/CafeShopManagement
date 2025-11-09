@@ -22,6 +22,9 @@ namespace OOADCafeShopManagement
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
 
+        //Init Form
+        Profile mainDashboard = new Profile();
+
 
         public frmDashboard()
         {
@@ -167,14 +170,23 @@ namespace OOADCafeShopManagement
 
         private void btnProfile_Click(object sender, EventArgs e)
         {
-            Profile mainDashboard = new Profile();
+          
             mainDashboard.Show();
             this.Hide();
         }
-        private void btnReport_Click(object sender, EventArgs e)
+        private void btnUsers_Click(object sender, EventArgs e)
         {
-            this.pnlDashboard.Controls.Clear();
+            //this.pnlDashboard.Controls.Clear();
+            mainDashboard.Show();
+            this.Hide();
+            mainDashboard.displayUserControl("Users");
         }
 
+        private void btnProducts_Click(object sender, EventArgs e)
+        {
+            mainDashboard.Show();
+            this.Hide();
+            mainDashboard.displayUserControl("Products");
+        }
     }
 }

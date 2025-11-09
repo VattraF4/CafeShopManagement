@@ -15,7 +15,7 @@ INSERT INTO suppliers (name, contact_name, phone, email, address, created_at) VA
 
 -- 3. Insert Users (Fixed column name - should be password_hash, not password)
 INSERT INTO users (username, password, role, status, profile_img, reg_date) VALUES
-('vattra.com', '7d1598927ed9c9b579b548beec60215e2f83c31a307ff0a8407f3fbcde6315bb', 'admin', 'Active','profiles/fav.png','2025-09-05'),
+('vattra.com', '7d1598927ed9c9b579b548beec60215e2f83c31a307ff0a8407f3fbcde6315bb', 'admin', 'Active','C:\Users\Lenovo\Pictures\fav-image.png','2025-09-05'),
 ('barista1', 'hashed_barista1', 'staff', 'Active', 'profiles/barista1.jpg', '2025-09-05'),
 ('barista2', 'hashed_barista2', 'staff', 'Active', 'profiles/barista2.jpg', '2025-09-05'),
 ('customer1', 'hashed_cust1', 'user', 'Active', 'profiles/user1.jpg', '2025-09-10'),
@@ -41,15 +41,6 @@ INSERT INTO products (name, categories_id, price, discount, supplier_id, status,
 ('Turkey Sandwich', 5, 8.50, 0, 3, 'active','2025-09-20'),
 ('Veggie Wrap', 5, 7.50, 1.00, 3,'active', '2025-09-20'),
 ('Ham & Cheese Croissant', 5, 6.50, 0, 3, 'active','2025-09-20');
-
--- 5. Insert Inventory (same as before)
-INSERT INTO inventory (product_id, stock_in, stock_out, created_at) VALUES
-(1, 1000, 245, '2025-10-01'), (2, 800, 189, '2025-10-01'), (3, 1200, 356, '2025-10-01'),
-(4, 1500, 478, '2025-10-01'), (5, 900, 267, '2025-10-01'), (6, 1100, 312, '2025-10-01'),
-(7, 1300, 398, '2025-10-01'), (8, 950, 234, '2025-10-01'), (9, 700, 156, '2025-10-01'),
-(10, 650, 142, '2025-10-01'), (11, 850, 278, '2025-10-01'), (12, 500, 189, '2025-10-01'),
-(13, 400, 167, '2025-10-01'), (14, 600, 234, '2025-10-01'), (15, 300, 89, '2025-10-01'),
-(16, 350, 112, '2025-10-01'), (17, 450, 156, '2025-10-01');
 
 -- 6. Insert Orders (FIXED - Added user_id)
 INSERT INTO orders ( status, total_amount, note, created_at) VALUES

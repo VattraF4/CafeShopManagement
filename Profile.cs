@@ -456,6 +456,20 @@ namespace OOADCafeShopManagement
             RefreshAllProductData();
 
         }
+        public void displayUserControl (string btn)
+        {
+            switch (btn)
+            {
+                case "POS":btnPOS_Click(null, EventArgs.Empty);
+                    break;
+                case "Users":btnUser_Click(null, EventArgs.Empty);
+                    break;
+                case "Products":btnProducts_Click(null, EventArgs.Empty);
+                        break;
+                default : Display();
+                    break;
+            }
+        }
 
 
     }
