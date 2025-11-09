@@ -6,11 +6,12 @@ namespace OOADCafeShopManagement
 {
     public partial class frmLogin : Form
     {
-        private readonly Login login = new Login();
+        private readonly Login login;
 
         public frmLogin()
         {
             InitializeComponent();
+            login = new Login(this);
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)

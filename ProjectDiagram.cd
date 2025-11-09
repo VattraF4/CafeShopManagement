@@ -7,10 +7,10 @@
       <FileName>UserSession\UserSession.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OOADCafeShopManagement.Models.Login" Collapsed="true">
-    <Position X="1.25" Y="1.75" Width="2.25" />
+  <Class Name="OOADCafeShopManagement.Models.Login">
+    <Position X="0.5" Y="2" Width="4" />
     <TypeIdentifier>
-      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Login.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,7 +29,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="OOADCafeShopManagement.Models.Categories" Collapsed="true">
-    <Position X="4.25" Y="1.75" Width="1.5" />
+    <Position X="5.5" Y="2" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAEAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Models\Categories.cs</FileName>
@@ -75,6 +75,23 @@
     <TypeIdentifier>
       <HashCode>AAAAAAAMACAAgAAEEQAACAAAAQAAAAAiAAAA4AAAAAA=</HashCode>
       <FileName>Models\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.frmLogin">
+    <Position X="4.75" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAgAQAAAACAAABAAAACEAAACCAAASAAAAJAAAQBAEAA=</HashCode>
+      <FileName>Login.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="login" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OOADCafeShopManagement.isValid">
+    <Position X="7.25" Y="3.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAABAAAAAAAAAAAAAAEAAACAAAAEAACAAgAAAAA=</HashCode>
+      <FileName>isValid.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

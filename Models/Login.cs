@@ -6,6 +6,10 @@ namespace OOADCafeShopManagement.Models
 {
     public class Login : DbConnection
     {
+        private frmLogin _loginForm;
+        public Login(frmLogin loginForm) {
+            _loginForm = loginForm;
+        }
         public void AuthenticateUser(string username, string password)
         {
             using (SqlConnection connection = GetConnection())
@@ -48,8 +52,7 @@ namespace OOADCafeShopManagement.Models
                                     frmProfile.Show();
 
                                     //close login form 
-                                    frmLogin LoginForm = new frmLogin();
-                                    LoginForm.Hide();
+                                    _loginForm.Hide();
                                 }
                                 else
                                 {
