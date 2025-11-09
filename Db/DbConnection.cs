@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OOADCafeShopManagement
 {
-    public abstract class DbConnection
+    public class DbConnection
     {
         private readonly string connectionString;
 

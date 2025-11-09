@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="OOADCafeShopManagement.UserSession" Collapsed="true">
+    <Position X="22" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAAABAQAAEQAAAAoAAAAAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>UserSession\UserSession.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Login" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Login.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.DbConnection" Collapsed="true">
+    <Position X="9.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
+      <FileName>Db\DbConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SecurityHelper" Collapsed="true">
+    <Position X="20.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>SecurityHelper.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Categories" Collapsed="true">
+    <Position X="4.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAAgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Categories.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Dashboard" Collapsed="true">
+    <Position X="6.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAgAIAAACYAQQAACAAAAAQABAAABBAABAAgMIAAAg=</HashCode>
+      <FileName>Models\Dashboard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Order" Collapsed="true">
+    <Position X="8.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAEAAAQAAAAAAAAAAgAAAAAAAAAAgAAAAEAAAA=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.OrderManager" Collapsed="true">
+    <Position X="11" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEiAAAABAAKEAEAAAQFIBAAAABAABAIAGAA=</HashCode>
+      <FileName>Models\OrderManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Products" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAGAQAAwAAAAAAAQAyAgCAAAAAAAuAAAAAAAAA=</HashCode>
+      <FileName>Models\Products.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Models.Supplier" Collapsed="true">
+    <Position X="15.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEACAAgAAAAAAgQAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Supplier.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Users" Collapsed="true">
+    <Position X="17.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAMACAAgAAEEQAACAAAAQAAAAAiAAAA4AAAAAA=</HashCode>
+      <FileName>Models\Users.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

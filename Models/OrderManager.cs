@@ -10,16 +10,14 @@ namespace OOADCafeShopManagement.Models
 {
     class OrderManager : DbConnection
     {
-        private OrderHandlers _currentOrder;
-        private BindingList<OrderDetailHandler> _currentItems;
-        private OrderDetailHandler _selectedItem; // Single temporary item
+        private Order _currentOrder;
+        private BindingList<OrderDetail> _currentItems;
+        private OrderDetail _selectedItem; // Single temporary item
 
-        public OrderHandlers CurrentOrder => _currentOrder;
-        public BindingList<OrderDetailHandler> CurrentItems => _currentItems;
-        public OrderDetailHandler SelectedItem => _selectedItem;
-
-
-
+        //Properties Get Only
+        public Order CurrentOrder => _currentOrder;
+        public BindingList<OrderDetail> CurrentItems => _currentItems;
+        public OrderDetail SelectedItem => _selectedItem;
         public decimal GrandTotal => _currentOrder.TotalAmount - _currentOrder.Discount;
 
         public OrderManager()
@@ -29,20 +27,20 @@ namespace OOADCafeShopManagement.Models
 
         private void InitializeNewOrder()
         {
-            _currentOrder = new OrderHandlers
+            _currentOrder = new Order
             {
                 OrderDate = DateTime.Now,
                 Status = "Pending",
                 UserID = UserSession.UserId
             };
-            _currentItems = new BindingList<OrderDetailHandler>();
-            _selectedItem = new OrderDetailHandler(); // Initialize empty selected item
+            _currentItems = new BindingList<OrderDetail>();
+            _selectedItem = new OrderDetail(); // Initialize empty selected item
         }
 
         // Method to set the selected product (when clicking on grid)
         public void SetSelectedProduct(int productId, string productName, decimal unitPrice, decimal discount)
         {
-            _selectedItem = new OrderDetailHandler
+            _selectedItem = new OrderDetail
             {
                 ProductID = productId,
                 ProductName = productName,
@@ -92,7 +90,7 @@ namespace OOADCafeShopManagement.Models
             else
             {
                 // Create new order detail (clone the selected item)
-                var newItem = new OrderDetailHandler
+                var newItem = new OrderDetail
                 {
                     ProductID = _selectedItem.ProductID,
                     ProductName = _selectedItem.ProductName,
@@ -106,7 +104,7 @@ namespace OOADCafeShopManagement.Models
             UpdateOrderTotals();
 
             // Reset selected item after adding to order
-            _selectedItem = new OrderDetailHandler();
+            _selectedItem = new OrderDetail();
         }
 
         public void RemoveOrderItem(int productId)
@@ -161,7 +159,7 @@ namespace OOADCafeShopManagement.Models
             // Preserve the UserID when creating new order
             int currentUserId = _currentOrder.UserID; // Save current user ID
 
-            _currentOrder = new OrderHandlers // Create a brand new order object
+            _currentOrder = new Order // Create a brand new order object
             {
                 OrderDate = DateTime.Now,
                 Status = "Pending",
@@ -170,14 +168,14 @@ namespace OOADCafeShopManagement.Models
                 OrderID = 0, // Reset OrderID
                 UserID = currentUserId // Preserve the UserID
             };
-            _selectedItem = new OrderDetailHandler(); // Reset selected item
+            _selectedItem = new OrderDetail(); // Reset selected item
 
             System.Diagnostics.Debug.WriteLine($"Order cleared. UserID preserved: {currentUserId}");
         }
 
         public void ClearSelectedItem()
         {
-            _selectedItem = new OrderDetailHandler();
+            _selectedItem = new OrderDetail();
         }
 
         private bool SaveOrderToDatabase()

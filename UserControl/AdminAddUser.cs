@@ -11,7 +11,7 @@ namespace OOADCafeShopManagement
 {
     public partial class AdminAddUser : UserControl
     {
-        private UserHandlers model;
+        private Users model;
         private string selectedImagePath = "";
         private int selectedUserId = 0;
         private bool isEditMode = false;
@@ -19,7 +19,7 @@ namespace OOADCafeShopManagement
         public AdminAddUser()
         {
             InitializeComponent();
-            model = new UserHandlers();
+            model = new Users();
             DisplayUsersData();
             SetupComboBoxes();
             SetFormMode(false); // Start in Add mode
@@ -59,8 +59,8 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                UserHandlers userData = new UserHandlers();
-                List<UserHandlers> listData = userData.UsersListData();
+                Users userData = new Users();
+                List<Users> listData = userData.UsersListData();
 
                 dgvListUsers.DataSource = listData;
 
@@ -183,7 +183,7 @@ namespace OOADCafeShopManagement
 
             try
             {
-                UserHandlers userData = new UserHandlers();
+                Users userData = new Users();
                 bool success = userData.AddUser(
                     txtUsername.Text.Trim(),
                     txtPassword.Text,
@@ -233,7 +233,7 @@ namespace OOADCafeShopManagement
 
             try
             {
-                UserHandlers userData = new UserHandlers();
+                Users userData = new Users();
                 bool success;
 
                 // Check if password should be updated
@@ -304,7 +304,7 @@ namespace OOADCafeShopManagement
             {
                 try
                 {
-                    UserHandlers userData = new UserHandlers();
+                    Users userData = new Users();
                     bool success = userData.DeleteUser(selectedUserId);
 
                     if (success)
@@ -376,7 +376,7 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                UserHandlers userData = new UserHandlers();
+                Users userData = new Users();
                 var user = userData.GetUserById(userId);
 
                 if (user != null)
@@ -473,8 +473,8 @@ namespace OOADCafeShopManagement
 
             try
             {
-                UserHandlers userData = new UserHandlers();
-                List<UserHandlers> allData = userData.UsersListData();
+                Users userData = new Users();
+                List<Users> allData = userData.UsersListData();
 
                 var filteredData = allData.Where(u =>
                     u.Username.ToLower().Contains(searchTerm.ToLower()) ||

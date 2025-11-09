@@ -201,8 +201,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\OrderDetailHandler.cs" />
-    <Compile Include="Models\OrderHandlers.cs" />
+    <Compile Include="Models\Login.cs" />
+    <Compile Include="Models\OrderDetail.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -227,8 +228,8 @@
     <Compile Include="UserControl\POSForm.Designer.cs">
       <DependentUpon>POSForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\ProductHandlers.cs" />
-    <Compile Include="Models\UserHandlers.cs" />
+    <Compile Include="Models\Products.cs" />
+    <Compile Include="Models\Users.cs" />
     <Compile Include="UserControl\AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -242,8 +243,8 @@
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Db\DbConnection.cs" />
-    <Compile Include="Models\CategoriesHandler.cs" />
-    <Compile Include="Models\SupplierHandlers.cs" />
+    <Compile Include="Models\Categories.cs" />
+    <Compile Include="Models\Supplier.cs" />
     <Compile Include="Profile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -343,6 +344,7 @@
     </None>
     <None Include="Dashboard.Designer.cds" />
     <None Include="packages.config" />
+    <None Include="ProjectDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

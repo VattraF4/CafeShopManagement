@@ -262,18 +262,16 @@ namespace OOADCafeShopManagement
            
         }
 
-        public string GetUsername()
-        {
-            return UserSession.Username ?? "Guest";
-        }
-
         public string GetUserRole()
         {
             return UserSession.Role ?? "Unknown";
             //return UserSession.Role ?? "admin";
 
         }
-
+        public string GetUsername()
+        {
+            return UserSession.Username;
+        }
         private void ApplyRoleBasedAccess()
         {
             string userRole = GetUserRole();

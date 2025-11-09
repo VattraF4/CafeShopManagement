@@ -63,8 +63,8 @@ namespace OOADCafeShopManagement
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
         {
-            ProductHandlers products = new ProductHandlers();
-            List<ProductHandlers> productsList = products.SearchProductByName(txtInputName.Text.Trim());
+            Products products = new Products();
+            List<Products> productsList = products.SearchProductByName(txtInputName.Text.Trim());
             dgvListMenu.DataSource = productsList;
             int productID = dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value != null ?
                 Convert.ToInt32(dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value) : 0;
@@ -85,8 +85,8 @@ namespace OOADCafeShopManagement
 
         private void ListMenu()
         {
-            ProductHandlers products = new ProductHandlers();
-            List<ProductHandlers> productsList = products.ListActiveMenu();
+            Products products = new Products();
+            List<Products> productsList = products.ListActiveMenu();
             dgvListMenu.DataSource = productsList;
 
             // Hide unwanted columns
