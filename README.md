@@ -1,19 +1,24 @@
-****# OOADCafeShopManagement
+# ☕ OOAD Cafe Shop Management
 
-## Description
+## 📝 Description
 
-This project is a application for selling coffe
+**OOAD Cafe Shop Management** is a desktop application built with **C# (WinForms)** and **SQL Server** for managing a coffee shop.
+It allows users to handle sales, products, inventory, and user authentication (login, registration, and role-based access).
 
-## Prerequisites
+## ⚙️ Prerequisites
 
-- SQLServer instant name ```SQLEXPRESS``` and database name ```cafe```
-- ```Visaul Studio 2022``` or just run "OOADCafeShopManagement.exe" in Bin folder.
-- [provide any additional setup instructions]
+Before running the project, ensure you have the following installed:
+
+- **Microsoft SQL Server** (Instance name: `SQLEXPRESS`)
+- **Database name:**`cafe`
+- **Visual Studio 2022** (or newer)
+- **.NET Framework 4.8** or compatible runtime
+- Optionally, you can run the prebuilt executable `OOADCafeShopManagement.exe` in the `bin` folder.
 
 ## Installation
 
 1. Clone the repository: `https://github.com/VattraF4/CafeShopManagement.git`
-2. Navigate to the project directory: `cd your-project`
+2. Navigate to the project directory: `cd CafeShopManagement`
 3. Install the dependencies: `npm install`
 
 ## Configuration
@@ -34,25 +39,36 @@ This project is a application for selling coffe
 - Navigate to the `bin` folder.
 - Open `OOADCafeShopManagement.exe`.
 - Log in using:
-	```
-	Username: vattra.com
-	Password: V123$
+  ```
+  Username: vattra.com
+  Password: V123$
 
-	```
+  ```
 
 ### Option 1: Run from Visual Studio
+
 1. Open the solution file OOADCafeShopManagement.sln in Visual Studio 2022.
 2. Press F5 to build and run the project.
 3. Use the same test credentials to log in.
 
 ## Contributing
 
-[provide instructions on how to contribute to the project]
+Contributions are welcome!
+If you'd like to contribute:
+
+1. Fork this repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes.
+4. Submit a pull request with a clear description of your improvement.
 
 ## License
 
-[provide information about the project's license]
+This project is licensed under the MIT License.
+You are free to use, modify, and distribute this project with proper attribution.
 
 ## Contact
 
-[provide contact information for users to reach out to you]
+**Author**: Ra Vattra
+**GitHub**: [VattraF4](http://github.com/VattraF4)
+**Portfolio**: [Ra Vattra](https://vattraf4.github.io/Ra-Vattra-Resume-Kh-and-Eng/)
+**Email:** [ravattrasmartboy@gmail.com](https://)
