@@ -19,7 +19,6 @@ Before running the project, ensure you have the following installed:
 
 1. Clone the repository: `https://github.com/VattraF4/CafeShopManagement.git`
 2. Navigate to the project directory: `cd CafeShopManagement`
-3. Install the dependencies: `npm install`
 
 ## Configuration
 
