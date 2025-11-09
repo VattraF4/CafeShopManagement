@@ -46,6 +46,10 @@ namespace OOADCafeShopManagement.Models
                                     // Open next form
                                     Profile frmProfile = new Profile();
                                     frmProfile.Show();
+
+                                    //close login form 
+                                    frmLogin LoginForm = new frmLogin();
+                                    LoginForm.Hide();
                                 }
                                 else
                                 {
