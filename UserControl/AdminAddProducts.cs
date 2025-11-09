@@ -15,7 +15,7 @@ namespace OOADCafeShopManagement
     public partial class AdminAddProducts : UserControl
     {
         //Private Fields
-      
+
 
         public AdminAddProducts()
         {
@@ -29,6 +29,7 @@ namespace OOADCafeShopManagement
             ApplyRoleBasedAccess();
             SetupComboBoxes();
             ClearInputs();
+            this.txtProductID.Visible = false;
         }
         public void ProductListDataGridView()
         {
@@ -41,8 +42,9 @@ namespace OOADCafeShopManagement
             dgvListProducts.Columns["SupplierID"].Visible = false;
 
             // Custom Header Name
-            dgvListProducts.Columns[6].HeaderText = "Categories";
-            dgvListProducts.Columns[7].HeaderText = "Supplier";
+            dgvListProducts.Columns[6].HeaderText = "Status";
+            dgvListProducts.Columns[7].HeaderText = "Categories";
+            dgvListProducts.Columns[8].HeaderText = "Supplier";
 
         }
         public void LoadCategories()
@@ -71,6 +73,21 @@ namespace OOADCafeShopManagement
             cmbSupplier.DisplayMember = "Name"; // What the user sees
             cmbSupplier.ValueMember = "ID";     // The actual value
         }
+        public void LoadStatus()
+        {
+            var statusOptions = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("active", "Active"),
+                new KeyValuePair<string, string>("inactive", "Inactive"),
+                new KeyValuePair<string, string>("out_of_stock", "Out of Stock"),
+                new KeyValuePair<string, string>("discontinued", "Discontinued")
+            };
+
+            cmbStatus.DataSource = statusOptions;
+            cmbStatus.DisplayMember = "Value";  // Show "Active", "Inactive"
+            cmbStatus.ValueMember = "Key";      // Store "active", "inactive"
+            cmbStatus.SelectedIndex = 0;
+        }
 
 
         //Helper Method
@@ -78,6 +95,7 @@ namespace OOADCafeShopManagement
         {
             LoadCategories();
             LoadSuppliers();
+            LoadStatus();
         }
         public void ClearInputs()
         {
@@ -96,7 +114,7 @@ namespace OOADCafeShopManagement
                 pnlListProducts.Size = new Size(759, 402);
                 dgvListProducts.Size = new Size(759, 346);
             }
-           
+
         }
 
 
@@ -140,6 +158,8 @@ namespace OOADCafeShopManagement
         {
             try
             {
+                // Get the selected value correctly
+                string selectedStatus = cmbStatus.SelectedValue?.ToString();
                 ProductHandlers productHandlers = new ProductHandlers();
                 bool success = productHandlers.UpdateProduct(
                     int.Parse(txtProductID.Text),
@@ -147,12 +167,14 @@ namespace OOADCafeShopManagement
                     (int)cmbCategory.SelectedValue,
                     (int)cmbSupplier.SelectedValue,
                     decimal.Parse(txtProductPrice.Text),
-                    decimal.Parse(txtDiscount.Text)
+                    decimal.Parse(txtDiscount.Text),
+                    selectedStatus
                 );
                 if (success)
                 {
                     MessageBox.Show("Product updated successfully!", "Success",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
                     LoadData();
                 }
                 else
@@ -177,6 +199,8 @@ namespace OOADCafeShopManagement
                     txtProductName.Text = product.Name;
                     cmbCategory.SelectedValue = product.CategoryID;
                     cmbSupplier.SelectedValue = product.SupplierID;
+                    // Set by Value - this should work now
+                    cmbStatus.SelectedValue = product.Status?.ToLower(); // Ensure case matches
                     txtProductPrice.Text = product.Price.ToString();
                     txtDiscount.Text = product.Discount.ToString();
                 }
@@ -187,7 +211,9 @@ namespace OOADCafeShopManagement
                     txtProductPrice.Clear();
                     txtDiscount.Clear();
                     cmbCategory.SelectedIndex = -1;
+                    cmbStatus.SelectedIndex = -1;
                     cmbSupplier.SelectedIndex = -1;
+
                 }
             }
         }
@@ -201,8 +227,9 @@ namespace OOADCafeShopManagement
             dgvListProducts.Columns["SupplierID"].Visible = false;
 
             // Custom Header Name
-            dgvListProducts.Columns[6].HeaderText = "Categories";
-            dgvListProducts.Columns[7].HeaderText = "Supplier";
+            dgvListProducts.Columns[6].HeaderText = "Status";
+            dgvListProducts.Columns[7].HeaderText = "Categories";
+            dgvListProducts.Columns[8].HeaderText = "Supplier";
         }
         private void btnDelete_Click(object sender, EventArgs e)
         {
@@ -223,6 +250,6 @@ namespace OOADCafeShopManagement
             }
         }
 
-      
+
     }
 }

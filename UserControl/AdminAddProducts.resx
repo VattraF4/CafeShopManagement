@@ -220,10 +220,10 @@
   </data>
   <data name="txtProductID.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAIYAAAAVCAYAAACDi5Z8AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABuSURBVGhD7dLBCcQwFEPB365rNBj3kTJSQIKDIWzQdjCC
-        uej8yuzveu/HnPOC1cLOomodrTV44thZCIOXMIiEQSQMImEQCYNIGETCIBIGkTCIhEEkDCJhEAmDSBhE
-        wiD6CWOMca4DVgs7C7Pvqm51+ADaKa1iugAAAABJRU5ErkJggg==
+        iVBORw0KGgoAAAANSUhEUgAAACEAAAAVCAYAAADID4fUAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAABSSURBVEhL7c7BDYAACEPRrsuMJIQ9HMMBNDX04ALooST/
+        wqUPv7nMPLr72o67QwD4iIj1uDsEI4x4MkIZoYxQRigjlBHqhaiqk4/tuDuErw+4Acc+gRSHFld8AAAA
+        AElFTkSuQmCC
 </value>
   </data>
   <data name="pnlListProducts.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

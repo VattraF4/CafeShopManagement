@@ -86,7 +86,7 @@ namespace OOADCafeShopManagement
         private void ListMenu()
         {
             ProductHandlers products = new ProductHandlers();
-            List<ProductHandlers> productsList = products.ListData();
+            List<ProductHandlers> productsList = products.ListActiveMenu();
             dgvListMenu.DataSource = productsList;
 
             // Hide unwanted columns
@@ -372,22 +372,6 @@ namespace OOADCafeShopManagement
             _orderManager.ClearSelectedItem();
             ClearSelectedItemDisplay();
         }
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                btnPrint.Visible = false;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Print error: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            finally
-            {
-                btnPrint.Visible = true;
-            }
-        }
         private void btnClearOrder_Click(object sender, EventArgs e)
         {
             _orderManager.ClearOrder();
@@ -494,5 +478,9 @@ namespace OOADCafeShopManagement
             }
         }
 
+        public void ReloadProducts()
+        {
+            LoadForm();
+        }
     }
 }

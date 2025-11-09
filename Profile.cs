@@ -42,7 +42,12 @@ namespace OOADCafeShopManagement
             //Set up Key
             SetupEnterKeyHandling();
         }
-
+        public void RefreshAllProductData()
+        {
+            ucPOS.ReloadProducts();
+            // If you need to refresh products usercontrol too:
+            // ucProducts.ReloadData();
+        }
         private void setupUserControls()
         {
             ucPOS = new POSForm();
@@ -448,6 +453,8 @@ namespace OOADCafeShopManagement
         private void btnPOS_Click(object sender, EventArgs e)
         {
             ucPOS.BringToFront();
+            RefreshAllProductData();
+
         }
 
 

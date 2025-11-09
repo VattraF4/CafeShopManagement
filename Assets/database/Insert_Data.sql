@@ -23,24 +23,24 @@ INSERT INTO users (username, password, role, status, profile_img, reg_date) VALU
 ('customer3', 'hashed_cust3', 'user', 'Active', 'profiles/user3.jpg', '2025-09-15');
 
 -- 4. Insert Products (same as before)
-INSERT INTO products (name, categories_id, price, discount, supplier_id, created_at) VALUES
-('Espresso', 1, 3.50, 0, 1, '2025-09-20'),
-('Americano', 1, 4.00, 0, 1, '2025-09-20'),
-('Cappuccino', 1, 4.50, 0, 1, '2025-09-20'),
-('Latte', 1, 5.00, 0.50, 1, '2025-09-20'),
-('Mocha', 1, 5.50, 0, 1, '2025-09-20'),
-('Iced Americano', 2, 4.50, 0, 1, '2025-09-20'),
-('Iced Latte', 2, 5.50, 0, 1, '2025-09-20'),
-('Cold Brew', 2, 5.00, 0.25, 1, '2025-09-20'),
-('Green Tea', 3, 3.00, 0, 4, '2025-09-20'),
-('Black Tea', 3, 3.00, 0, 4, '2025-09-20'),
-('Chai Latte', 3, 4.50, 0, 4, '2025-09-20'),
-('Croissant', 4, 3.50, 0, 3, '2025-09-20'),
-('Blueberry Muffin', 4, 4.00, 0, 3, '2025-09-20'),
-('Chocolate Chip Cookie', 4, 2.50, 0, 3, '2025-09-20'),
-('Turkey Sandwich', 5, 8.50, 0, 3, '2025-09-20'),
-('Veggie Wrap', 5, 7.50, 1.00, 3, '2025-09-20'),
-('Ham & Cheese Croissant', 5, 6.50, 0, 3, '2025-09-20');
+INSERT INTO products (name, categories_id, price, discount, supplier_id, status,created_at) VALUES
+('Espresso', 1, 3.50, 0, 1,'active','2025-09-20'),
+('Americano', 1, 4.00, 0, 1, 'active','2025-09-20'),
+('Cappuccino', 1, 4.50, 0, 1, 'active','2025-09-20'),
+('Latte', 1, 5.00, 0.50, 1,'active', '2025-09-20'),
+('Mocha', 1, 5.50, 0, 1, 'active','2025-09-20'),
+('Iced Americano', 2, 4.50, 0, 1, 'active','2025-09-20'),
+('Iced Latte', 2, 5.50, 0, 1, 'active','2025-09-20'),
+('Cold Brew', 2, 5.00, 0.25, 1, 'active','2025-09-20'),
+('Green Tea', 3, 3.00, 0, 4, 'active','2025-09-20'),
+('Black Tea', 3, 3.00, 0, 4, 'active','2025-09-20'),
+('Chai Latte', 3, 4.50, 0, 4, 'active','2025-09-20'),
+('Croissant', 4, 3.50, 0, 3, 'active','2025-09-20'),
+('Blueberry Muffin', 4, 4.00, 0, 3, 'active','2025-09-20'),
+('Chocolate Chip Cookie', 4, 2.50, 0, 3, 'active','2025-09-20'),
+('Turkey Sandwich', 5, 8.50, 0, 3, 'active','2025-09-20'),
+('Veggie Wrap', 5, 7.50, 1.00, 3,'active', '2025-09-20'),
+('Ham & Cheese Croissant', 5, 6.50, 0, 3, 'active','2025-09-20');
 
 -- 5. Insert Inventory (same as before)
 INSERT INTO inventory (product_id, stock_in, stock_out, created_at) VALUES

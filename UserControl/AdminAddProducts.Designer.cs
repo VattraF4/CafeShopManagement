@@ -77,6 +77,7 @@
             this.pnlListProducts = new Bunifu.UI.WinForms.BunifuPanel();
             this.dgvListProducts = new Bunifu.UI.WinForms.BunifuDataGridView();
             this.txtSearchProduct = new Bunifu.UI.WinForms.BunifuTextBox();
+            this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.pnlAction.SuspendLayout();
             this.pnlListProducts.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListProducts)).BeginInit();
@@ -112,6 +113,7 @@
             this.pnlAction.Controls.Add(this.btnUpdate);
             this.pnlAction.Controls.Add(this.btnAdd);
             this.pnlAction.Controls.Add(this.cmbSupplier);
+            this.pnlAction.Controls.Add(this.cmbStatus);
             this.pnlAction.Controls.Add(this.cmbCategory);
             this.pnlAction.Controls.Add(this.bunifuLabel7);
             this.pnlAction.Controls.Add(this.bunifuLabel1);
@@ -506,7 +508,7 @@
             this.cmbCategory.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCategory.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(176, 84);
+            this.cmbCategory.Location = new System.Drawing.Point(180, 84);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(135, 21);
             this.cmbCategory.TabIndex = 15;
@@ -566,7 +568,7 @@
             this.bunifuLabel2.CursorType = null;
             this.bunifuLabel2.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel2.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.bunifuLabel2.Location = new System.Drawing.Point(68, 51);
+            this.bunifuLabel2.Location = new System.Drawing.Point(65, 20);
             this.bunifuLabel2.Name = "bunifuLabel2";
             this.bunifuLabel2.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.bunifuLabel2.Size = new System.Drawing.Size(101, 17);
@@ -580,14 +582,15 @@
             this.bunifuLabel4a.AllowParentOverrides = false;
             this.bunifuLabel4a.AutoEllipsis = false;
             this.bunifuLabel4a.CursorType = null;
+            this.bunifuLabel4a.Enabled = false;
             this.bunifuLabel4a.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold);
             this.bunifuLabel4a.ForeColor = System.Drawing.SystemColors.ActiveCaption;
-            this.bunifuLabel4a.Location = new System.Drawing.Point(93, 16);
+            this.bunifuLabel4a.Location = new System.Drawing.Point(124, 51);
             this.bunifuLabel4a.Name = "bunifuLabel4a";
             this.bunifuLabel4a.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.bunifuLabel4a.Size = new System.Drawing.Size(73, 17);
+            this.bunifuLabel4a.Size = new System.Drawing.Size(42, 17);
             this.bunifuLabel4a.TabIndex = 13;
-            this.bunifuLabel4a.Text = "Product ID:";
+            this.bunifuLabel4a.Text = "Status:";
             this.bunifuLabel4a.TextAlignment = System.Drawing.ContentAlignment.TopLeft;
             this.bunifuLabel4a.TextFormat = Bunifu.UI.WinForms.BunifuLabel.TextFormattingOptions.Default;
             // 
@@ -782,7 +785,7 @@
             this.txtProductName.IconRight = null;
             this.txtProductName.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtProductName.Lines = new string[0];
-            this.txtProductName.Location = new System.Drawing.Point(176, 51);
+            this.txtProductName.Location = new System.Drawing.Point(180, 20);
             this.txtProductName.MaxLength = 32767;
             this.txtProductName.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtProductName.Modified = false;
@@ -848,6 +851,7 @@
             this.txtProductID.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtProductID.DefaultFont = new System.Drawing.Font("Segoe UI", 9.25F);
             this.txtProductID.DefaultText = "";
+            this.txtProductID.Enabled = false;
             this.txtProductID.FillColor = System.Drawing.Color.DimGray;
             this.txtProductID.HideSelection = true;
             this.txtProductID.IconLeft = null;
@@ -856,7 +860,7 @@
             this.txtProductID.IconRight = null;
             this.txtProductID.IconRightCursor = System.Windows.Forms.Cursors.IBeam;
             this.txtProductID.Lines = new string[0];
-            this.txtProductID.Location = new System.Drawing.Point(176, 16);
+            this.txtProductID.Location = new System.Drawing.Point(318, 20);
             this.txtProductID.MaxLength = 32767;
             this.txtProductID.MinimumSize = new System.Drawing.Size(1, 1);
             this.txtProductID.Modified = false;
@@ -892,7 +896,7 @@
             this.txtProductID.SelectionLength = 0;
             this.txtProductID.SelectionStart = 0;
             this.txtProductID.ShortcutsEnabled = true;
-            this.txtProductID.Size = new System.Drawing.Size(134, 21);
+            this.txtProductID.Size = new System.Drawing.Size(33, 21);
             this.txtProductID.Style = Bunifu.UI.WinForms.BunifuTextBox._Style.Bunifu;
             this.txtProductID.TabIndex = 11;
             this.txtProductID.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
@@ -1059,6 +1063,20 @@
             this.txtSearchProduct.WordWrap = true;
             this.txtSearchProduct.TextChange += new System.EventHandler(this.txtSearchProduct_TextChanged);
             // 
+            // cmbStatus
+            // 
+            this.cmbStatus.BackColor = System.Drawing.Color.DimGray;
+            this.cmbStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbStatus.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.cmbStatus.FormattingEnabled = true;
+            this.cmbStatus.Items.AddRange(new object[] {
+            "active",
+            "inactive"});
+            this.cmbStatus.Location = new System.Drawing.Point(180, 51);
+            this.cmbStatus.Name = "cmbStatus";
+            this.cmbStatus.Size = new System.Drawing.Size(135, 21);
+            this.cmbStatus.TabIndex = 15;
+            // 
             // AdminAddProducts
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1102,5 +1120,6 @@
         private Bunifu.UI.WinForms.BunifuLabel bunifuLabel2;
         private Bunifu.UI.WinForms.BunifuTextBox txtProductName;
         private Bunifu.UI.WinForms.BunifuTextBox txtSearchProduct;
+        private System.Windows.Forms.ComboBox cmbStatus;
     }
 }

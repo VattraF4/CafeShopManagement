@@ -21,6 +21,7 @@ namespace OOADCafeShopManagement.Models
         public decimal Discount { get; set; }
         public string CategoryName { get; set; }
         public string SupplierName { get; set; }
+        public string Status { get; set; }
         public List<ProductHandlers> ListData()
         {
             List<ProductHandlers> productsList = new List<ProductHandlers>(); //by default access modifier is private
@@ -34,6 +35,7 @@ namespace OOADCafeShopManagement.Models
                                     p.discount,
                                     p.categories_id,
                                     p.supplier_id,
+                                    p.status,
                                     c.name AS categoryName,
                                     s.name AS supplierName
                                 FROM products p
@@ -55,7 +57,53 @@ namespace OOADCafeShopManagement.Models
                                 CategoryID = reader.GetInt32(4),
                                 SupplierID = reader.GetInt32(5),
                                 CategoryName = reader.GetString(6),
-                                SupplierName = reader.GetString(7)
+                                SupplierName = reader.GetString(7),
+                                Status = reader.GetString(8)
+                            };
+                            productsList.Add(product);
+                        }
+                    }
+                }
+            }
+            return productsList;
+        }
+        public List<ProductHandlers> ListActiveMenu()
+        {
+            List<ProductHandlers> productsList = new List<ProductHandlers>(); //by default access modifier is private
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT
+                                    p.id,
+                                    p.name,
+                                    p.price,
+                                    p.discount,
+                                    p.categories_id,
+                                    p.supplier_id,
+                                    p.status,
+                                    c.name AS categoryName,
+                                    s.name AS supplierName
+                                FROM products p
+                                JOIN categories c ON p.categories_id = c.id
+                                JOIN suppliers s ON p.supplier_id = s.id  WHERE p.status = 'active' order by p.id;";
+
+                using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
+                {
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            ProductHandlers product = new ProductHandlers
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                Discount = reader.GetDecimal(3),
+                                CategoryID = reader.GetInt32(4),
+                                SupplierID = reader.GetInt32(5),
+                                CategoryName = reader.GetString(6),
+                                SupplierName = reader.GetString(7),
+                                Status = reader.GetString(8)
                             };
                             productsList.Add(product);
                         }
@@ -102,7 +150,7 @@ namespace OOADCafeShopManagement.Models
                 }
             }
         }
-        public bool UpdateProduct(int id, string name, int category, int supplier, decimal price, decimal discount)
+        public bool UpdateProduct(int id, string name, int category, int supplier, decimal price, decimal discount,string status)
         {
             using (var connection = GetConnection())
             {
@@ -114,7 +162,8 @@ namespace OOADCafeShopManagement.Models
                     categories_id = @categories_id, 
                     supplier_id = @supplier_id, 
                     price = @price, 
-                    discount = @discount
+                    discount = @discount,
+                    status = @status
                     WHERE id = @id";
                     using (var command = new System.Data.SqlClient.SqlCommand(query, connection))
                     {
@@ -124,6 +173,7 @@ namespace OOADCafeShopManagement.Models
                         command.Parameters.AddWithValue("@supplier_id", supplier);
                         command.Parameters.AddWithValue("@price", price);
                         command.Parameters.AddWithValue("@discount", discount);
+                        command.Parameters.AddWithValue("@status", status);
                         int rowAffected = command.ExecuteNonQuery();  // this method is execute insert, update, delete and return number of rows affected
                         if (rowAffected <= 0)
                         {
@@ -172,7 +222,7 @@ namespace OOADCafeShopManagement.Models
             {
                 connection.Open();
 
-                string query = @"SELECT p.id, p.name, p.categories_id, p.supplier_id, p.price, p.discount
+                string query = @"SELECT p.id, p.name, p.categories_id, p.supplier_id, p.price, p.discount,p.status
                          FROM Products p
                          WHERE p.id = @id";
 
@@ -191,7 +241,8 @@ namespace OOADCafeShopManagement.Models
                                 CategoryID = reader.GetInt32(2),
                                 SupplierID = reader.GetInt32(3),
                                 Price = reader.GetDecimal(4),
-                                Discount = reader.GetDecimal(5)
+                                Discount = reader.GetDecimal(5),
+                                Status = reader.GetString(6)
                             };
                         }
                         return null; // not found
@@ -211,24 +262,25 @@ namespace OOADCafeShopManagement.Models
                     connection.Open();
 
                     string query = @"SELECT
-                                    p.id,
-                                    p.name,
-                                    p.price,
-                                    p.discount,
-                                    p.categories_id,
-                                    p.supplier_id,
-                                    c.name AS categoryName,
-                                    s.name AS supplierName
-                                FROM products p
-                                JOIN categories c ON p.categories_id = c.id
-                                JOIN suppliers s ON p.supplier_id = s.id
-                                WHERE 
-                                    p.name LIKE @name 
-                                    or CAST(p.id AS VARCHAR) LIKE @name
-                                    or c.name LIKE @name 
-                                    or s.name LIKE @name
-                                    or p.price LIKE @name
-                                order by p.id";
+                            p.id,
+                            p.name,
+                            p.price,
+                            p.discount,
+                            p.categories_id,
+                            p.supplier_id,
+                            c.name AS categoryName,
+                            s.name AS supplierName,
+                            p.status
+                        FROM products p
+                        JOIN categories c ON p.categories_id = c.id
+                        JOIN suppliers s ON p.supplier_id = s.id
+                        WHERE p.status = 'active' 
+                            AND (p.name LIKE '%' + @name + '%' 
+                                OR CAST(p.id AS VARCHAR) LIKE '%' + @name + '%'
+                                OR c.name LIKE '%' + @name + '%' 
+                                OR s.name LIKE '%' + @name + '%'
+                                OR CAST(p.price AS VARCHAR(10)) LIKE '%' + @name + '%')
+                        ORDER BY p.id";
 
                     using (var command = new SqlCommand(query, connection))
                     {
@@ -247,15 +299,16 @@ namespace OOADCafeShopManagement.Models
                                     CategoryID = reader.GetInt32(4),
                                     SupplierID = reader.GetInt32(5),
                                     CategoryName = reader.GetString(6),
-                                    SupplierName = reader.GetString(7)
+                                    SupplierName = reader.GetString(7),
+                                    Status = reader.GetString(8)
                                 });
                             }
                         }
                     }
                 }
-                catch
+                catch (Exception ex)
                 {
-                    throw new Exception("Error searching product by name.");
+                    throw new Exception($"Error searching product by name: {ex.Message}");
                 }
             }
 

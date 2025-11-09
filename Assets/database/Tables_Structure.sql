@@ -50,6 +50,7 @@ CREATE TABLE products
     price         DECIMAL(10, 2),
     discount      DECIMAL(5, 2),
     supplier_id   INT,
+    status VARCHAR (50) DEFAULT  'active',
     created_at    DATETIME DEFAULT GETDATE(),
     FOREIGN KEY (categories_id) REFERENCES categories (id),
     FOREIGN KEY (supplier_id) REFERENCES suppliers (id)
