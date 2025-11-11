@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OOADCafeShopManagement.Models
 {
 
-    class Products:DbConnection
+    public class Products:DbConnection
     {
 
 

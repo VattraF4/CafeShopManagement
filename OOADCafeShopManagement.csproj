@@ -201,109 +201,100 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Models\Login.cs" />
+    <Compile Include="Helper\LoginHelper.cs" />
+    <Compile Include="Interface\IProductRepository.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Order.cs" />
-    <Compile Include="UserControl\AdminAddProducts.cs">
+    <Compile Include="Repository\ProductsRepository.cs" />
+    <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Views\UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\AdminAddProducts.Designer.cs">
+    <Compile Include="Views\UserControl\AdminAddProducts.Designer.cs">
       <DependentUpon>AdminAddProducts.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\AdminAddUser.cs">
+    <Compile Include="Views\UserControl\AdminAddUser.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\AdminAddUser.Designer.cs">
+    <Compile Include="Views\UserControl\AdminAddUser.Designer.cs">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </Compile>
-    <Compile Include="CashierMainForm.cs">
+    <Compile Include="Views\CashierMainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CashierMainForm.Designer.cs">
+    <Compile Include="Views\CashierMainForm.Designer.cs">
       <DependentUpon>CashierMainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="UserControl\POSForm.cs">
+    <Compile Include="Views\UserControl\POSForm.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\POSForm.Designer.cs">
+    <Compile Include="Views\UserControl\POSForm.Designer.cs">
       <DependentUpon>POSForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Products.cs" />
     <Compile Include="Models\Users.cs" />
-    <Compile Include="UserControl\AdminDashboard.cs">
+    <Compile Include="Views\UserControl\AdminDashboard.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="UserControl\AdminDashboard.Designer.cs">
+    <Compile Include="Views\UserControl\AdminDashboard.Designer.cs">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Dashboard.cs">
+    <Compile Include="Views\Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Dashboard.Designer.cs">
+    <Compile Include="Views\Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Db\DbConnection.cs" />
+    <Compile Include="Database\DbConnection.cs" />
     <Compile Include="Models\Categories.cs" />
     <Compile Include="Models\Supplier.cs" />
-    <Compile Include="Profile.cs">
+    <Compile Include="Views\Profile.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Profile.Designer.cs">
+    <Compile Include="Views\Profile.Designer.cs">
       <DependentUpon>Profile.cs</DependentUpon>
     </Compile>
-    <Compile Include="cafe.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cafe.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="cafeDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>cafeDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="Login.cs">
+    <Compile Include="Views\Login.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Login.Designer.cs">
+    <Compile Include="Views\Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="isValid.cs" />
+    <Compile Include="Helper\IsValidationHelper.cs" />
     <Compile Include="Models\Dashboard.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterForm.cs">
+    <Compile Include="Views\RegisterForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="RegisterForm.Designer.cs">
+    <Compile Include="Views\RegisterForm.Designer.cs">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SecurityHelper.cs" />
-    <Compile Include="UserSession\UserSession.cs" />
-    <EmbeddedResource Include="UserControl\CashierCustomerForm.resx">
-      <DependentUpon>CashierCustomerForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\AdminAddProducts.resx">
+    <Compile Include="Helper\SecurityHelper.cs" />
+    <Compile Include="Core\UserSession.cs" />
+    <EmbeddedResource Include="Views\UserControl\CashierCustomerForm.resx" />
+    <EmbeddedResource Include="Views\UserControl\AdminAddProducts.resx">
       <DependentUpon>AdminAddProducts.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\AdminAddUser.resx">
+    <EmbeddedResource Include="Views\UserControl\AdminAddUser.resx">
       <DependentUpon>AdminAddUser.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\AdminDashboard.resx">
+    <EmbeddedResource Include="Views\UserControl\AdminDashboard.resx">
       <DependentUpon>AdminDashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CashierMainForm.resx">
+    <EmbeddedResource Include="Views\CashierMainForm.resx">
       <DependentUpon>CashierMainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="UserControl\POSForm.resx">
+    <EmbeddedResource Include="Views\UserControl\POSForm.resx">
       <DependentUpon>POSForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Dashboard.resx">
+    <EmbeddedResource Include="Views\Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Profile.resx">
+    <EmbeddedResource Include="Views\Profile.resx">
       <DependentUpon>Profile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Login.resx">
+    <EmbeddedResource Include="Views\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
@@ -317,31 +308,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="RegisterForm.resx">
+    <EmbeddedResource Include="Views\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="cafe.xsc">
-      <DependentUpon>cafe.xsd</DependentUpon>
-    </None>
-    <None Include="cafe.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cafe.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="cafe.xss">
-      <DependentUpon>cafe.xsd</DependentUpon>
-    </None>
-    <None Include="cafeDataSet.xsc">
-      <DependentUpon>cafeDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="cafeDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>cafeDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="cafeDataSet.xss">
-      <DependentUpon>cafeDataSet.xsd</DependentUpon>
-    </None>
     <None Include="Dashboard.Designer.cds" />
     <None Include="packages.config" />
     <None Include="ProjectDiagram.cd" />
@@ -385,7 +354,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AddConfigBuilder.txt" />
-    <Compile Include="Models\OrderManager.cs" />
+    <Compile Include="Helper\OrderManager.cs" />
     <None Include="Assets\cafe.png" />
     <Content Include="Assets\database\Cafe.sql" />
     <None Include="Assets\icon\10x\user%4010x.png" />
