@@ -1,4 +1,6 @@
 ﻿using OOADCafeShopManagement.Models;
+using OOADCafeShopManagement.Repositories;
+using OOADCafeShopManagement.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,11 +17,16 @@ namespace OOADCafeShopManagement
     public partial class AdminAddProducts : UserControl
     {
         //Private Fields
+        private ProductService _productService;
 
 
         public AdminAddProducts()
         {
             InitializeComponent();
+
+            var repo = new ProductRepository();  // inject repository
+            _productService = new ProductService(repo);
+
             LoadData();
         }
         // Load Data Method

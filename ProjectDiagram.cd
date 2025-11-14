@@ -1,21 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
   <Class Name="OOADCafeShopManagement.Models.LoginHelper">
-    <Position X="3.25" Y="2.5" Width="4" />
+    <Position X="5" Y="3.75" Width="4" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Helper\LoginHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="OOADCafeShopManagement.Users" Collapsed="true">
-    <Position X="8.75" Y="2.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAMACAAgAAEEQAACAAAAQAAAAAiAAAA4AAAAAA=</HashCode>
-      <FileName>Models\Users.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="OOADCafeShopManagement.frmLogin" Collapsed="true">
-    <Position X="4.25" Y="5" Width="1.5" />
+    <Position X="6.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAgAQAAACCAACBAAAACEAAACCAAASAAAAJAAAQBAEAA=</HashCode>
       <FileName>Views\Login.cs</FileName>
@@ -26,25 +19,60 @@
     </ShowAsAssociation>
   </Class>
   <Class Name="OOADCafeShopManagement.DbConnection" Collapsed="true">
-    <Position X="7" Y="1" Width="1.5" />
+    <Position X="4" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAABAAAAA=</HashCode>
       <FileName>Database\DbConnection.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OOADCafeShopManagement.IsValidationHelper" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="6.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAgAAABAAAAAAAAAAAAAAEAAACAAAAEAACAAgAAAAA=</HashCode>
       <FileName>Helper\IsValidationHelper.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="SecurityHelper">
-    <Position X="9.5" Y="3.75" Width="1.5" />
+  <Class Name="OOADCafeShopManagement.Models.Products">
+    <Position X="0.5" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>QAAAAAAAAAAEAAAAAAASAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Helper\SecurityHelper.cs</FileName>
+      <HashCode>AAAAAAAGAQAAwAAAAAAAQAyAgCAAAAAAAuAAAAAAAAA=</HashCode>
+      <FileName>Models\Products.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="OOADCafeShopManagement.Repositories.ProductRepository" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAIAQAiAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Repository\ProductsRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Services.ProductService">
+    <Position X="4.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAIAQAiAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Services\ProductService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_repo" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OOADCafeShopManagement.AdminAddProducts" Collapsed="true">
+    <Position X="4.25" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAQCIQABSAQMAAQBQiEECiKACAAoAAAAQADIEAAAQY=</HashCode>
+      <FileName>Views\UserControl\AdminAddProducts.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_productService" />
+    </ShowAsAssociation>
+  </Class>
+  <Interface Name="OOADCafeShopManagement.Interface.IProductRepository">
+    <Position X="7.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAIAIAQAiAAAAAAAAAAAAAAAAAAQA=</HashCode>
+      <FileName>Interface\IProductRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>
