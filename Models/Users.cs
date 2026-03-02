@@ -6,7 +6,7 @@ using System.IO;
 
 namespace OOADCafeShopManagement
 {
-    class Users
+    public class Users
     {
         public int ID { set; get; }
         public string Username { get; set; }

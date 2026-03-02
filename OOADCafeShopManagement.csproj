@@ -202,10 +202,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Helper\LoginHelper.cs" />
+    <Compile Include="Interface\IOrderRepository.cs" />
     <Compile Include="Interface\IProductRepository.cs" />
+    <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductsRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Views\UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
