@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace OOADCafeShopManagement.Models
 {
-    class OrderManager : DbConnection
+    class OrderManager
     {
         private Order _currentOrder;
         private BindingList<OrderDetail> _currentItems;
@@ -180,7 +180,7 @@ namespace OOADCafeShopManagement.Models
 
         private bool SaveOrderToDatabase()
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 using (var transaction = connection.BeginTransaction())

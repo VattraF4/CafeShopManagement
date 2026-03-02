@@ -29,7 +29,7 @@ namespace OOADCafeShopManagement.Models
         public string Status { get; set; }
         //public string Package { get; set; }
     }
-    public class Dashboard : DbConnection
+    public class Dashboard
     {
         //Fields & Properties
         private DateTime startDate;
@@ -59,7 +59,7 @@ namespace OOADCafeShopManagement.Models
         //Private Methods
         private void GetNumberItems()
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 // Implement logic to retrieve number of suppliers, products, employees, and customers
@@ -96,7 +96,7 @@ namespace OOADCafeShopManagement.Models
             TotalRevenue = 0;
             TotalItemsSold = 0;
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 using (var command = new SqlCommand())
@@ -246,7 +246,7 @@ namespace OOADCafeShopManagement.Models
             TopProductsList = new List<KeyValuePair<string, int>>();
             UnderstockList = new List<UnderstockProduct>();
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 using (var command = new SqlCommand())

@@ -4,7 +4,7 @@ using System.Windows.Forms;
 
 namespace OOADCafeShopManagement.Models
 {
-    public class LoginHelper : DbConnection
+    public class LoginHelper
     {
         private frmLogin _loginForm;
         public LoginHelper(frmLogin loginForm) {
@@ -12,7 +12,7 @@ namespace OOADCafeShopManagement.Models
         }
         public void AuthenticateUser(string username, string password)
         {
-            using (SqlConnection connection = GetConnection())
+            using (SqlConnection connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {

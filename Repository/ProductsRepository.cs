@@ -6,13 +6,13 @@ using OOADCafeShopManagement.Models;
 
 namespace OOADCafeShopManagement.Repositories
 {
-    public class ProductRepository : DbConnection, IProductRepository
+    public class ProductRepository : IProductRepository
     {
         public List<Products> GetAllProducts()
         {
             var products = new List<Products>();
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"SELECT
@@ -49,7 +49,7 @@ namespace OOADCafeShopManagement.Repositories
 
         public Products GetProductById(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"SELECT id, name, categories_id, supplier_id, price, discount, status
@@ -85,7 +85,7 @@ namespace OOADCafeShopManagement.Repositories
         {
             var products = new List<Products>();
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"SELECT
@@ -132,7 +132,7 @@ namespace OOADCafeShopManagement.Repositories
 
         public bool AddProduct(Products product)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"INSERT INTO Products
@@ -154,7 +154,7 @@ namespace OOADCafeShopManagement.Repositories
 
         public bool UpdateProduct(Products product)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"UPDATE Products SET
@@ -183,7 +183,7 @@ namespace OOADCafeShopManagement.Repositories
 
         public bool DeleteProduct(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = "DELETE FROM Products WHERE id = @id";

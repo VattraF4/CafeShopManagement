@@ -9,9 +9,11 @@ namespace OOADCafeShopManagement
 {
     public class DbConnection
     {
+        private static DbConnection _instance;
+        private static readonly object _lock = new object();
         private readonly string connectionString;
 
-        public DbConnection()
+        private DbConnection()
         {
             //Below is Method 1 for connectionString
             //connectionString = "Server=(local);DataBase=cafe; Integrated Security = true";
@@ -28,7 +30,26 @@ namespace OOADCafeShopManagement
             //    Integrated Security=True;
             //    TrustServerCertificate=True");
         }
-        protected SqlConnection GetConnection()
+
+        public static DbConnection Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    lock (_lock)
+                    {
+                        if (_instance == null)
+                        {
+                            _instance = new DbConnection();
+                        }
+                    }
+                }
+                return _instance;
+            }
+        }
+
+        public SqlConnection GetConnection()
         {
             return new SqlConnection(connectionString);
         } 

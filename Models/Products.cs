@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace OOADCafeShopManagement.Models
 {
 
-    public class Products:DbConnection
+    public class Products
     {
 
 
@@ -25,7 +25,7 @@ namespace OOADCafeShopManagement.Models
         public List<Products> ListData()
         {
             List<Products> productsList = new List<Products>(); //by default access modifier is private
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"SELECT
@@ -70,7 +70,7 @@ namespace OOADCafeShopManagement.Models
         public List<Products> ListActiveMenu()
         {
             List<Products> productsList = new List<Products>(); //by default access modifier is private
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = @"SELECT
@@ -114,7 +114,7 @@ namespace OOADCafeShopManagement.Models
         }
         public bool AddProduct(string name, int category, int supplier, decimal price, decimal discount)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 try
@@ -152,7 +152,7 @@ namespace OOADCafeShopManagement.Models
         }
         public bool UpdateProduct(int id, string name, int category, int supplier, decimal price, decimal discount, string status)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 try
@@ -193,7 +193,7 @@ namespace OOADCafeShopManagement.Models
         }
         public bool DeleteProduct(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 try
@@ -218,7 +218,7 @@ namespace OOADCafeShopManagement.Models
         }
         public Products SearchProductById(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
 
@@ -255,7 +255,7 @@ namespace OOADCafeShopManagement.Models
         {
             List<Products> products = new List<Products>(); // ✅ initialize list to avoid null reference
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {

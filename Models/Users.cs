@@ -6,7 +6,7 @@ using System.IO;
 
 namespace OOADCafeShopManagement
 {
-    class Users : DbConnection
+    class Users
     {
         public int ID { set; get; }
         public string Username { get; set; }
@@ -30,7 +30,7 @@ namespace OOADCafeShopManagement
         {
             List<Users> UsersList = new List<Users>();
 
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {
@@ -73,7 +73,7 @@ namespace OOADCafeShopManagement
         // This method use to record add users but return true after completion
         public bool AddUser(string username, string password, string role, string status, string profilePicturePath = null)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {
@@ -117,7 +117,7 @@ namespace OOADCafeShopManagement
 
         public bool UpdateUser(int id, string username, string role, string status, string profilePicturePath = null)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {
@@ -160,7 +160,7 @@ namespace OOADCafeShopManagement
 
         public bool UpdateUserWithPassword(int id, string username, string password, string role, string status, string profilePicturePath = null)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {
@@ -205,7 +205,7 @@ namespace OOADCafeShopManagement
 
         public bool DeleteUser(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {
@@ -231,7 +231,7 @@ namespace OOADCafeShopManagement
 
         public Users GetUserById(int id)
         {
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 try
                 {

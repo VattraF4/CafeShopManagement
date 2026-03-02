@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOADCafeShopManagement.Models
 {
-    internal class Order : DbConnection
+    internal class Order
     {
         //Properties
         public int OrderID { get; set; }
@@ -22,7 +22,7 @@ namespace OOADCafeShopManagement.Models
             List<Order> orderList = new List<Order>();
             try
             {
-                using (var connection = GetConnection())
+                using (var connection = DbConnection.Instance.GetConnection())
                 {
                     connection.Open();
                     var command = connection.CreateCommand();

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OOADCafeShopManagement.Models
 {
-    class Supplier:DbConnection
+    class Supplier
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -14,11 +14,11 @@ namespace OOADCafeShopManagement.Models
         public string PhoneNumber { get; set; }
         public string Address { get; set; }
         public string Email { get; set; }
-        
+
         public List<Supplier> ListData()
         {
             List<Supplier> suppliersList = new List<Supplier>();
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT id, name, contact_name, phone, address, email FROM Suppliers Order By name";

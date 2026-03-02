@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace OOADCafeShopManagement.Models
 {
-    class Categories : DbConnection
+    class Categories
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public List<Categories> ListData()
         {
             List<Categories> categoriesList = new List<Categories>();
-            using (var connection = GetConnection())
+            using (var connection = DbConnection.Instance.GetConnection())
             {
                 connection.Open();
                 string query = "SELECT id, name FROM Categories Order By name";
