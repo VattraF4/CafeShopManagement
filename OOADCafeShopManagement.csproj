@@ -212,12 +212,17 @@
     <Compile Include="Interface\IUserRepository.cs" />
     <Compile Include="Models\OrderDetail.cs" />
     <Compile Include="Models\Order.cs" />
+    <Compile Include="Observer\OrderObserver.cs" />
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductsRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
     <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
     <Compile Include="Services\UserService.cs" />
+    <Compile Include="State\OrderState.cs" />
+    <Compile Include="Strategy\DiscountStrategy.cs" />
+    <Compile Include="Strategy\PaymentContext.cs" />
+    <Compile Include="Strategy\PaymentStrategy.cs" />
     <Compile Include="Views\UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -322,10 +327,12 @@
     <EmbeddedResource Include="Views\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="ALL_PATTERNS_COMPLETE.md" />
     <None Include="Dashboard.Designer.cds" />
     <None Include="FACTORY_PATTERN_SUMMARY.md" />
     <None Include="FACTORY_QUICK_REFERENCE.md" />
     <None Include="packages.config" />
+    <None Include="PATTERNS_QUICK_REFERENCE.md" />
     <None Include="PRODUCTS_ORDERS_REPOSITORY_SUMMARY.md" />
     <None Include="ProjectDiagram.cd" />
     <None Include="Properties\Settings.settings">

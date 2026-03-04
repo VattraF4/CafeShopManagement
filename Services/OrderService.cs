@@ -4,6 +4,8 @@ using System.Linq;
 using OOADCafeShopManagement.Interface;
 using OOADCafeShopManagement.Models;
 using OOADCafeShopManagement.Factory;
+using OOADCafeShopManagement.State;
+using OOADCafeShopManagement.Observer;
 
 namespace OOADCafeShopManagement.Services
 {
@@ -11,22 +13,27 @@ namespace OOADCafeShopManagement.Services
     /// Order Service Layer - Business logic for order management
     /// Uses Repository Pattern for data access
     /// Uses Factory Pattern for object creation
+    /// Uses State Pattern for order lifecycle management
+    /// Uses Observer Pattern for event notifications
     /// </summary>
     public class OrderService
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IOrderFactory _orderFactory;
+        private readonly OrderSubject _orderSubject;
 
         public OrderService(IOrderRepository orderRepository)
         {
             _orderRepository = orderRepository;
             _orderFactory = new OrderFactory();
+            _orderSubject = OrderSubject.Instance;
         }
 
         public OrderService(IOrderRepository orderRepository, IOrderFactory orderFactory)
         {
             _orderRepository = orderRepository;
             _orderFactory = orderFactory;
+            _orderSubject = OrderSubject.Instance;
         }
 
         public List<Order> GetAllOrders()
@@ -76,7 +83,15 @@ namespace OOADCafeShopManagement.Services
                 order.Status = status;
             }
 
-            return _orderRepository.AddOrder(order);
+            bool success = _orderRepository.AddOrder(order);
+
+            if (success)
+            {
+                // Notify observers about new order
+                _orderSubject.NotifyOrderPlaced(order);
+            }
+
+            return success;
         }
 
         // New methods using OrderFactory
@@ -148,7 +163,7 @@ namespace OOADCafeShopManagement.Services
         {
             if (orderId <= 0)
                 throw new ArgumentException("Invalid order ID.", nameof(orderId));
-            
+
             if (string.IsNullOrWhiteSpace(newStatus))
                 throw new ArgumentException("Status is required.", nameof(newStatus));
 
@@ -158,8 +173,62 @@ namespace OOADCafeShopManagement.Services
                 throw new Exception("Order not found.");
             }
 
-            order.Status = newStatus;
-            return _orderRepository.UpdateOrder(order);
+            // Use State Pattern for state transitions
+            var orderContext = new OrderContext(order);
+            string oldStatus = order.Status;
+
+            try
+            {
+                // Perform state transition based on target status
+                switch (newStatus.ToLower())
+                {
+                    case "processing":
+                        orderContext.Process();
+                        break;
+                    case "completed":
+                        orderContext.Complete();
+                        break;
+                    case "cancelled":
+                        orderContext.Cancel();
+                        break;
+                    case "refunded":
+                        orderContext.Refund();
+                        break;
+                    default:
+                        throw new InvalidOperationException($"Invalid status: {newStatus}");
+                }
+
+                // Save to database
+                bool success = _orderRepository.UpdateOrder(order);
+
+                if (success)
+                {
+                    // Notify observers
+                    _orderSubject.NotifyOrderStatusChanged(order, oldStatus, newStatus);
+
+                    // Specific notifications
+                    if (newStatus.ToLower() == "cancelled")
+                    {
+                        _orderSubject.NotifyOrderCancelled(order);
+                    }
+                    else if (newStatus.ToLower() == "completed")
+                    {
+                        _orderSubject.NotifyOrderCompleted(order);
+                    }
+                }
+
+                return success;
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new Exception($"Cannot change order status: {ex.Message}");
+            }
+        }
+
+        // State Pattern methods
+        public bool ProcessOrder(int orderId)
+        {
+            return UpdateOrderStatus(orderId, "Processing");
         }
 
         public bool CompleteOrder(int orderId)
@@ -172,9 +241,9 @@ namespace OOADCafeShopManagement.Services
             return UpdateOrderStatus(orderId, "Cancelled");
         }
 
-        public bool ProcessOrder(int orderId)
+        public bool RefundOrder(int orderId)
         {
-            return UpdateOrderStatus(orderId, "Processing");
+            return UpdateOrderStatus(orderId, "Refunded");
         }
 
         public bool DeleteOrder(int id)
