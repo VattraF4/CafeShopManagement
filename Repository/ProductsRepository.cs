@@ -195,5 +195,207 @@ namespace OOADCafeShopManagement.Repositories
                 }
             }
         }
+
+        public List<Products> GetActiveProducts()
+        {
+            var products = new List<Products>();
+
+            using (var connection = DbConnection.Instance.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT
+                                    p.id, p.name, p.price, p.discount, 
+                                    p.categories_id, p.supplier_id, p.status,
+                                    c.name AS categoryName, s.name AS supplierName
+                                 FROM products p
+                                 JOIN categories c ON p.categories_id = c.id
+                                 JOIN suppliers s ON p.supplier_id = s.id
+                                 WHERE p.status = 'active'
+                                 ORDER BY p.id";
+
+                using (var command = new SqlCommand(query, connection))
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        products.Add(new Products
+                        {
+                            ID = reader.GetInt32(0),
+                            Name = reader.GetString(1),
+                            Price = reader.GetDecimal(2),
+                            Discount = reader.GetDecimal(3),
+                            CategoryID = reader.GetInt32(4),
+                            SupplierID = reader.GetInt32(5),
+                            Status = reader.GetString(6),
+                            CategoryName = reader.GetString(7),
+                            SupplierName = reader.GetString(8)
+                        });
+                    }
+                }
+            }
+            return products;
+        }
+
+        public List<Products> GetProductsByCategory(int categoryId)
+        {
+            var products = new List<Products>();
+
+            using (var connection = DbConnection.Instance.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT
+                                    p.id, p.name, p.price, p.discount, 
+                                    p.categories_id, p.supplier_id, p.status,
+                                    c.name AS categoryName, s.name AS supplierName
+                                 FROM products p
+                                 JOIN categories c ON p.categories_id = c.id
+                                 JOIN suppliers s ON p.supplier_id = s.id
+                                 WHERE p.categories_id = @categoryId
+                                 ORDER BY p.id";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@categoryId", categoryId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Products
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                Discount = reader.GetDecimal(3),
+                                CategoryID = reader.GetInt32(4),
+                                SupplierID = reader.GetInt32(5),
+                                Status = reader.GetString(6),
+                                CategoryName = reader.GetString(7),
+                                SupplierName = reader.GetString(8)
+                            });
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        public List<Products> GetProductsBySupplier(int supplierId)
+        {
+            var products = new List<Products>();
+
+            using (var connection = DbConnection.Instance.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT
+                                    p.id, p.name, p.price, p.discount, 
+                                    p.categories_id, p.supplier_id, p.status,
+                                    c.name AS categoryName, s.name AS supplierName
+                                 FROM products p
+                                 JOIN categories c ON p.categories_id = c.id
+                                 JOIN suppliers s ON p.supplier_id = s.id
+                                 WHERE p.supplier_id = @supplierId
+                                 ORDER BY p.id";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@supplierId", supplierId);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Products
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                Discount = reader.GetDecimal(3),
+                                CategoryID = reader.GetInt32(4),
+                                SupplierID = reader.GetInt32(5),
+                                Status = reader.GetString(6),
+                                CategoryName = reader.GetString(7),
+                                SupplierName = reader.GetString(8)
+                            });
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        public List<Products> GetProductsByStatus(string status)
+        {
+            var products = new List<Products>();
+
+            using (var connection = DbConnection.Instance.GetConnection())
+            {
+                connection.Open();
+                string query = @"SELECT
+                                    p.id, p.name, p.price, p.discount, 
+                                    p.categories_id, p.supplier_id, p.status,
+                                    c.name AS categoryName, s.name AS supplierName
+                                 FROM products p
+                                 JOIN categories c ON p.categories_id = c.id
+                                 JOIN suppliers s ON p.supplier_id = s.id
+                                 WHERE p.status = @status
+                                 ORDER BY p.id";
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@status", status);
+
+                    using (var reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            products.Add(new Products
+                            {
+                                ID = reader.GetInt32(0),
+                                Name = reader.GetString(1),
+                                Price = reader.GetDecimal(2),
+                                Discount = reader.GetDecimal(3),
+                                CategoryID = reader.GetInt32(4),
+                                SupplierID = reader.GetInt32(5),
+                                Status = reader.GetString(6),
+                                CategoryName = reader.GetString(7),
+                                SupplierName = reader.GetString(8)
+                            });
+                        }
+                    }
+                }
+            }
+            return products;
+        }
+
+        public bool ProductExists(string name, int excludeId = 0)
+        {
+            using (var connection = DbConnection.Instance.GetConnection())
+            {
+                connection.Open();
+                string query;
+
+                if (excludeId > 0)
+                {
+                    query = "SELECT COUNT(1) FROM Products WHERE name = @name AND id != @excludeId";
+                }
+                else
+                {
+                    query = "SELECT COUNT(1) FROM Products WHERE name = @name";
+                }
+
+                using (var command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@name", name);
+                    if (excludeId > 0)
+                    {
+                        command.Parameters.AddWithValue("@excludeId", excludeId);
+                    }
+
+                    int count = (int)command.ExecuteScalar();
+                    return count > 0;
+                }
+            }
+        }
     }
 }

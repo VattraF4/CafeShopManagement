@@ -10,6 +10,7 @@ namespace OOADCafeShopManagement.Interface
         bool AddUser(Users user);
         bool UpdateUser(Users user);
         bool UpdateUserPassword(int id, string hashedPassword);
+        bool UpdateUserWithPassword(Users user, string newPassword);
         bool DeleteUser(int id);
         Users GetUserByUsername(string username);
         bool IsUsernameExists(string username, int excludeId = 0);

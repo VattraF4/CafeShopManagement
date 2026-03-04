@@ -1,6 +1,7 @@
 ﻿using OOADCafeShopManagement.Models;
 using OOADCafeShopManagement.Repositories;
 using OOADCafeShopManagement.Services;
+using OOADCafeShopManagement.Factory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,8 +25,8 @@ namespace OOADCafeShopManagement
         {
             InitializeComponent();
 
-            var repo = new ProductRepository();  // inject repository
-            _productService = new ProductService(repo);
+            // Use ServiceFactory to create ProductService (Factory Pattern)
+            _productService = ServiceFactory.Instance.CreateProductService();
 
             LoadData();
         }
@@ -40,8 +41,7 @@ namespace OOADCafeShopManagement
         }
         public void ProductListDataGridView()
         {
-            Products products = new Products();
-            List<Products> productsList = products.ListData(); //access to ListData method (match return type)
+            List<Products> productsList = _productService.GetAllProducts();
             dgvListProducts.DataSource = productsList;
 
             // Hide unwanted columns
@@ -141,8 +141,7 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                Products products = new Products();
-                bool success = products.AddProduct(
+                bool success = _productService.AddProduct(
                     txtProductName.Text,
                     (int)cmbCategory.SelectedValue,
                     (int)cmbSupplier.SelectedValue,
@@ -167,8 +166,7 @@ namespace OOADCafeShopManagement
             {
                 // Get the selected value correctly
                 string selectedStatus = cmbStatus.SelectedValue?.ToString();
-                Products productHandlers = new Products();
-                bool success = productHandlers.UpdateProduct(
+                bool success = _productService.UpdateProduct(
                     int.Parse(txtProductID.Text),
                     txtProductName.Text,
                     (int)cmbCategory.SelectedValue,
@@ -199,8 +197,7 @@ namespace OOADCafeShopManagement
         {
             if (int.TryParse(txtProductID.Text, out int productId)) // Check if input is a valid integer
             {
-                Products productHandlers = new Products();
-                var product = productHandlers.SearchProductById(productId);
+                var product = _productService.GetProductById(productId);
                 if (product != null)
                 {
                     txtProductName.Text = product.Name;
@@ -226,8 +223,7 @@ namespace OOADCafeShopManagement
         }
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
         {
-            Products productHandlers = new Products();
-            List<Products> filteredProducts = productHandlers.SearchProductByName(txtSearchProduct.Text);
+            List<Products> filteredProducts = _productService.SearchProducts(txtSearchProduct.Text);
             dgvListProducts.DataSource = filteredProducts;
             // Hide unwanted columns
             dgvListProducts.Columns["CategoryID"].Visible = false;
@@ -242,8 +238,7 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                Products productHandlers = new Products();
-                bool success = productHandlers.DeleteProduct(int.Parse(txtProductID.Text));
+                bool success = _productService.DeleteProduct(int.Parse(txtProductID.Text));
                 if (success)
                 {
                     MessageBox.Show("Product deleted successfully!", "Success",

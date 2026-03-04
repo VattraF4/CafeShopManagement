@@ -133,24 +133,27 @@ namespace OOADCafeShopManagement.Repository
                 using (var connection = DbConnection.Instance.GetConnection())
                 {
                     connection.Open();
-                    
+
                     if (IsUsernameExists(username: user.Username))
                     {
                         throw new Exception("Username already exists.");
                     }
 
+                    // Hash password before storing
+                    string hashedPassword = SecurityHelper.HashPassword(user.Password);
+
                     string query = @"INSERT INTO Users (username, password, role, status, reg_date, profile_img) 
                                    VALUES (@username, @password, @role, @status, @reg_date, @profile_img)";
-                    
+
                     using (var command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@username", user.Username);
-                        command.Parameters.AddWithValue("@password", user.Password);
+                        command.Parameters.AddWithValue("@password", hashedPassword);
                         command.Parameters.AddWithValue("@role", user.Role);
                         command.Parameters.AddWithValue("@status", user.Status);
                         command.Parameters.AddWithValue("@reg_date", DateTime.Now);
                         command.Parameters.AddWithValue("@profile_img", user.ProfilePicturePath ?? (object)DBNull.Value);
-                        
+
                         return command.ExecuteNonQuery() > 0;
                     }
                 }
@@ -209,12 +212,12 @@ namespace OOADCafeShopManagement.Repository
                 {
                     connection.Open();
                     string query = "UPDATE Users SET password = @password WHERE id = @id";
-                    
+
                     using (var command = new SqlCommand(query, connection))
                     {
                         command.Parameters.AddWithValue("@id", id);
                         command.Parameters.AddWithValue("@password", hashedPassword);
-                        
+
                         return command.ExecuteNonQuery() > 0;
                     }
                 }
@@ -222,6 +225,50 @@ namespace OOADCafeShopManagement.Repository
             catch (Exception ex)
             {
                 Console.WriteLine("Error updating user password: " + ex.Message);
+                throw;
+            }
+        }
+
+        public bool UpdateUserWithPassword(Users user, string newPassword)
+        {
+            try
+            {
+                using (var connection = DbConnection.Instance.GetConnection())
+                {
+                    connection.Open();
+
+                    if (IsUsernameExists(user.Username, user.ID))
+                    {
+                        throw new Exception("Username already exists.");
+                    }
+
+                    // Hash the new password
+                    string hashedPassword = SecurityHelper.HashPassword(newPassword);
+
+                    string query = @"UPDATE Users SET 
+                                   username = @username, 
+                                   password = @password, 
+                                   role = @role, 
+                                   status = @status, 
+                                   profile_img = @profile_img 
+                                   WHERE id = @id";
+
+                    using (var command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", user.ID);
+                        command.Parameters.AddWithValue("@username", user.Username);
+                        command.Parameters.AddWithValue("@password", hashedPassword);
+                        command.Parameters.AddWithValue("@role", user.Role);
+                        command.Parameters.AddWithValue("@status", user.Status);
+                        command.Parameters.AddWithValue("@profile_img", user.ProfilePicturePath ?? (object)DBNull.Value);
+
+                        return command.ExecuteNonQuery() > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error updating user with password: " + ex.Message);
                 throw;
             }
         }

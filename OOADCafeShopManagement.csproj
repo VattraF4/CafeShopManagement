@@ -201,6 +201,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factory\OrderFactory.cs" />
+    <Compile Include="Factory\ProductFactory.cs" />
+    <Compile Include="Factory\RepositoryFactory.cs" />
+    <Compile Include="Factory\ServiceFactory.cs" />
+    <Compile Include="Factory\UserFactory.cs" />
     <Compile Include="Helper\LoginHelper.cs" />
     <Compile Include="Interface\IOrderRepository.cs" />
     <Compile Include="Interface\IProductRepository.cs" />
@@ -210,7 +215,9 @@
     <Compile Include="Repository\OrderRepository.cs" />
     <Compile Include="Repository\ProductsRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Services\OrderService.cs" />
     <Compile Include="Services\ProductService.cs" />
+    <Compile Include="Services\UserService.cs" />
     <Compile Include="Views\UserControl\AdminAddProducts.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -316,7 +323,10 @@
       <DependentUpon>RegisterForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Dashboard.Designer.cds" />
+    <None Include="FACTORY_PATTERN_SUMMARY.md" />
+    <None Include="FACTORY_QUICK_REFERENCE.md" />
     <None Include="packages.config" />
+    <None Include="PRODUCTS_ORDERS_REPOSITORY_SUMMARY.md" />
     <None Include="ProjectDiagram.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -327,6 +337,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="REPOSITORY_PATTERN_SUMMARY.md" />
     <None Include="Resources\Noto\NotoSans-Bold.ttf" />
     <None Include="Resources\Noto\NotoSans-BoldItalic.ttf" />
     <None Include="Resources\Noto\NotoSans-Italic.ttf" />

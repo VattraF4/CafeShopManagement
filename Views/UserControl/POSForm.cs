@@ -1,4 +1,7 @@
 ﻿using OOADCafeShopManagement.Models;
+using OOADCafeShopManagement.Services;
+using OOADCafeShopManagement.Repositories;
+using OOADCafeShopManagement.Factory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,12 +17,15 @@ namespace OOADCafeShopManagement
     public partial class POSForm : UserControl
     {
         private OrderManager _orderManager;
+        private ProductService _productService;
         private int rowIndex = 0;
 
         public POSForm()
         {
             InitializeComponent();
             _orderManager = new OrderManager(); // Initialize OrderManager
+            // Use ServiceFactory to create ProductService (Factory Pattern)
+            _productService = ServiceFactory.Instance.CreateProductService();
             LoadForm();
         }
 
@@ -63,8 +69,7 @@ namespace OOADCafeShopManagement
 
         private void txtSearchProduct_TextChanged(object sender, EventArgs e)
         {
-            Products products = new Products();
-            List<Products> productsList = products.SearchProductByName(txtInputName.Text.Trim());
+            List<Products> productsList = _productService.SearchProducts(txtInputName.Text.Trim());
             dgvListMenu.DataSource = productsList;
             int productID = dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value != null ?
                 Convert.ToInt32(dgvCurrentOrder.Rows[rowIndex].Cells["ProductID"].Value) : 0;
@@ -85,8 +90,7 @@ namespace OOADCafeShopManagement
 
         private void ListMenu()
         {
-            Products products = new Products();
-            List<Products> productsList = products.ListActiveMenu();
+            List<Products> productsList = _productService.GetActiveProducts();
             dgvListMenu.DataSource = productsList;
 
             // Hide unwanted columns

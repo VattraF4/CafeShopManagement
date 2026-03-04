@@ -1,4 +1,7 @@
 ﻿using OOADCafeShopManagement.Models;
+using OOADCafeShopManagement.Services;
+using OOADCafeShopManagement.Repository;
+using OOADCafeShopManagement.Factory;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +14,7 @@ namespace OOADCafeShopManagement
 {
     public partial class AdminAddUser : UserControl
     {
-        private Users model;
+        private readonly UserService _userService;
         private string selectedImagePath = "";
         private int selectedUserId = 0;
         private bool isEditMode = false;
@@ -19,7 +22,8 @@ namespace OOADCafeShopManagement
         public AdminAddUser()
         {
             InitializeComponent();
-            model = new Users();
+            // Use ServiceFactory to create UserService (Factory Pattern)
+            _userService = ServiceFactory.Instance.CreateUserService();
             DisplayUsersData();
             SetupComboBoxes();
             SetFormMode(false); // Start in Add mode
@@ -59,8 +63,7 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                Users userData = new Users();
-                List<Users> listData = userData.UsersListData();
+                List<Users> listData = _userService.GetAllUsers();
 
                 dgvListUsers.DataSource = listData;
 
@@ -183,8 +186,7 @@ namespace OOADCafeShopManagement
 
             try
             {
-                Users userData = new Users();
-                bool success = userData.AddUser(
+                bool success = _userService.AddUser(
                     txtUsername.Text.Trim(),
                     txtPassword.Text,
                     cmbRole.SelectedItem.ToString(),
@@ -233,14 +235,13 @@ namespace OOADCafeShopManagement
 
             try
             {
-                Users userData = new Users();
                 bool success;
 
                 // Check if password should be updated
                 if (!string.IsNullOrWhiteSpace(txtPassword.Text))
                 {
                     // Update with new password
-                    success = userData.UpdateUserWithPassword(
+                    success = _userService.UpdateUserWithPassword(
                         selectedUserId,
                         txtUsername.Text.Trim(),
                         txtPassword.Text,
@@ -252,7 +253,7 @@ namespace OOADCafeShopManagement
                 else
                 {
                     // Update without changing password
-                    success = userData.UpdateUser(
+                    success = _userService.UpdateUser(
                         selectedUserId,
                         txtUsername.Text.Trim(),
                         cmbRole.SelectedItem.ToString(),
@@ -304,8 +305,7 @@ namespace OOADCafeShopManagement
             {
                 try
                 {
-                    Users userData = new Users();
-                    bool success = userData.DeleteUser(selectedUserId);
+                    bool success = _userService.DeleteUser(selectedUserId);
 
                     if (success)
                     {
@@ -376,8 +376,7 @@ namespace OOADCafeShopManagement
         {
             try
             {
-                Users userData = new Users();
-                var user = userData.GetUserById(userId);
+                var user = _userService.GetUserById(userId);
 
                 if (user != null)
                 {
@@ -473,8 +472,7 @@ namespace OOADCafeShopManagement
 
             try
             {
-                Users userData = new Users();
-                List<Users> allData = userData.UsersListData();
+                List<Users> allData = _userService.GetAllUsers();
 
                 var filteredData = allData.Where(u =>
                     u.Username.ToLower().Contains(searchTerm.ToLower()) ||
