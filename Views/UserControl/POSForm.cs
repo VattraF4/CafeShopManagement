@@ -2,6 +2,7 @@
 using OOADCafeShopManagement.Services;
 using OOADCafeShopManagement.Repositories;
 using OOADCafeShopManagement.Factory;
+using OOADCafeShopManagement.Strategy;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,10 +24,90 @@ namespace OOADCafeShopManagement
         public POSForm()
         {
             InitializeComponent();
-            _orderManager = new OrderManager(); // Initialize OrderManager
-            // Use ServiceFactory to create ProductService (Factory Pattern)
+            _orderManager = new OrderManager();
             _productService = ServiceFactory.Instance.CreateProductService();
+
+            // Initialize Order Type ComboBox (Strategy Pattern)
+            InitializeOrderTypeComboBox();
+
             LoadForm();
+        }
+
+        // Initialize Order Type ComboBox with values
+        private void InitializeOrderTypeComboBox()
+        {
+            try
+            {
+                // Check if cmbOrderType exists (created in Designer)
+                if (cmbOrderType != null)
+                {
+                    // Clear existing items
+                    cmbOrderType.Items.Clear();
+
+                    // Add order types
+                    cmbOrderType.Items.Add("Dine-In");
+                    cmbOrderType.Items.Add("Takeaway");
+                    cmbOrderType.Items.Add("Delivery");
+
+                    // Set default to Dine-In
+                    cmbOrderType.SelectedIndex = 0;
+
+                    // Wire up event handler
+                    cmbOrderType.SelectedIndexChanged -= CmbOrderType_SelectedIndexChanged; // Remove if exists
+                    cmbOrderType.SelectedIndexChanged += CmbOrderType_SelectedIndexChanged; // Add
+
+                    // Set initial strategy
+                    _orderManager.SetOrderTypeStrategy(new DineInOrderStrategy());
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error initializing order type: {ex.Message}");
+            }
+        }
+
+
+
+        private void CmbOrderType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (cmbOrderType == null || _orderManager == null) return;
+
+                string selectedType = cmbOrderType.SelectedItem?.ToString();
+                if (string.IsNullOrEmpty(selectedType)) return;
+
+                // Create appropriate order type strategy
+                IOrderTypeStrategy orderTypeStrategy = null;
+                switch (selectedType)
+                {
+                    case "Dine-In":
+                        orderTypeStrategy = new DineInOrderStrategy();
+                        break;
+                    case "Takeaway":
+                        orderTypeStrategy = new TakeawayOrderStrategy();
+                        break;
+                    case "Delivery":
+                        orderTypeStrategy = new DeliveryOrderStrategy();
+                        break;
+                }
+
+                if (orderTypeStrategy != null)
+                {
+                    _orderManager.SetOrderTypeStrategy(orderTypeStrategy);
+
+                    // Recalculate if there are items
+                    if (_orderManager.CurrentItems.Count > 0)
+                    {
+                        _orderManager.ApplyOrderTypeCalculations();
+                        UpdateOrderSummary();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error changing order type: {ex.Message}");
+            }
         }
 
         // Loading Form
@@ -323,42 +404,46 @@ namespace OOADCafeShopManagement
                     return;
                 }
 
-                // Get customer info
                 string note = txtNote.Text;
-                string status = "Completed";
+                string orderType = cmbOrderType?.SelectedItem?.ToString() ?? "Dine-In";
 
-                //Print Receipt before update
+                // Apply order type calculations before payment
+                _orderManager.ApplyOrderTypeCalculations();
 
                 // Process payment
-                bool success = _orderManager.ProcessPayment(note, status);
+                bool success = _orderManager.ProcessPayment(note, "Completed");
 
                 if (success)
                 {
-                    MessageBox.Show("Payment processed successfully! Order saved.", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    var summary = _orderManager.GetOrderSummary();
+                    MessageBox.Show($"Payment successful!\n\n" +
+                                  $"Order Type: {orderType}\n" +
+                                  $"Subtotal: {summary.totalAmount:C2}\n" +
+                                  $"Service/Fees: {_orderManager.CurrentOrder.ServiceCharge:C2}\n" +
+                                  $"Discount: {summary.discount:C2}\n" +
+                                  $"Total: {summary.grandTotal:C2}",
+                        "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    //Print receipt after insert to database
                     PrintReceipt();
 
-                    // Clear form for next order
                     _orderManager.ClearOrder();
-
                     ClearForm();
                     UpdateOrderSummary();
 
                     dgvCurrentOrder.DataSource = null;
                     InitializeOrderDisplay();
+
+                    // Reset to Dine-In
+                    if (cmbOrderType != null) cmbOrderType.SelectedIndex = 0;
                 }
                 else
                 {
-                    MessageBox.Show("Failed to process payment. Please try again.", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Payment failed!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Error processing payment: {ex.Message}", "Error",
-                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -485,6 +570,11 @@ namespace OOADCafeShopManagement
         public void ReloadProducts()
         {
             LoadForm();
+        }
+
+        private void cmbOrderType1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

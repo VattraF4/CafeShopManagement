@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="SINGLETON PATTERN&#xD;&#xA;Ensures only one instance exists">
+    <Position X="0.5" Y="0.5" Height="0.75" Width="2.5" />
+  </Comment>
+  <Comment CommentText="FACTORY PATTERN&#xD;&#xA;Creates objects consistently">
+    <Position X="5.5" Y="0.5" Height="0.75" Width="3" />
+  </Comment>
+  <Comment CommentText="REPOSITORY PATTERN&#xD;&#xA;Separates data access">
+    <Position X="10.5" Y="0.5" Height="0.75" Width="3" />
+  </Comment>
+  <Comment CommentText="STRATEGY PATTERN&#xD;&#xA;Swappable algorithms">
+    <Position X="15.5" Y="0.5" Height="0.75" Width="3" />
+  </Comment>
+  <Comment CommentText="STATE PATTERN&#xD;&#xA;Order lifecycle">
+    <Position X="20.5" Y="0.5" Height="0.75" Width="2.5" />
+  </Comment>
+  <Comment CommentText="OBSERVER PATTERN&#xD;&#xA;Auto-notifications">
+    <Position X="25" Y="0.5" Height="0.75" Width="2.5" />
+  </Comment>
+  <Class Name="OOADCafeShopManagement.DbConnection">
+    <Position X="0.75" Y="2" Width="2.5" />
+    <Members>
+      <Field Name="_connectionString" Hidden="true" />
+      <Field Name="_instance" Hidden="true" />
+      <Field Name="_lock" Hidden="true" />
+      <Method Name="DbConnection" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAEAAAAAAAAAAggAAAAAAAAAAAAAAAAQAAAABAAAAA=</HashCode>
+      <FileName>Database\DbConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Factory.ServiceFactory">
+    <Position X="0.75" Y="4" Width="2.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Field Name="_lock" Hidden="true" />
+      <Method Name="ServiceFactory" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAA=</HashCode>
+      <FileName>Factory\ServiceFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Factory.RepositoryFactory">
+    <Position X="0.75" Y="6" Width="2.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Field Name="_lock" Hidden="true" />
+      <Method Name="RepositoryFactory" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\RepositoryFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Factory.UserFactory" BaseTypeListCollapsed="true">
+    <Position X="5.5" Y="2" Width="3" />
+    <Members>
+      <Method Name="CreateFromData" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAEAABAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Factory\UserFactory.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Factory.ProductFactory">
+    <Position X="5.5" Y="4.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAQ=</HashCode>
+      <FileName>Factory\ProductFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Factory.OrderFactory">
+    <Position X="5.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Factory\OrderFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Repository.UserRepository" BaseTypeListCollapsed="true">
+    <Position X="10.5" Y="2" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\UserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Repositories.ProductRepository">
+    <Position X="10.5" Y="4" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\ProductsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Repository.OrderRepository">
+    <Position X="10.5" Y="6" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Repository\OrderRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Services.UserService">
+    <Position X="10.5" Y="8" Width="3" />
+    <AssociationLine Name="_userFactory" Type="OOADCafeShopManagement.Factory.UserFactory">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-1.338" Y="0.248" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_userFactory" />
+      <Field Name="_userRepository" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="OOADCafeShopManagement.Strategy.PercentageDiscountStrategy" BaseTypeListCollapsed="true">
+    <Position X="15.5" Y="2" Width="3" />
+    <Members>
+      <Field Name="_percentage" Hidden="true" />
+      <Method Name="PercentageDiscountStrategy" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Strategy\DiscountStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Strategy.FixedAmountDiscountStrategy">
+    <Position X="15.5" Y="3.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Strategy\DiscountStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Strategy.BuyOneGetOneStrategy">
+    <Position X="15.5" Y="5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Strategy\DiscountStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Strategy.CashPaymentStrategy">
+    <Position X="15.5" Y="6.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Strategy\PaymentStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Strategy.CardPaymentStrategy">
+    <Position X="15.5" Y="8" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Strategy\PaymentStrategy.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.State.PendingState" BaseTypeListCollapsed="true">
+    <Position X="20.5" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\OrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.State.ProcessingState">
+    <Position X="20.5" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\OrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.State.CompletedState">
+    <Position X="20.5" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\OrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.State.CancelledState">
+    <Position X="20.5" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\OrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.State.RefundedState">
+    <Position X="20.5" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>State\OrderState.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.DashboardObserver" BaseTypeListCollapsed="true">
+    <Position X="25" Y="2" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.NotificationObserver">
+    <Position X="25" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.InventoryObserver">
+    <Position X="25" Y="4.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.AnalyticsObserver">
+    <Position X="25" Y="5.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.LoggingObserver">
+    <Position X="25" Y="7" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="OOADCafeShopManagement.Observer.OrderSubject">
+    <Position X="25" Y="8.5" Width="2.5" />
+    <Members>
+      <Field Name="_instance" Hidden="true" />
+      <Field Name="_lock" Hidden="true" />
+      <Field Name="_observers" Hidden="true" />
+      <Method Name="OrderSubject" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Observer\OrderObserver.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

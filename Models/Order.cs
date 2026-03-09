@@ -11,6 +11,11 @@ namespace OOADCafeShopManagement.Models
         public string Status { get; set; } = "Pending";
         public int UserID { set; get; }
         public DateTime OrderDate { get; set; }
+
+        // Order Type Strategy Pattern fields
+        public decimal ServiceCharge { get; set; } = 0;
+        public decimal Tax { get; set; } = 0;
+        public string OrderType { get; set; } = "Dine-In";
     }
 }
 

@@ -134,7 +134,13 @@ namespace OOADCafeShopManagement
             {
                 DataGridViewRow row = dgvListProducts.Rows[e.RowIndex];
                 txtProductID.Text = row.Cells["id"].Value.ToString();
-                // or row.Cells[0].Value.ToString(); if ID is first column
+                txtProductName.Text = row.Cells["name"].Value.ToString();
+                cmbCategory.SelectedValue = row.Cells["categoryID"].Value;
+                cmbSupplier.SelectedValue = row.Cells["supplierID"].Value;
+                cmbStatus.SelectedValue = row.Cells["status"].Value.ToString().ToLower(); // Ensure case matches
+                txtProductPrice.Text = row.Cells["price"].Value.ToString();
+                txtDiscount.Text = row.Cells["discount"].Value.ToString();
+
             }
         }
         private void btnAdd_Click(object sender, EventArgs e)

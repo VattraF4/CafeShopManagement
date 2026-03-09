@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
+using OOADCafeShopManagement.Strategy;
+using OOADCafeShopManagement.Helper;
 
 
 namespace OOADCafeShopManagement.Models
@@ -13,16 +15,23 @@ namespace OOADCafeShopManagement.Models
         private Order _currentOrder;
         private BindingList<OrderDetail> _currentItems;
         private OrderDetail _selectedItem; // Single temporary item
+        private IDiscountStrategy _discountStrategy; // Strategy Pattern
+        private IPaymentStrategy _paymentStrategy;   // Strategy Pattern
+        private IOrderTypeStrategy _orderTypeStrategy; // Order Type Strategy Pattern
 
         //Properties Get Only
         public Order CurrentOrder => _currentOrder;
         public BindingList<OrderDetail> CurrentItems => _currentItems;
         public OrderDetail SelectedItem => _selectedItem;
-        public decimal GrandTotal => _currentOrder.TotalAmount - _currentOrder.Discount;
+        public decimal GrandTotal => _currentOrder.TotalAmount + _currentOrder.ServiceCharge - _currentOrder.Discount;
 
         public OrderManager()
         {
             InitializeNewOrder();
+            // Initialize default strategies
+            _discountStrategy = new NoDiscountStrategy();
+            _paymentStrategy = new CashPaymentStrategy();
+            _orderTypeStrategy = new DineInOrderStrategy(); // Default to Dine-In
         }
 
         private void InitializeNewOrder()
@@ -146,8 +155,143 @@ namespace OOADCafeShopManagement.Models
 
         public (decimal totalAmount, decimal discount, decimal grandTotal) GetOrderSummary()
         {
-            
+
             return (_currentOrder.TotalAmount, _currentOrder.Discount, GrandTotal);
+        }
+
+        // ===== STRATEGY PATTERN METHODS =====
+
+        /// <summary>
+        /// Set discount strategy for the order
+        /// </summary>
+        public void SetDiscountStrategy(IDiscountStrategy strategy)
+        {
+            _discountStrategy = strategy ?? new NoDiscountStrategy();
+        }
+
+        /// <summary>
+        /// Set payment strategy for the order
+        /// </summary>
+        public void SetPaymentStrategy(IPaymentStrategy strategy)
+        {
+            _paymentStrategy = strategy ?? new CashPaymentStrategy();
+        }
+
+        /// <summary>
+        /// Apply discount using current strategy
+        /// </summary>
+        public void ApplyDiscount()
+        {
+            if (_discountStrategy == null)
+            {
+                _discountStrategy = new NoDiscountStrategy();
+            }
+
+            decimal totalDiscount = 0;
+            foreach (var item in _currentItems)
+            {
+                decimal itemDiscount = _discountStrategy.CalculateDiscount(item.UnitPrice, item.Quantity);
+                item.Discount = itemDiscount;
+                totalDiscount += itemDiscount;
+            }
+
+            _currentOrder.Discount = totalDiscount;
+        }
+
+        /// <summary>
+        /// Process payment using current payment strategy
+        /// </summary>
+        public bool ProcessPaymentWithStrategy(string note = "")
+        {
+            if (_paymentStrategy == null)
+            {
+                _paymentStrategy = new CashPaymentStrategy();
+            }
+
+            // Calculate final amount
+            decimal finalAmount = GrandTotal;
+
+            // Process payment
+            bool paymentSuccess = _paymentStrategy.ProcessPayment(finalAmount);
+
+            if (paymentSuccess)
+            {
+                // Save order to database
+                _currentOrder.Note = note;
+                _currentOrder.Status = "Completed";
+                return SaveOrderToDatabase();
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Get payment receipt
+        /// </summary>
+        public string GetPaymentReceipt()
+        {
+            var context = new PaymentContext();
+            context.SetDiscountStrategy(_discountStrategy);
+            context.SetPaymentStrategy(_paymentStrategy);
+
+            var receipt = context.GetPaymentReceipt(_currentOrder.TotalAmount, 1);
+            return receipt.ToString();
+        }
+
+        /// <summary>
+        /// Quick method to set discount from helper
+        /// </summary>
+        public void SetDiscountOption(DiscountOption option)
+        {
+            _discountStrategy = DiscountHelper.CreateDiscountStrategy(option);
+            ApplyDiscount();
+        }
+
+        /// <summary>
+        /// Quick method to set payment from helper
+        /// </summary>
+        public void SetPaymentOption(PaymentOption option, params string[] additionalParams)
+        {
+            _paymentStrategy = PaymentHelper.CreatePaymentStrategy(option, additionalParams);
+        }
+
+        // ===== ORDER TYPE STRATEGY PATTERN METHODS =====
+
+        /// <summary>
+        /// Set order type strategy (Dine-In, Takeaway, Delivery)
+        /// </summary>
+        public void SetOrderTypeStrategy(IOrderTypeStrategy strategy)
+        {
+            _orderTypeStrategy = strategy ?? new DineInOrderStrategy();
+        }
+
+        /// <summary>
+        /// Apply order type calculations (service charges, packaging fees, etc.)
+        /// </summary>
+        public void ApplyOrderTypeCalculations()
+        {
+            if (_orderTypeStrategy == null)
+            {
+                _orderTypeStrategy = new DineInOrderStrategy();
+            }
+
+            int itemCount = _currentItems.Count;
+            decimal totalAmount = _currentOrder.TotalAmount;
+
+            // Calculate charges using strategy
+            var (serviceCharge, packagingFee, tax) = _orderTypeStrategy.CalculateCharges(totalAmount, itemCount);
+
+            // Store in order
+            _currentOrder.ServiceCharge = serviceCharge + packagingFee;
+            _currentOrder.Tax = tax;
+        }
+
+        /// <summary>
+        /// Get order type name
+        /// </summary>
+        public string GetOrderTypeName()
+        {
+            return _orderTypeStrategy?.GetOrderTypeName() ?? "Dine-In";
         }
 
         // Clear current order for new transaction
