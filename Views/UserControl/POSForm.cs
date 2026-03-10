@@ -3,6 +3,7 @@ using OOADCafeShopManagement.Services;
 using OOADCafeShopManagement.Repositories;
 using OOADCafeShopManagement.Factory;
 using OOADCafeShopManagement.Strategy;
+using OOADCafeShopManagement.State;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +22,14 @@ namespace OOADCafeShopManagement
         private ProductService _productService;
         private int rowIndex = 0;
 
+        // STATE PATTERN - Order State Management
+        private OrderContext _orderContext;
+        private Label _lblCurrentState;
+        private Button _btnProcessOrder;
+        private Button _btnCompleteOrder;
+        private Button _btnCancelOrder;
+        private Button _btnRefundOrder;
+
         public POSForm()
         {
             InitializeComponent();
@@ -29,6 +38,9 @@ namespace OOADCafeShopManagement
 
             // Initialize Order Type ComboBox (Strategy Pattern)
             InitializeOrderTypeComboBox();
+
+            // Initialize State Pattern UI
+            CreateStateManagementPanel();
 
             LoadForm();
         }
@@ -63,6 +75,219 @@ namespace OOADCafeShopManagement
             catch (Exception ex)
             {
                 System.Diagnostics.Debug.WriteLine($"Error initializing order type: {ex.Message}");
+            }
+        }
+
+        // ========================================
+        // STATE PATTERN UI - Safe for Bunifu
+        // ========================================
+
+        private void CreateStateManagementPanel()
+        {
+            try
+            {
+                // Wait for form to fully load
+                this.Load += (s, e) => InitializeStateControls();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"Error: {ex.Message}");
+            }
+        }
+
+        private void InitializeStateControls()
+        {
+            try
+            {
+                if (bunifuPanel1 == null || bunifuPanel1.IsDisposed) return;
+
+                // Calculate positions
+                int panelWidth = bunifuPanel1.Width;
+                int centerX = Math.Max(0, (panelWidth - 150) / 1);
+                int topY = 0;
+
+                // State label
+                _lblCurrentState = new Label
+                {
+                    Name = "lblStatePattern",
+                    Text = "No Order",
+                    Location = new Point(centerX, topY),
+                    Size = new Size(120, 14),
+                    Font = new Font("Arial", 7, FontStyle.Bold),
+                    ForeColor = Color.Gray,
+                    TextAlign = ContentAlignment.MiddleCenter,
+                    BackColor = Color.Transparent,
+                    AutoSize = false
+                };
+
+                // Buttons
+                int btnY = topY + 16;
+                int btnW = 28;
+
+                _btnProcessOrder = CreateStateButton("►", centerX, btnY, btnW, Color.LightGreen);
+                _btnProcessOrder.Click += BtnProcessOrder_Click;
+
+                _btnCompleteOrder = CreateStateButton("✓", centerX + btnW + 2, btnY, btnW, Color.LightBlue);
+                _btnCompleteOrder.Click += BtnCompleteOrder_Click;
+
+                _btnCancelOrder = CreateStateButton("✕", centerX + (btnW + 2) * 2, btnY, btnW, Color.LightCoral);
+                _btnCancelOrder.Click += BtnCancelOrder_Click;
+
+                _btnRefundOrder = CreateStateButton("↩", centerX + (btnW + 2) * 3, btnY, btnW, Color.LightGoldenrodYellow);
+                _btnRefundOrder.Click += BtnRefundOrder_Click;
+
+                // Add to panel safely
+                bunifuPanel1.Controls.Add(_lblCurrentState);
+                bunifuPanel1.Controls.Add(_btnProcessOrder);
+                bunifuPanel1.Controls.Add(_btnCompleteOrder);
+                bunifuPanel1.Controls.Add(_btnCancelOrder);
+                bunifuPanel1.Controls.Add(_btnRefundOrder);
+
+                _lblCurrentState.BringToFront();
+                _btnProcessOrder.BringToFront();
+                _btnCompleteOrder.BringToFront();
+                _btnCancelOrder.BringToFront();
+                _btnRefundOrder.BringToFront();
+            }
+            catch (Exception ex)
+            {
+                System.Diagnostics.Debug.WriteLine($"State UI Error: {ex.Message}");
+            }
+        }
+
+        private Button CreateStateButton(string text, int x, int y, int w, Color bgColor)
+        {
+            var btn = new Button
+            {
+                Text = text,
+                Location = new Point(x, y),
+                Size = new Size(w, 18),
+                BackColor = bgColor,
+                Enabled = false,
+                Font = new Font("Arial", 7, FontStyle.Bold),
+                FlatStyle = FlatStyle.Flat,
+                Cursor = Cursors.Hand,
+                UseVisualStyleBackColor = false
+            };
+            btn.FlatAppearance.BorderSize = 0;
+            return btn;
+        }
+
+        // ========================================
+        // STATE PATTERN - Event Handlers
+        // ========================================
+
+        private void BtnProcessOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_orderContext == null) return;
+                _orderContext.Process();
+                UpdateStateDisplay();
+                MessageBox.Show("Processing", "State", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnCompleteOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_orderContext == null) return;
+                _orderContext.Complete();
+                UpdateStateDisplay();
+                MessageBox.Show("Completed!", "State", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnCancelOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_orderContext == null) return;
+                if (MessageBox.Show("Cancel order?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _orderContext.Cancel();
+                    UpdateStateDisplay();
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnRefundOrder_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_orderContext == null) return;
+                if (MessageBox.Show("Refund order?", "Confirm", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    _orderContext.Refund();
+                    UpdateStateDisplay();
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Update state display - simplified
+        private void UpdateStateDisplay()
+        {
+            if (_orderContext == null)
+            {
+                _lblCurrentState.Text = "No Order";
+                _lblCurrentState.ForeColor = Color.Gray;
+                _btnProcessOrder.Enabled = false;
+                _btnCompleteOrder.Enabled = false;
+                _btnCancelOrder.Enabled = false;
+                _btnRefundOrder.Enabled = false;
+                return;
+            }
+
+            string state = _orderContext.GetCurrentStateName();
+            _lblCurrentState.Text = $"State: {state}";
+
+            switch (state)
+            {
+                case "Pending":
+                    _lblCurrentState.ForeColor = Color.Orange;
+                    _btnProcessOrder.Enabled = true;
+                    _btnCompleteOrder.Enabled = false;
+                    _btnCancelOrder.Enabled = true;
+                    _btnRefundOrder.Enabled = false;
+                    break;
+                case "Processing":
+                    _lblCurrentState.ForeColor = Color.Blue;
+                    _btnProcessOrder.Enabled = false;
+                    _btnCompleteOrder.Enabled = true;
+                    _btnCancelOrder.Enabled = true;
+                    _btnRefundOrder.Enabled = false;
+                    break;
+                case "Completed":
+                    _lblCurrentState.ForeColor = Color.Green;
+                    _btnProcessOrder.Enabled = false;
+                    _btnCompleteOrder.Enabled = false;
+                    _btnCancelOrder.Enabled = false;
+                    _btnRefundOrder.Enabled = true;
+                    break;
+                default:
+                    _lblCurrentState.ForeColor = Color.Red;
+                    _btnProcessOrder.Enabled = false;
+                    _btnCompleteOrder.Enabled = false;
+                    _btnCancelOrder.Enabled = false;
+                    _btnRefundOrder.Enabled = false;
+                    break;
             }
         }
 
@@ -411,27 +636,37 @@ namespace OOADCafeShopManagement
                 _orderManager.ApplyOrderTypeCalculations();
 
                 // Process payment
-                bool success = _orderManager.ProcessPayment(note, "Completed");
+                bool success = _orderManager.ProcessPayment(note, "Pending"); // Start in Pending state
 
                 if (success)
                 {
+                    // ========================================
+                    // STATE PATTERN - Initialize Order State
+                    // ========================================
+                    _orderContext = new OrderContext(_orderManager.CurrentOrder);
+                    UpdateStateDisplay();
+
                     var summary = _orderManager.GetOrderSummary();
-                    MessageBox.Show($"Payment successful!\n\n" +
+                    MessageBox.Show($"✅ Payment Successful!\n\n" +
+                                  $"Order #{_orderManager.CurrentOrder.OrderID} created\n" +
+                                  $"Initial State: {_orderContext.GetCurrentStateName()}\n\n" +
                                   $"Order Type: {orderType}\n" +
                                   $"Subtotal: {summary.totalAmount:C2}\n" +
                                   $"Service/Fees: {_orderManager.CurrentOrder.ServiceCharge:C2}\n" +
                                   $"Discount: {summary.discount:C2}\n" +
-                                  $"Total: {summary.grandTotal:C2}",
+                                  $"Total: {summary.grandTotal:C2}\n\n" +
+                                  $"🔄 Use State buttons to manage order status!",
                         "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     PrintReceipt();
 
-                    _orderManager.ClearOrder();
+                    // Don't clear order yet - allow state management
+                    // _orderManager.ClearOrder();
                     ClearForm();
-                    UpdateOrderSummary();
+                    // UpdateOrderSummary();
 
-                    dgvCurrentOrder.DataSource = null;
-                    InitializeOrderDisplay();
+                    // dgvCurrentOrder.DataSource = null;
+                    // InitializeOrderDisplay();
 
                     // Reset to Dine-In
                     if (cmbOrderType != null) cmbOrderType.SelectedIndex = 0;

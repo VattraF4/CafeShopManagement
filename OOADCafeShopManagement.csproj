@@ -366,7 +366,9 @@
     <None Include="Resources\Roboto\RobotoCondensed-Light.ttf" />
     <None Include="Resources\Roboto\RobotoCondensed-LightItalic.ttf" />
     <None Include="Resources\Roboto\RobotoCondensed-Regular.ttf" />
-    <None Include="STRATEGY_ORDER_TYPE_IMPLEMENTATION.md" />
+    <None Include="STATE_PATTERN_PRESENTATION.md" />
+    <None Include="STATE_PATTERN_SLIDES.md" />
+    <None Include="STATE_PATTERN_UI_INTEGRATION.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
